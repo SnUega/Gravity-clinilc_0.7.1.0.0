@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Клиника</title>
+
+  
+  <!---FONTS--->
+  <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
+  <!---CSS--->
+  <link rel="stylesheet" href="../css/main.css">
+  <!---LIBS--->
+  <link rel="stylesheet" href="../lib/swiper/swiper-bundle.min.css">
+
+
+</head>
+<body>
+    <header class="navc-header">
+      <div class="navc-row">
+        <a href="/" class="navc-logo">Логотип</a>
+        <button class="navc-burger" aria-label="Открыть меню" aria-controls="navc-panel" aria-expanded="false">
+          <span class="navc-burger__line top"></span>
+          <span class="navc-burger__line middle"></span>
+          <span class="navc-burger__line bottom"></span>
+          <svg class="navc-ring" viewBox="0 0 64 64" aria-hidden="true">
+            <circle class="ring-left" cx="32" cy="32" r="31" />
+            <circle class="ring-right" cx="32" cy="32" r="31" />
+          </svg>
+        </button>
+        <a href="tel:+79999999999" class="navc-phone">+7 (999) 999-99-99</a>
+      </div>
+    </header>
+
+    <div class="navc-menu">
+      <div class="navc-stem">
+        <div class="navc-panel" id="navc-panel" role="dialog" aria-modal="true">
+          <div class="navc-inner">
+            <div class="menu-left">
+              <h2>Меню</h2>
+              <ul>
+                <li><a href="#">О нас</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Врачи</a></li>
+                <li><a href="#">О клинике</a></li>
+                <li><a href="#">Контакты</a></li>
+              </ul>
+            </div>
+            <div class="menu-right">
+              <h2>Блог</h2>
+              <div class="blog-links">
+                <a href="#">Как выбрать косметолога?</a>
+                <a href="#">Топ-5 процедур июня</a>
+                <a href="#">Правила подготовки к лазерной эпиляции</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="page-wrapper">
+
+
+<section id="hero" class="hero-spacer" style="height: 100vh;"></section>
+
+<section id="services-section" aria-labelledby="servicesTitle">
+  <svg class="tri-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <line x1="0" y1="0" x2="50" y2="60" />
+    <line x1="100" y1="0" x2="50" y2="60" />
+    <line x1="50" y1="60" x2="50" y2="100" />
+  </svg>
+  <div class="services-headings">
+    <a class="svc-heading left" href="#">
+      <span class="svc-num">01</span>
+      <span class="svc-text">Косметология</span>
+    </a>
+    <a class="svc-heading right" href="#">
+      <span class="svc-num">02</span>
+      <span class="svc-text">Инъекционные методики</span>
+    </a>
+    <a class="svc-heading bottom" href="#">
+      <span class="svc-num">03</span>
+      <span class="svc-text">Массаж</span>
+    </a>
+  </div>
+  </section>
+
+<section class="about" id="about">
+  <div class="about-title">
+    <h2>О нас</h2>
+    <p>Немного информации о нашей команде</p>
+  </div>
+  <div class="cards-container">
+    <div class="card">
+      <h3>Карточка 1</h3>
+      <button class="open">Подробнее</button>
+      <div class="overlay">
+        <h4>Детали</h4>
+        <p>Описание карточки 1</p>
+        <button class="close">Закрыть</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Карточка 2</h3>
+      <button class="open">Подробнее</button>
+      <div class="overlay">
+        <h4>Детали</h4>
+        <p>Описание карточки 2</p>
+        <button class="close">Закрыть</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Карточка 3</h3>
+      <button class="open">Подробнее</button>
+      <div class="overlay">
+        <h4>Детали</h4>
+        <p>Описание карточки 3</p>
+        <button class="close">Закрыть</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Карточка 4</h3>
+      <button class="open">Подробнее</button>
+      <div class="overlay">
+        <h4>Детали</h4>
+        <p>Описание карточки 4</p>
+        <button class="close">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="alr">
+    <div class="alr-container">
+      <!-- Mobile hint -->
+      <div class="alr-mobile-hint">
+        <span>Листайте</span>
+        <div class="hint-arrows">
+          <span>←</span>
+          <span>→</span>
+        </div>
+      </div>
+      
+      <div class="alr-wrap">
+        <!-- Awards Card (Left) -->
+        <div class="alr-col" data-card="awards">
+          <div class="alr-hover-content">
+            <!-- 3D model or image will be inserted here -->
+          </div>
+          <div class="alr-main-content">
+            <h3>Награды</h3>
+            <p>Признание профессионального сообщества и достижения в области эстетической медицины</p>
+            <button class="alr-btn" data-action="open">
+              <span>Подробнее</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+          <div class="alr-detail-content">
+            <h3>Награды</h3>
+            <p>Детальное описание наград и достижений клиники в области эстетической медицины</p>
+            <button class="alr-btn" data-action="close">
+              <span class="arrow">←</span>
+              <span>Назад</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Reviews Card (Center) -->
+        <div class="alr-col" data-card="reviews">
+          <div class="alr-hover-content">
+            <!-- 3D model or image will be inserted here -->
+          </div>
+          <div class="alr-main-content">
+            <h3>Отзывы</h3>
+            <p>Реальные истории наших пациентов и их впечатления от лечения</p>
+            <button class="alr-btn" data-action="open">
+              <span>Подробнее</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+          <div class="alr-detail-content">
+            <h3>Отзывы</h3>
+            <p>Детальное описание отзывов и историй пациентов</p>
+            <button class="alr-btn" data-action="close">
+              <span class="arrow">←</span>
+              <span>Назад</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Licenses Card (Right) -->
+        <div class="alr-col" data-card="licenses">
+          <div class="alr-hover-content">
+            <!-- 3D model or image will be inserted here -->
+          </div>
+          <div class="alr-main-content">
+            <h3>Лицензии</h3>
+            <p>Официальные разрешения и сертификаты для оказания медицинских услуг</p>
+            <button class="alr-btn" data-action="open">
+              <span>Подробнее</span>
+              <span class="arrow">→</span>
+            </button>
+          </div>
+          <div class="alr-detail-content">
+            <h3>Лицензии</h3>
+            <p>Детальное описание лицензий и сертификатов клиники</p>
+            <button class="alr-btn" data-action="close">
+              <span class="arrow">←</span>
+              <span>Назад</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="slider-container" id="sliderContainer">
+    <div class="nav-arrow left" id="prevSlide">&#10094;</div>
+    <div class="nav-arrow right" id="nextSlide">&#10095;</div>
+
+    <div class="category-nav" id="categoryNav"></div>
+  </div>
+
+  <section id="revealWrap" class="reveal-wrap">
+  <section class="contacts-section" id="contacts">
+    <div class="form-map-container">
+      <form class="form-container" id="contactForm" action="https://formspree.io/f/xgvzbrzz" method="POST">
+        <h2>Запланируйте свой визит</h2>
+        <div class="form-top-row">
+          <div class="input-group">
+            <input type="text" name="name" id="name" placeholder=" " required />
+            <label for="name">Ваше имя</label>
+          </div>
+          <div class="input-group">
+            <input type="tel" name="phone" id="phone" placeholder=" " required />
+            <label for="phone">Телефон</label>
+          </div>
+          <div class="input-group">
+            <div class="custom-dropdown" id="customDropdown">
+              <div class="selected">Выберите время</div>
+              <div class="dropdown-options">
+                <div class="option">с 9:00 до 12:00</div>
+                <div class="option">с 12:00 до 16:00</div>
+                <div class="option">с 16:00 до 18:00</div>
+                <div class="option">с 18:00 до 21:00</div>
+              </div>
+            </div>
+            <input type="hidden" name="technology" id="hiddenSelectValue" required />
+            <label for="time">Время для звонка</label>
+          </div>
+        </div>
+          <div class="form-bottom-row">
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="agree">
+              <label for="agree">
+                <svg class="checkmark" viewBox="0 0 24 24">
+                  <polyline points="4 12 9 17 20 6">
+                </svg>
+                Я согласен с политикой конфиденциальности и на обработку персональных данных</label>
+            </div>
+            <div class="button-wrapper">
+              <button type="submit" class="send-btn"><span>Отправить</span></button>
+            </div>
+          </div>
+
+          <div class="warning" id="warningText">Пожалуйста, согласитесь с политикой конфиденциальности.</div>
+      </form>
+
+      <div class="map-contacts">
+        <div class="contact-info">
+          <h2>Контакты</h2>
+          <p><strong>Телефон:</strong> +7 (900) 000-00-00</p>
+          <p><strong>Адрес:</strong> Санкт-Петербург, ул. Примерная, д. 1</p>
+          <p><strong>Часы работы:</strong> 10:00 - 19:00, Пн–Пт</p>
+          <p><strong>Email:</strong> info@example.com</p>
+        </div>
+        
+          <div id="map-wrapper">
+            <div id="map-placeholder"></div>
+          </div>
+        
+        
+      </div>
+    </div>
+  </section>
+
+  <footer id="page-footer" aria-labelledby="footerTitle">
+    <div class="footer-inner">
+      <div class="footer-col footer-brand">
+        <div class="footer-logo" aria-label="Логотип">BL</div>
+        <p class="footer-desc">Клиника эстетической медицины</p>
+      </div>
+      <nav class="footer-col" aria-label="Навигация">
+        <h4 id="footerTitle">Навигация</h4>
+        <ul class="footer-nav">
+          <li><a href="#services-section">Услуги</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#alr">Награды и лицензии</a></li>
+          <li><a href="#sliderContainer">Галерея</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="footer-col" aria-label="Карта услуг">
+        <h4>Карта услуг</h4>
+        <ul class="footer-nav two-cols">
+          <li><a href="#services-section">Косметология</a></li>
+          <li><a href="#services-section">Инъекционные методики</a></li>
+          <li><a href="#services-section">Массаж</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="#" class="policy-link">Политика конфиденциальности</a>
+      </div>
+      <div class="footer-socials">
+        <a class="social-btn wa" href="#" aria-label="WhatsApp">WhatsApp</a>
+        <a class="social-btn tg" href="#" aria-label="Telegram">Telegram</a>
+      </div>
+      <div class="footer-copy">
+        <span>© <span id="copyYear"></span> Клиника. Все права защищены.</span>
+        <a class="made-by" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 8.9 9 8z"/></svg>
+          <span>made by Заглушка</span>
+        </a>
+      </div>
+    </div>
+    <script>document.getElementById('copyYear').textContent = new Date().getFullYear();</script>
+  </footer>
+  </section>
+
+  <div class="modal" id="thanksModal">
+    <div class="modal-inner">
+      <h3>Спасибо за заявку!</h3>
+      <p>Мы свяжемся с вами в ближайшее время.</p>
+      <button class="modal-close progress-ring" id="modalClose">
+        &times;
+        <svg class="ring" width="48" height="48">
+          <circle class="ring-bg" cx="24" cy="24" r="22" stroke-width="4" />
+          <circle class="ring-progress" cx="24" cy="24" r="22" stroke-width="4" />
+        </svg>
+      </button>
+    </div>
+  </div>
+    
+</div>
+
+
+
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script>
+  let mapInitialized = false;
+
+  window.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    ymaps.ready(() => {
+      const myMap = new ymaps.Map("map-placeholder", {
+        center: [59.962224, 30.320791],
+        zoom: 16,
+        controls: ['zoomControl', 'fullscreenControl']
+      });
+
+      const myPlacemark = new ymaps.Placemark([59.962224, 30.320791], {
+        hintContent: 'Метка',
+        balloonContent: 'Это ваша точка'
+      });
+
+      myMap.geoObjects.add(myPlacemark);
+    });
+
+    ScrollTrigger.create({
+      trigger: "#map-wrapper",
+      start: "top 80%",
+      once: true,
+      onEnter: () => {
+        gsap.to("#map-wrapper", {
+          height: 500,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+      }
+    });
+  });
+</script>
+
+<!-- ALR Modals -->
+<div class="modal" id="awardsModal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h2>Награды и достижения</h2>
+    <div class="modal-body">
+      <div class="award-item">
+        <div class="award-icon">🏆</div>
+        <div class="award-text">
+          <h4>Лучшая клиника эстетической медицины 2023</h4>
+          <p>Премия "Золотые руки" за выдающиеся достижения в области косметологии</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">⭐</div>
+        <div class="award-text">
+          <h4>Сертификат качества ISO 9001</h4>
+          <p>Международный стандарт качества медицинских услуг</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🎖️</div>
+        <div class="award-text">
+          <h4>Диплом "Инновации в медицине"</h4>
+          <p>За внедрение передовых технологий в эстетической медицине</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="licensesModal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h2>Лицензии и сертификаты</h2>
+    <div class="modal-body">
+      <div class="license-item">
+        <h4>Лицензия на медицинскую деятельность</h4>
+        <p>№ ЛО-78-01-012345 от 15.03.2020</p>
+        <p>Выдана Комитетом по здравоохранению Санкт-Петербурга</p>
+      </div>
+      <div class="license-item">
+        <h4>Сертификат специалиста по косметологии</h4>
+        <p>№ КС-2023-789456 от 20.06.2023</p>
+        <p>Действителен до 20.06.2028</p>
+      </div>
+      <div class="license-item">
+        <h4>Разрешение на работу с лазерным оборудованием</h4>
+        <p>№ ЛАЗ-2023-123789 от 10.09.2023</p>
+        <p>Сертификат соответствия техническим требованиям</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="reviewsModal">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h2>Отзывы наших пациентов</h2>
+    <div class="modal-body">
+      <div class="review-item">
+        <div class="review-header">
+          <div class="review-author">
+            <strong>Анна К.</strong>
+            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+          <div class="review-date">15.12.2023</div>
+        </div>
+        <p>"Отличная клиника! Профессиональный подход, современное оборудование. Результат превзошел все ожидания. Рекомендую!"</p>
+      </div>
+      <div class="review-item">
+        <div class="review-header">
+          <div class="review-author">
+            <strong>Мария С.</strong>
+            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+          <div class="review-date">08.12.2023</div>
+        </div>
+        <p>"Очень довольна результатом процедуры. Врач подробно объяснил все этапы, чувствовала себя комфортно. Спасибо за качественную работу!"</p>
+      </div>
+      <div class="review-item">
+        <div class="review-header">
+          <div class="review-author">
+            <strong>Елена В.</strong>
+            <div class="review-rating">⭐⭐⭐⭐⭐</div>
+          </div>
+          <div class="review-date">02.12.2023</div>
+        </div>
+        <p>"Клиника с отличной репутацией. Персонал вежливый, процедуры безболезненные. Результат заметен уже после первого сеанса."</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--LIBS--->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js" defer></script>
+  <script src="../lib/swiper/swiper-bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
+
+  <!---JS--->
+  <script src="../js/header-menu.js" defer></script>
+  <script src="../js/card-logic.js" defer></script>
+  <script src="../js/gallery.js" defer></script>
+  <script src="../js/contact-script.js" defer></script>
+  <script src="../js/scroll-controller.js" defer></script>
+  <script src="../js/scroll-flow.js" defer></script>
+  <script src="../js/modal-win.js" defer></script>
+  <script src="../js/alr-interactive.js" defer></script>
+  
+
+</body>
+</html>
+
+

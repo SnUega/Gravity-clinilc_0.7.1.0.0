@@ -1,0 +1,779 @@
+    /* Desktop / MacBook: расположение как на Air (шире 1366px) */
+    @media (min-width: 1367px) {
+      .menu-top-section { align-items: stretch; }
+      .menu-left, .menu-right { display: flex; flex-direction: column; }
+      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
+      .menu-left h2 { text-align: center; margin-bottom: 1.2rem; }
+      .menu-left .navc-links { margin-top: 18px; }
+      .menu-left li { text-align: center; margin-bottom: 1rem; }
+      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 36px; }
+      .contact-buttons { justify-content: center; }
+      .menu-right h2 { text-align: center; }
+      .menu-right .blog-container { margin-bottom: 36px; }
+      .blog-scroll-area { width: 102%; margin-right: -0.25rem; max-height: 52vh; }
+    }
+    /* Curtain mode: скрыть нижний divider под мини‑блогом на телефонах и планшетах в портрете */
+    @media (max-width: 768px) {
+      .curtain-content hr.curtain-divider:nth-of-type(2) { display: none !important; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+      .curtain-content hr.curtain-divider:nth-of-type(2) { display: none !important; }
+    }
+
+    /* iPad Pro (портрет): показать 2 мини‑статьи и кусочек 3‑й */
+    @media (orientation: portrait) and (min-width: 1000px) and (max-width: 1080px),
+           (orientation: portrait) and (min-height: 1300px) and (max-height: 1400px) {
+      .curtain-content .blog-container { max-height: 840px; }
+      .curtain-content .blog-scroll-area { max-height: 660px; }
+    }
+    .menu-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 18; /* above page content (e.g., gallery nav), below menu layers */
+      --menu-blur: 0px;
+      backdrop-filter: blur(var(--menu-blur));
+      -webkit-backdrop-filter: blur(var(--menu-blur));
+      background: rgba(0,0,0,0.08);
+      opacity: 0;
+      transition: opacity 280ms ease, backdrop-filter 280ms ease, -webkit-backdrop-filter 280ms ease;
+      pointer-events: none;
+    }
+
+    .menu-backdrop.is-visible {
+      --menu-blur: 10px;
+      opacity: 1;
+    }
+    /* Menu */
+    .menu-container, .navc-menu {
+      position: fixed;
+      top: calc(var(--index) * 4);
+      left: 20%;
+      width: 60%;
+      transform: none;
+      height: 0;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0);
+      transition: none;
+      z-index: 19;
+      border-radius: 50px;
+    }
+
+    .menu-container.active, .navc-menu.active {
+      height: 85vh;
+    }
+
+    .menu-stem, .navc-stem {
+      position: absolute; /* внутри контейнера */
+      top: 0;
+      left: 50%;
+      width: 64px; /* start same as button */
+      height: 0;
+      transform: translateX(-50%);
+      z-index: 20;
+      background: transparent;
+      border-radius: 0 0 32px 32px;
+      overflow: visible; /* чтобы тени не резались */
+    }
+
+    .menu-panel, .navc-panel {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border: none; /* remove frame */
+      border-radius: 50px;
+      clip-path: inset(0 50% 0 50% round 50px);
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      will-change: clip-path;
+    }
+
+    /* Curtain mode (mobile + tablet portrait) */
+    @media (max-width: 768px), (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+      .navc-menu.curtain-open .navc-panel,
+      .menu-container.curtain-open .menu-panel {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        border-radius: 0 !important;
+        /* allow GSAP to control transform for smooth slide */
+        clip-path: none !important;
+        box-shadow: none !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        z-index: 50 !important;
+        background: #ffffff !important;
+        will-change: transform;
+        pointer-events: auto;
+        touch-action: pan-y;
+        overscroll-behavior: contain;
+      }
+
+      /* Floating curtain panel when moved to body */
+      .navc-panel.curtain-floating,
+      .menu-panel.curtain-floating {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        border-radius: 0 !important;
+        background: #ffffff !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        clip-path: none !important;
+        box-shadow: none !important;
+        z-index: 50 !important;
+        will-change: transform;
+        pointer-events: auto;
+        touch-action: pan-y;
+        overscroll-behavior: contain;
+      }
+      .navc-panel.curtain-floating::before,
+      .menu-panel.curtain-floating::before { content: none !important; display: none !important; }
+
+      /* Ensure the curtain stacking is above content but under header */
+      .navc-menu.curtain-open,
+      .menu-container.curtain-open { z-index: 50; }
+
+      /* Hide desktop horizontal reveal overlay in curtain mode */
+      .navc-menu.curtain-open .navc-panel::before,
+      .menu-container.curtain-open .menu-panel::before {
+        content: none !important;
+        display: none !important;
+      }
+
+      /* Content layout inside curtain */
+      .curtain-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 100px 24px 40px; /* leave space for the close (burger→X) button area */
+        max-width: none; /* take full width */
+        width: 100%;
+        margin: 0;
+        min-height: 100vh;
+        box-sizing: border-box;
+      }
+
+      /* removed in-panel button */
+
+      .curtain-content .navc-menu-logo {
+        position: static;
+        transform: none;
+        align-self: center;
+        margin-bottom: 4px;
+      }
+
+      .curtain-content h2 {
+        text-align: center;
+        font-weight: 600;
+        letter-spacing: .08em;
+        color: #111;
+      }
+      .curtain-content .navc-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .curtain-content .navc-links li { 
+        margin-bottom: 16px; 
+        text-align: center; 
+      }
+      .curtain-content .navc-links a { 
+        text-decoration: none; 
+        color: #111; 
+        font-weight: 500; 
+        font-size: 18px;
+        display: block;
+        padding: 12px 0;
+      }
+
+      .curtain-divider { border: none; border-top: 1px solid #eee; margin: 10px 0; }
+
+      .curtain-content .menu-right { padding: 0; }
+      
+      /* Блог в curtain режиме */
+      .curtain-content .blog-container {
+        height: auto;
+        max-height: 400px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+        box-sizing: border-box;
+      }
+      
+      .curtain-content .blog-scroll-area {
+        max-height: 300px;
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+        box-sizing: border-box;
+      }
+      /* iPad Air portrait: немного увеличиваем высоту мини‑блога */
+      @media (min-width: 820px) and (max-width: 1023px) and (orientation: portrait) {
+        .curtain-content .blog-container { max-height: 520px; }
+        .curtain-content .blog-scroll-area { max-height: 400px; }
+      }
+      
+      .curtain-content .blog-article {
+        flex-direction: column;
+        text-align: center; 
+        margin-bottom: 16px;
+      }
+
+      /* iPad Pro portrait: показать 2 мини‑статьи и кусочек 3‑й (override ниже базовых 300/400px) */
+      @media (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) {
+        .curtain-content .blog-container { max-height: 900px; }
+        .curtain-content .blog-scroll-area { max-height: 720px; }
+      }
+      
+      .curtain-content .article-thumbnail {
+        width: 100%;
+        height: 120px;
+        margin-bottom: 12px;
+      }
+
+      /* Portrait menus (phones + tablets): show blog items as row (thumb left, text right) */
+      @media (max-width: 768px), (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+        .curtain-content .blog-article { 
+          flex-direction: row !important;
+          align-items: flex-start;
+          text-align: left;
+          gap: 25px; /* расстояние между картинкой и текстом */
+        }
+        .curtain-content .article-thumbnail { 
+          width: 96px; 
+          height: 96px; 
+          margin-bottom: 0; 
+          flex-shrink: 0; 
+        }
+        .curtain-content .article-content { 
+          display: flex; 
+          flex-direction: column; 
+          padding-right: 18px; /* такой же отступ до правого края */
+        }
+        .curtain-content .article-title { 
+          -webkit-line-clamp: 2; 
+          line-clamp: 2; 
+        }
+        .curtain-content .article-preview { 
+          -webkit-line-clamp: 3; 
+          line-clamp: 3; 
+        }
+
+        /* Увеличенные соц.кнопки для всех планшетов в портретной ориентации (мобильные не трогаем) */
+        .curtain-content .contact-buttons { gap: 18px; }
+        .curtain-content .menu-contacts .contact-btn,
+        .curtain-content .contact-buttons .contact-btn { width: 60px; height: 60px; }
+        .curtain-content .menu-contacts .contact-btn svg,
+        .curtain-content .contact-buttons .contact-btn svg { width: 20px; height: 20px; }
+      }
+      
+      .curtain-content .article-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+      }
+      
+      .curtain-content .article-preview {
+        font-size: 15px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+      }
+
+      .curtain-content .menu-contacts-section {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+      
+      .curtain-content .menu-contacts { 
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+      }
+      
+      .curtain-content .contact-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      
+      .curtain-content .contact-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #e0e0e0;
+        background: #fff;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      
+      .curtain-content .contact-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        border-color: #7a00c7;
+      }
+      
+      .curtain-content .contact-btn svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.3s ease;
+      }
+      
+      .curtain-content .contact-btn:hover svg {
+        transform: scale(1.1);
+      }
+      
+      /* iPad Pro (портрет): увеличить размер соц.кнопок и нижний отступ */
+      @media (orientation: portrait) and (min-width: 1000px) and (max-width: 1080px),
+             (orientation: portrait) and (min-height: 1300px) and (max-height: 1400px) {
+        .curtain-content .contact-buttons { gap: 24px; }
+        .curtain-content .menu-contacts .contact-btn,
+        .curtain-content .contact-buttons .contact-btn { width: 72px; height: 72px; }
+        .curtain-content .menu-contacts .contact-btn svg,
+        .curtain-content .contact-buttons .contact-btn svg { width: 26px; height: 26px; }
+        .curtain-content .menu-contacts-section { margin-bottom: 10px;}
+      }
+      
+      /* Специфичные цвета для кнопок в curtain режиме */
+      .curtain-content .phone-btn:hover {
+        background: #7a00c7;
+        color: #fff;
+      }
+      
+      .curtain-content .email-btn:hover {
+        background: #ff6b6b;
+        color: #fff;
+      }
+      .curtain-content .email-btn:hover svg {
+        fill: none !important;
+        stroke: #fff !important;
+      }
+      
+      .curtain-content .whatsapp-btn:hover {
+        background: #25d366;
+        color: #fff;
+      }
+      
+      .curtain-content .telegram-btn:hover {
+        background: #0088cc;
+        color: #fff;
+      }
+
+      /* Hide desktop inner in curtain layout; keep stem visible (panel lives inside stem) */
+      .navc-menu.curtain-open .navc-inner,
+      .menu-container.curtain-open .menu-inner { display: none !important; }
+    }
+
+    /* Disable background blur when curtain menu is open */
+    .navc-menu.curtain-open ~ .page-wrapper,
+    .menu-container.curtain-open ~ .page-wrapper { filter: none !important; }
+
+    /* Inner overlay for smooth horizontal reveal without clip-path jumping */
+    .menu-panel::before, .navc-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      transform-origin: center center;
+      transform: scaleX(var(--panelScale, 1));
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    .menu-inner, .navc-inner {
+      width: 100%;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 60px 60px; /* raised content a bit */
+      opacity: 0;
+      transform: none;
+      transition: opacity 0.35s ease;
+      z-index: 21;
+      background: transparent;
+      will-change: opacity;
+    }
+
+    /* .show-content removed - unused class */
+
+    .navc-menu-logo {
+      position: absolute;
+      top: 56px; /* move logo lower */
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: 800;
+      letter-spacing: .15em;
+      font-size: 18px;
+      background: #fff;
+      color: #111;
+      border-radius: 18px;
+      padding: 10px 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      z-index: 22;
+    }
+
+    /* Верхняя секция: Меню слева, Блог справа */
+    .menu-top-section {
+      display: flex;
+      justify-content: space-between;
+      flex: 1;
+      margin-top: 20px;
+    }
+
+    .menu-left,
+    .menu-right {
+      flex: 1;
+      padding: 40px;
+      z-index: 2;
+    }
+
+    .menu-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-left h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.875rem;
+      color: var(--menu-text);
+      text-align: left;
+    }
+    
+    .menu-right h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.875rem;
+      color: var(--menu-text);
+      text-align: center;
+      width: 100%;
+      margin-top: 0; /* Убираем возможные отступы сверху */
+    }
+
+    .menu-left ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-left li {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .menu-left a {
+      text-decoration: none;
+      color: var(--menu-text-secondary);
+      font-size: 1.25rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .menu-left a:hover {
+      color: var(--menu-primary);
+    }
+
+    .menu-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      height: 100%;
+    }
+
+    /* Блог контейнер с прокруткой */
+    .blog-container {
+      width: 100%;
+      height: calc(100% - 60px); /* минус высота заголовка */
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .blog-scroll-area {
+      height: var(--blog-scroll-height);
+      width: var(--blog-scroll-width);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 1rem;
+      margin-right: -0.5rem;
+      scroll-behavior: smooth;
+      border: 0.0625rem solid var(--menu-border);
+      border-radius: var(--menu-border-radius-small);
+      background: var(--menu-bg-light);
+      margin-top: 0.75rem;
+    }
+
+    .blog-scroll-area::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .blog-scroll-area::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 2px;
+    }
+
+    .blog-scroll-area::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 2px;
+      min-height: 30px; /* Короткий ползунок */
+      max-height: 60px; /* Максимальная высота ползунка */
+    }
+
+    .blog-scroll-area::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+
+    .blog-scroll-area::-webkit-scrollbar-thumb:active {
+      background: var(--menu-primary);
+    }
+
+    /* Кастомный скроллбар для Firefox */
+    .blog-scroll-area {
+      scrollbar-width: thin;
+      scrollbar-color: #c1c1c1 #f1f1f1;
+    }
+
+    /* Статьи блога */
+    .blog-article {
+      display: flex;
+      gap: var(--blog-article-gap);
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: var(--menu-bg-white);
+      border-radius: var(--menu-border-radius);
+      border: 0.0625rem solid var(--menu-border);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .blog-article:hover {
+      border-color: var(--menu-primary);
+      box-shadow: var(--menu-shadow);
+      transform: translateY(-2px);
+    }
+
+    .article-thumbnail {
+      flex-shrink: 0;
+      width: var(--blog-thumbnail-size);
+      height: var(--blog-thumbnail-size);
+      border-radius: var(--menu-border-radius-small);
+      overflow: hidden;
+    }
+
+    .article-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .article-title {
+      font-size: var(--blog-title-size);
+      font-weight: 600;
+      color: var(--menu-text);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .article-preview {
+      font-size: var(--blog-preview-size);
+      color: var(--menu-text-muted);
+      line-height: 1.4;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+
+    /* Контакты в левой половине */
+    .menu-contacts-section {
+      width: 100%;
+      margin-top: 220px; /* Поднимаем чуть выше */
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .menu-contacts {
+      display: block; /* Изменяем с flex на block */
+      text-align: center; /* Центрируем содержимое */
+    }
+
+    .contact-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      gap: var(--contact-btn-gap-tablet);
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      margin: 0 auto;
+    }
+    
+    /* Уменьшаем gap для мобильных */
+    @media (max-width: 768px) {
+      .contact-buttons {
+        gap: var(--contact-btn-gap-mobile);
+      }
+    }
+    
+    /* Увеличиваем gap для desktop */
+    @media (min-width: 1024px) {
+      .contact-buttons {
+        gap: var(--contact-btn-gap-desktop);
+      }
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--contact-btn-size);
+      height: var(--contact-btn-size);
+      border-radius: 50%;
+      border: 0.125rem solid var(--menu-border);
+      background: var(--menu-bg-white);
+      color: var(--menu-text-secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    .contact-btn:hover {
+      background: #666;
+      color: #fff;
+      transform: translateY(1px);
+      box-shadow: inset 0 4px 8px rgba(0,0,0,0.4);
+      border-color: #666;
+    }
+    
+    .contact-btn:hover svg {
+      color: #fff !important;
+      fill: #fff !important;
+    }
+    /* Email envelope should remain stroked, not filled */
+    .contact-btn.email-btn:hover svg {
+      fill: none !important;
+      stroke: #fff !important;
+    }
+
+    .contact-btn svg {
+      width: var(--contact-btn-icon-size);
+      height: var(--contact-btn-icon-size);
+      transition: all 0.3s ease;
+    }
+
+    .contact-btn:hover svg {
+      transform: scale(0.95);
+    }
+
+    body.lock-scroll {
+      overflow: hidden;
+      height: 100vh;
+      overscroll-behavior: none;
+    }
+
+    /* iPad Pro в горизонтальной ориентации - оптимизация размеров панели */
+    @media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+      .menu-container.active, .navc-menu.active {
+        height: 80vh; /* Увеличиваем высоту обратно для сохранения закругления */
+        width: 70%; /* Увеличиваем ширину панели */
+        left: 15%; /* Центрируем с учетом новой ширины */
+      }
+      
+      .menu-inner, .navc-inner {
+        height: 80vh; /* Соответствующая высота внутреннего контента */
+        padding: 90px 50px 60px; /* Увеличиваем отступы для лучшего распределения */
+      }
+      /* Выравнивание как на Air: растянуть колонки по высоте и зафиксировать кнопки у низа */
+      .menu-top-section { align-items: stretch; }
+      .menu-left, .menu-right { display: flex; flex-direction: column; }
+      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
+      .menu-left h2 { text-align: center; }
+      .menu-left ul { margin-top: 20px; }
+      .menu-left li { text-align: center; }
+      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 34px; }
+      .contact-buttons { justify-content: center; }
+      .menu-right h2 { text-align: center; }
+      .menu-right .blog-container { margin-bottom: 34px; }
+      .blog-scroll-area {
+        width: 102%;
+        margin-right: -0.25rem;
+        max-height: 48vh;
+      }
+    }
+
+    /* iPad mini в горизонтали (~1133px): левый столбец (меню+соцкнопки), правый столбец (мини‑блог) */
+    @media (min-width: 1024px) and (max-width: 1135px) and (orientation: landscape) {
+      .menu-top-section { justify-content: space-between; gap: 20px; align-items: stretch; }
+      .menu-left,
+      .menu-right { flex: 0 0 50%; max-width: 50%; padding: 24px; display: flex; flex-direction: column; }
+      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
+      .menu-left h2 { text-align: center; margin-bottom: 1.1rem; }
+      .menu-left ul { margin-top: 12px; }
+      .menu-left li { margin-bottom: 0.9rem; text-align: center; }
+      .menu-left a { font-size: 1.05rem; }
+
+      /* Кнопки и divider у нижнего края; симметрия с блогом справа */
+      .menu-contacts-section { margin-top: auto; padding-top: 28px; margin-bottom: 28px; }
+      .menu-contacts { text-align: center; }
+      .contact-buttons { justify-content: center; gap: 0.8rem; }
+
+      .menu-right h2 { text-align: center; margin-bottom: 1.0rem; }
+      /* Высота мини‑блога увеличена; расширяем влево, правый край сохраняем */
+      .blog-scroll-area { max-height: 46vh; width: 110%; margin-right: 0; margin-left: -6%; }
+      /* Симметричный нижний отступ у блога и кнопок */
+      .menu-right .blog-container { margin-bottom: 28px; }
+    }
+
+    /* iPad Air в горизонтали (~1180px): уменьшить отступы и подогнать высоту мини‑блога */
+    @media (min-width: 1136px) and (max-width: 1180px) and (orientation: landscape) {
+      .menu-top-section { align-items: stretch; }
+      .menu-left, .menu-right { padding: 28px; display: flex; flex-direction: column; }
+      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
+      .menu-left h2 { text-align: center; margin-bottom: 1.6rem; }
+      /* Явно опускаем список ссылок под заголовком */
+      .menu-left .navc-links { margin-top: 16px !important; }
+      .menu-left li { margin-bottom: 0.95rem; text-align: center; }
+      /* Кнопки и divider у нижнего края; симметрия с блогом справа */
+      .menu-contacts-section { margin-top: auto; padding-top: 14px; margin-bottom: 34px; }
+      .contact-buttons { gap: 1rem; justify-content: center; }
+      .menu-right h2 { text-align: center; }
+      /* Высота мини‑блога увеличена */
+      .blog-scroll-area { max-height: 48vh; width: 102%; margin-right: -0.25rem; }
+      /* Симметричный нижний отступ у блога и кнопок */
+      .menu-right .blog-container { margin-bottom: 34px; }
+    }

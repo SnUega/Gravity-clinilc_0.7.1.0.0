@@ -1,0 +1,434 @@
+/* ============================================
+   Header Component
+   ============================================ */
+
+.header,
+.navc-header {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 51;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.header__container,
+.navc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.header__logo,
+.navc-logo {
+  font-weight: bold;
+}
+
+.header__contact,
+.navc-phone {
+  color: #7a00c7;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navc-call-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.18);
+  background: #ffffff;
+  color: #7a00c7;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.navc-call-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.navc-call-btn:active {
+  transform: translateY(0);
+}
+
+.navc-call-btn svg {
+  display: block;
+}
+
+.header__contact:hover,
+.navc-phone:hover {
+  color: #45c4f9;
+}
+
+/* Burger Menu */
+.burger,
+.navc-burger {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  width: 40px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.burger-ring,
+.navc-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  pointer-events: none;
+}
+
+.burger-ring .ring-left,
+.burger-ring .ring-right,
+.navc-ring .ring-left,
+.navc-ring .ring-right {
+  fill: none;
+  stroke: rgba(0,0,0,0.8);
+  stroke-width: 2px;
+  stroke-dasharray: 0 194.8;
+  stroke-dashoffset: 0;
+  transition: stroke-dasharray 0.45s ease;
+}
+
+.burger.active .burger-ring .ring-left,
+.burger.active .burger-ring .ring-right,
+.navc-burger.active .navc-ring .ring-left,
+.navc-burger.active .navc-ring .ring-right {
+  stroke-dasharray: 97.4 97.4;
+}
+
+.burger-ring .ring-right,
+.navc-ring .ring-right {
+  stroke-dashoffset: 97.4;
+}
+
+.burger__line,
+.navc-burger__line {
+  width: 45px;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+  transition: transform 0.4s ease, opacity 0.3s ease, width 0.4s ease;
+  transform-origin: center center;
+}
+
+.burger:not(.active) .top,
+.burger:not(.active) .bottom,
+.navc-burger:not(.active) .top,
+.navc-burger:not(.active) .bottom {
+  animation: pulse-lines 2.1s infinite ease-in-out;
+}
+
+.burger:not(.active) .middle,
+.navc-burger:not(.active) .middle {
+  animation: pulse-middle 2.1s infinite ease-in-out;
+}
+
+@keyframes pulse-lines {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(0.52); }
+}
+
+@keyframes pulse-middle {
+  0%, 100% { transform: scaleX(0.59); }
+  50% { transform: scaleX(1); }
+}
+
+.burger.active .top,
+.navc-burger.active .top {
+  transform: translateY(11.5px) rotate(45deg);
+  animation: none;
+}
+
+.burger.active .middle,
+.navc-burger.active .middle {
+  opacity: 0;
+  animation: none;
+}
+
+.burger.active .bottom,
+.navc-burger.active .bottom {
+  transform: translateY(-11.5px) rotate(-45deg);
+  animation: none;
+}
+
+/* Intro states */
+.intro-start .navc-header {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border-radius: 32px;
+  transition: none;
+}
+
+.intro-start .navc-logo,
+.intro-start .navc-phone,
+.intro-start .navc-call-btn {
+  opacity: 0 !important;
+}
+
+.intro-start .navc-ring .ring-left,
+.intro-start .navc-ring .ring-right {
+  opacity: 0 !important;
+}
+
+.intro-start .navc-header {
+  will-change: width, height, border-radius, transform;
+  transform-style: preserve-3d;
+}
+
+.intro-animating .navc-header {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+@keyframes headerContentAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.intro-complete .navc-logo,
+.intro-complete .navc-phone,
+.intro-complete .navc-call-btn {
+  animation: headerContentAppear 0.4s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px),
+       (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  .navc-header {
+    width: 92%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+
+    .header, .navc-header {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.95);
+      z-index: 51;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .header__container, .navc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+    }
+
+    .header__logo, .navc-logo {
+      font-weight: bold;
+    }
+
+    .header__contact, .navc-phone {
+      color: #7a00c7;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .navc-call-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.18);
+      background: #ffffff;
+      color: #7a00c7;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .navc-call-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+    .navc-call-btn:active { transform: translateY(0); }
+    .navc-call-btn svg { display: block; }
+
+    .header__contact:hover, .navc-phone:hover {
+      color: #45c4f9;
+    }
+
+    .burger, .navc-burger {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 50;
+      width: 40px; /* keep original width */
+      height: 26px; /* closer lines */
+      background: transparent;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+
+    .burger-ring, .navc-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 64px;
+      height: 64px;
+      transform: translate(-50%, -50%) rotate(-90deg);
+      pointer-events: none;
+    }
+
+    .burger-ring .ring-left,
+    .burger-ring .ring-right,
+    .navc-ring .ring-left,
+    .navc-ring .ring-right {
+      fill: none;
+      stroke: rgba(0,0,0,0.8);
+      stroke-width: 2px;
+      stroke-dasharray: 0 194.8; /* 2*pi*31 ≈ 194.8 */
+      stroke-dashoffset: 0;
+      transition: stroke-dasharray 0.45s ease;
+    }
+
+    .burger.active .burger-ring .ring-left,
+    .burger.active .burger-ring .ring-right,
+    .navc-burger.active .navc-ring .ring-left,
+    .navc-burger.active .navc-ring .ring-right {
+      stroke-dasharray: 97.4 97.4; /* half + half => full circle */
+    }
+
+    .burger-ring .ring-right, .navc-ring .ring-right { stroke-dashoffset: 97.4; }
+
+    .burger__line, .navc-burger__line {
+      width: 45px;
+      height: 3px; /* thinner */
+      background: black;
+      border-radius: 2px;
+      transition: transform 0.4s ease, opacity 0.3s ease, width 0.4s ease;
+      transform-origin: center center;
+    }
+
+    .burger:not(.active) .top,
+    .burger:not(.active) .bottom,
+    .navc-burger:not(.active) .top,
+    .navc-burger:not(.active) .bottom {
+      animation: pulse-lines 2.1s infinite ease-in-out;
+    }
+
+    .burger:not(.active) .middle,
+    .navc-burger:not(.active) .middle {
+      animation: pulse-middle 2.1s infinite ease-in-out;
+    }
+
+    @keyframes pulse-lines {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(0.52); }
+    }
+
+    @keyframes pulse-middle {
+      0%, 100% { transform: scaleX(0.59); }
+      50% { transform: scaleX(1); }
+    }
+
+    .burger.active .top, .navc-burger.active .top {
+      transform: translateY(11.5px) rotate(45deg); /* adjust for 26px height */
+      animation: none;
+    }
+
+    .burger.active .middle, .navc-burger.active .middle {
+      opacity: 0;
+      animation: none;
+    }
+
+    .burger.active .bottom, .navc-burger.active .bottom {
+      transform: translateY(-11.5px) rotate(-45deg);
+      animation: none;
+    }
+
+    /* Wider header on phones and tablet portrait */
+    @media (max-width: 768px), (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+      .navc-header { width: 92%; }
+    }
+
+    /* Intro state: show only burger with ring; header as circle */
+    .intro-start .navc-header {
+      width: 64px;
+      height: 64px;
+      padding: 0;
+      border-radius: 32px;
+      transition: none;
+    }
+    .intro-start .navc-logo,
+    .intro-start .navc-phone,
+    .intro-start .navc-call-btn { opacity: 0 !important; }
+    .intro-start .navc-ring .ring-left,
+    .intro-start .navc-ring .ring-right { opacity: 0 !important; }
+    .intro-start .navc-header { will-change: width, height, border-radius, transform; }
+    .intro-start .navc-header { transform-style: preserve-3d; }
+    /* Reduce heavy effects during intro to avoid jank */
+    .intro-animating .navc-header {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important; /* Добавляем тень как у статичного header */
+      backdrop-filter: blur(20px) !important;
+    }
+
+    /* Keyframes animation for header content appearance */
+    @keyframes headerContentAppear {
+      0% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Apply animation to header content when intro completes */
+    .intro-complete .navc-logo,
+    .intro-complete .navc-phone,
+    .intro-complete .navc-call-btn {
+      animation: headerContentAppear 0.4s ease-out forwards;
+    }
+
+    /* Header styles moved to modules/components/_header.css */

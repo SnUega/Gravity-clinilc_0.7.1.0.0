@@ -1,0 +1,436 @@
+  /* Contact-section */
+
+    .contacts-section {
+      padding: 60px 10%;
+      background: #fff;
+      border-radius: 0 0 24px 24px;
+      overflow: hidden; /* не позволяем карте/контенту наезжать на футер */
+      position: relative;
+      z-index: 2;
+    }
+
+    .contacts-section h2 {
+      font-size: 32px;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .form-map-container {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    form h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-container {
+      width: 100%;
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 
+        20px 20px 60px #d0d0d0,
+        -20px -20px 60px #ffffff;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-top-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .form-top-row .input-group {
+      flex: 1;
+      position: relative;
+    }
+
+    .form-top-row input {
+      width: 100%;
+      padding: 20px 16px 8px 16px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.3s ease;
+      background: #fff;
+    }
+
+    .form-top-row input:focus {
+      border-color: #7a00c7;
+      box-shadow: 0 0 0 3px rgba(122, 0, 199, 0.1);
+    }
+
+    .form-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      margin-top: 5rem;
+    }
+
+    .input-group label {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 16px;
+      color: #999;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      background: #fff;
+      padding: 0 4px;
+    }
+
+    .input-group:hover,
+    .input-group:focus {
+      border-radius: 12px;
+      box-shadow: 0 0 8px #636363aa;
+    }
+
+    .input-group input:focus + label,
+    .input-group input:not(:placeholder-shown) + label {
+      transform: translateY(-26px) scale(0.85);
+      left: 8px;
+      color: #7a00c7;
+    }
+
+    .custom-dropdown {
+      position: relative;
+      background-color: #fff;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s ease;
+    }
+
+    .custom-dropdown .selected {
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      color: #555;
+      position: relative;
+      border-color: #7a00c7;
+    }
+
+    .custom-dropdown:hover {
+      border-radius: 12px;
+    }
+
+    .custom-dropdown .selected::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%) rotate(0deg);
+      width: 22px;
+      height: 22px;
+      transition: transform 0.3s ease;
+      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5H7z' fill='%23666'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .custom-dropdown.open .selected::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .custom-dropdown .dropdown-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      border-radius: 12px;
+      margin-top: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: none;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 5;
+    }
+
+    .custom-dropdown.open .dropdown-options {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .custom-dropdown .option {
+      padding: 12px 16px;
+      transition: background-color 0.2s ease;
+      color: #333;
+    }
+
+    .custom-dropdown .option:hover {
+      background-color: #e0f0ff;
+      color: #333;
+    }
+
+    .custom-dropdown .option:first-child:hover {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .custom-dropdown .option:last-child:hover {
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .custom-dropdown .option.selected-option {
+      background-color: #45c4f9;
+      color: #fff;
+    }
+
+    .custom-dropdown .option.selected-option:first-child {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .custom-dropdown .option.selected-option:last-child {
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox-wrapper input[type="checkbox"] {
+      display: none;
+    }
+
+    .checkbox-wrapper label {
+      position: relative;
+      padding-left: 32px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+    }
+
+    .checkbox-wrapper label::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -2px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #808080;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .checkbox-wrapper .checkmark {
+      position: absolute;
+      left: 2px;
+      top: .5px;
+      width: 20px;
+      height: 20px;
+      stroke: #7a7a7a;
+      stroke-width: 2.5;
+      fill: none;
+      stroke-dasharray: 24;
+      stroke-dashoffset: 24;
+      transition: stroke-dashoffset 0.3s ease;
+    }
+
+    .checkbox-wrapper input[type="checkbox"]:checked + label .checkmark {
+      stroke-dashoffset: 0;
+    }
+
+
+    .warning {
+      color: #d60000;
+      font-size: 14px;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .send-btn {
+      position: relative;
+      display: inline-block;
+      margin-left: auto;
+      padding: 12px 36px;
+      background: transparent;
+      border: 2px solid #7a00c7;
+      color: #7a00c7;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .send-btn::before {
+      content: '';
+      position: absolute;
+      top: var(--y, 50%);
+      left: var(--x, 50%);
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      background-color: #7a00c7;
+      border-radius: 50%;
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .send-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .send-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .send-btn:hover {
+      color: #fff;
+    }
+
+    .map-contacts {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+    }
+
+    .contact-info {
+      flex: 1;
+    }
+
+    .contact-info p {
+      margin-top: 3.5rem;
+      color: #333;
+    }
+
+    .contact-info h2 {
+      color: #333;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .modal.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .modal-inner {
+      background: #fff;
+      padding: 60px 20px 100px; /* Увеличен верхний padding для опускания текста */
+      border-radius: 16px;
+      position: relative;
+      text-align: center;
+      width: 400px;
+      max-width: 90%;
+      min-height: 240px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Отступ между заголовком и параграфом */
+    #thanksModal .modal-inner h3 {
+      margin-bottom: 16px; /* Вертикальный отступ между заголовком и текстом */
+    }
+
+    #thanksModal .modal-inner p {
+      margin-top: 0;
+    }
+
+    /* Специфичный селектор для модалки контактов */
+    #thanksModal .modal-close,
+    .modal#thanksModal .modal-close {
+      position: absolute !important;
+      bottom: 20px !important;
+      top: auto !important;
+      right: auto !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      background: #fff;
+      border: none;
+      color: #7a00c7;
+      font-size: 34px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 1;
+      padding: 0;
+      margin: 0;
+      float: none !important;
+    }
+
+    .modal-close svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .ring {
+      width: 48px;
+      height: 48px;
+    }
+
+    .ring-bg {
+      fill: none;
+      stroke: #eee;
+    }
+
+    .ring-progress {
+      fill: none;
+      stroke: #7a00c7;
+      stroke-dasharray: 138;
+      stroke-dashoffset: 138;
+      transition: stroke-dashoffset 3s linear;
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #map-wrapper {
+      width: 90%;
+      max-width: 500px;
+      height: 0;
+      overflow: hidden;
+      border-radius: 18px;
+      /* transition убран - используется GSAP для анимации */
+    }
+
+    #map-placeholder {
+      width: 500px;
+      height: 500px;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+      /*End Contact-section */

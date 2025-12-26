@@ -1,0 +1,85 @@
+/* ============================================
+   Mobile Hint Component (Unified)
+   ============================================ */
+/* Объединенный компонент для .alr-mobile-hint и .services-mobile-hint */
+
+.mobile-hint-base,
+.alr-mobile-hint,
+.services-mobile-hint {
+  display: none;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 40;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  pointer-events: none;
+  align-items: center;
+  gap: 12px;
+}
+
+.hint-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hint-arrow {
+  font-size: 18px;
+}
+
+/* Mobile & Tablet Portrait */
+@media (max-width: 768px),
+       (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  .mobile-hint-base,
+  .alr-mobile-hint,
+  .services-mobile-hint {
+    display: flex;
+  }
+  
+  .services-mobile-hint .hint-text {
+    font-size: 14px;
+  }
+  
+  .services-mobile-hint .hint-arrow {
+    font-size: 18px;
+  }
+}
+
+/* Tablet Portrait - увеличенные размеры */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  .services-mobile-hint {
+    font-size: 20px;
+  }
+  
+  .services-mobile-hint .hint-text {
+    font-size: 20px;
+  }
+  
+  .services-mobile-hint .hint-arrow {
+    font-size: 24px;
+  }
+  
+  .alr-mobile-hint {
+    font-size: 20px;
+  }
+  
+  .hint-text {
+    font-size: 20px;
+  }
+  
+  .hint-arrow {
+    font-size: 24px;
+  }
+}
+
+/* ALR specific adjustments */
+@media (max-width: 768px) {
+  .alr-mobile-hint {
+    display: block;
+    top: 20%;
+  }
+}
+
