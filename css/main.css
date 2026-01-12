@@ -30,6 +30,8 @@
 @import url('modules/components/_about.css');
 @import url('modules/components/_contacts.css');
 @import url('modules/components/_gallery.css');
+@import url('modules/components/_services-page.css');
+@import url('modules/components/_blog-page.css');
 
 /* ============================================
    Basic HTML/body styles

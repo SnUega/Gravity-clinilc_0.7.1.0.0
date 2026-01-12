@@ -3,12 +3,1435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Косметология - Клиника красоты</title>
+  <title>Косметология — Клиника Притяжение</title>
+  <meta name="description" content="Профессиональные косметологические услуги: чистки лица, пилинги, удаление новообразований. Консультации врача-дерматолога.">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet">
+  
+  <!-- CSS -->
     <link rel="stylesheet" href="../css/main.css">
 </head>
-<body>
-    <h1>Косметология</h1>
-    <p>Страница в разработке</p>
-    <a href="index.html">← Назад</a>
+<body class="services-page">
+
+  <!-- Page Preloader (same style as main page) -->
+  <div id="page-preloader" class="page-preloader">
+    <div class="page-preloader-content">
+      <div class="page-preloader-logo">
+        <svg class="page-preloader-base" viewBox="0 0 100 100" width="80" height="80">
+          <circle 
+            cx="50" 
+            cy="50" 
+            r="45" 
+            fill="none" 
+            stroke="rgba(122, 0, 199, 0.2)" 
+            stroke-width="3"
+          />
+        </svg>
+        <div class="page-preloader-fill">
+          <svg class="page-preloader-progress" viewBox="0 0 100 100" width="80" height="80">
+            <circle 
+              cx="50" 
+              cy="50" 
+              r="45" 
+              fill="none" 
+              stroke="#7a00c7" 
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header (same as main page) -->
+  <header class="navc-header">
+    <div class="navc-row">
+      <a href="../index.html" class="navc-logo">Логотип</a>
+      <button class="navc-burger" aria-label="Открыть меню" aria-controls="navc-panel" aria-expanded="false">
+        <span class="navc-burger__line top"></span>
+        <span class="navc-burger__line middle"></span>
+        <span class="navc-burger__line bottom"></span>
+        <svg class="navc-ring" viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="ring-left" cx="32" cy="32" r="31" />
+          <circle class="ring-right" cx="32" cy="32" r="31" />
+        </svg>
+      </button>
+      <button class="navc-call-btn" type="button" aria-label="Позвонить" data-tel="+79999999999">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.07 21 3 11.93 3 1.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu Panel -->
+  <div class="navc-menu">
+    <div class="navc-stem">
+      <div class="navc-panel" id="navc-panel" role="dialog" aria-modal="true">
+        <div class="navc-inner">
+          <div class="navc-menu-logo" aria-label="Логотип">ЛОГОТИП</div>
+          <div class="menu-top-section">
+            <div class="menu-left">
+              <h2>Меню</h2>
+              <ul class="navc-links">
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../index.html#services-section">Услуги</a></li>
+                <li><a href="injections.html">Инъекционная косметология</a></li>
+                <li><a href="massage.html">Массаж</a></li>
+                <li><a href="blog.html">Блог</a></li>
+                <li><a href="../index.html#contacts">Контакты</a></li>
+              </ul>
+              <div class="menu-contacts-section">
+                <div class="menu-contacts">
+                  <div class="contact-buttons">
+                    <a class="contact-btn phone-btn" href="tel:+79999999999" aria-label="Позвонить">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.07 21 3 11.93 3 1.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
+                      </svg>
+                    </a>
+                    <a class="contact-btn email-btn" href="mailto:info@example.com" aria-label="Написать email">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polyline points="2,4 12,12 22,4"/>
+                      </svg>
+                    </a>
+                    <a class="contact-btn whatsapp-btn" href="#" aria-label="WhatsApp">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                      </svg>
+                    </a>
+                    <a class="contact-btn telegram-btn" href="#" aria-label="Telegram">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="menu-right">
+              <h2><a href="blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
+              <div class="blog-container">
+                <div class="blog-scroll-area" id="blogScrollArea">
+                  <div class="blog-article" data-article-id="1">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder.jpg" alt="Как выбрать косметолога?" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Как выбрать косметолога?</h3>
+                      <p class="article-preview">Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="2">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder_1.jpg" alt="Топ-5 процедур" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Топ-5 процедур</h3>
+                      <p class="article-preview">Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="3">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder.jpg" alt="Правила подготовки к процедурам" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Правила подготовки к процедурам</h3>
+                      <p class="article-preview">Правильная подготовка к косметологическим процедурам обеспечивает максимальный результат и безопасность...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="4">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder_1.jpg" alt="Уход за кожей зимой" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Уход за кожей зимой</h3>
+                      <p class="article-preview">Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="5">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder.jpg" alt="Антивозрастные процедуры" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Антивозрастные процедуры</h3>
+                      <p class="article-preview">Современная косметология предлагает множество эффективных методов борьбы с признаками старения...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="6">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder_1.jpg" alt="Питание для здоровой кожи" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Питание для здоровой кожи</h3>
+                      <p class="article-preview">Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья...</p>
+                    </div>
+                  </div>
+                  <!-- Blog Stub -->
+                  <div class="blog-article blog-stub" data-article-id="stub">
+                    <div class="article-thumbnail">
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Мы готовим для вас нечто особенное</h3>
+                      <p class="article-preview">Наша команда экспертов работает над созданием полезного и интересного контента. Совсем скоро здесь появятся новые статьи...</p>
+                      <span class="stub-badge">Скоро</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs" aria-label="Навигация">
+    <ol class="breadcrumbs-list">
+      <li class="breadcrumbs-item">
+        <a href="../index.html" class="breadcrumbs-link breadcrumbs-link--home">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          Главная
+        </a>
+      </li>
+      <li class="breadcrumbs-item">
+        <span class="breadcrumbs-current">Косметология</span>
+      </li>
+    </ol>
+  </nav>
+
+  <!-- Mobile Hint -->
+  <div class="services-page-mobile-hint" id="mobileHint">
+    <div class="hint-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <span>Листайте вниз</span>
+  </div>
+
+  <!-- Main Content -->
+  <main class="services-page-layout">
+    
+    <!-- Hero Section (Fixed Left) -->
+    <aside class="services-hero">
+      <div class="services-hero-content">
+        <div class="services-hero-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          Профессиональный уход
+        </div>
+        
+        <h1 class="services-hero-title">
+          Косметология
+          <span>без инъекций</span>
+        </h1>
+        
+        <p class="services-hero-description">
+          Профессиональный уход, чистки, пилинги и аппаратные методики. Косметика Holy Land.
+        </p>
+        
+        <div class="services-hero-stats">
+          <div class="stat-item">
+            <div class="stat-value">15<span>+</span></div>
+            <div class="stat-label">Процедур</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">Holy Land</div>
+            <div class="stat-label">Косметика</div>
+          </div>
+        </div>
+        
+        <a href="../index.html" class="services-hero-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          На главную
+        </a>
+      </div>
+    </aside>
+
+    <!-- Services List (Scrollable Right) -->
+    <section class="services-list-wrapper">
+      <div class="services-list-header">
+        <h2>Прайс-лист услуг</h2>
+        <p>Нажмите на услугу для подробной информации</p>
+      </div>
+
+      <!-- Консультации -->
+      <div class="service-category">
+        <h3 class="category-title">Консультации</h3>
+        
+        <!-- Accordion Item -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Консультация в день процедуры</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price free">Бесплатно</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Консультация врача-дерматолога, косметолога в день проведения процедуры проводится бесплатно.</p>
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Что включено</h4>
+                  <ul>
+                    <li>Осмотр и оценка состояния кожи</li>
+                    <li>Подбор процедуры</li>
+                    <li>Ответы на вопросы</li>
+                  </ul>
+                </div>
+              </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Первичная консультация</span>
+              <span class="accordion-desc">Без проведения процедуры</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">2 500 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Профессиональная консультация специалиста с осмотром кожи и составлением индивидуального плана ухода.</p>
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Что включено</h4>
+                  <ul>
+                    <li>Осмотр и диагностика состояния кожи</li>
+                    <li>Определение типа кожи и проблемных зон</li>
+                    <li>Составление индивидуального плана процедур</li>
+                    <li>Рекомендации по домашнему уходу</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Длительность</h4>
+                  <p>30-40 минут</p>
+                </div>
+              </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Повторная консультация</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">1 000 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Повторный осмотр и корректировка плана лечения для постоянных пациентов.</p>
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Показания</h4>
+                  <ul>
+                    <li>Оценка результатов проведённых процедур</li>
+                    <li>Корректировка плана лечения</li>
+                    <li>Подбор новых процедур</li>
+                  </ul>
+                </div>
+              </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Чистки -->
+      <div class="service-category">
+        <h3 class="category-title">Чистки</h3>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Чистка лица Holy Land</span>
+              <span class="accordion-desc">С элементами механической чистки</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">5 000 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Профессиональная чистка лица с использованием премиальной израильской косметики Holy Land.</p>
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Что включено</h4>
+                  <ul>
+                    <li>Демакияж и подготовка кожи</li>
+                    <li>Распаривание или холодное гидрирование</li>
+                    <li>Механическая чистка (при необходимости)</li>
+                    <li>Антисептическая обработка</li>
+                    <li>Успокаивающая маска</li>
+                    <li>Финальный уход и защита</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Длительность</h4>
+                  <p>60-90 минут</p>
+                </div>
+                <div class="detail-item">
+                  <h4>Рекомендации</h4>
+                  <p>Проводить 1 раз в 3-4 недели для поддержания чистоты кожи.</p>
+                </div>
+                <div class="detail-item">
+                  <h4>Уход после процедуры</h4>
+                  <ul>
+                    <li>Не трогать лицо руками 2-3 часа</li>
+                    <li>Избегать солнца и солярия 2-3 дня</li>
+                    <li>Использовать SPF-защиту</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Stubs: Reviews & Articles -->
+              <div class="service-stubs">
+                <div class="stub-section">
+                  <h5>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    Отзывы
+                  </h5>
+                  <div class="stub-placeholder">
+                    <div class="stub-item">
+                      <div class="stub-avatar">А</div>
+                      <div class="stub-text">
+                        <strong>Анна К.</strong>
+                        <span>«Отличный результат!»</span>
+                      </div>
+                      <span class="stub-badge">Скоро</span>
+                    </div>
+                    <div class="stub-item">
+                      <div class="stub-avatar">М</div>
+                      <div class="stub-text">
+                        <strong>Мария С.</strong>
+                        <span>«Очень довольна»</span>
+                      </div>
+                      <span class="stub-badge">Скоро</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="stub-section">
+                  <h5>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                    Статьи по теме
+                  </h5>
+                  <div class="stub-placeholder">
+                    <div class="stub-item">
+                      <div class="stub-text">
+                        <strong>Как подготовиться к чистке</strong>
+                        <span>Полезные советы</span>
+                      </div>
+                      <span class="stub-badge">Скоро</span>
+                    </div>
+                    <div class="stub-item">
+                      <div class="stub-text">
+                        <strong>Уход после процедуры</strong>
+                        <span>Рекомендации врача</span>
+                      </div>
+                      <span class="stub-badge">Скоро</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Чистка спины Holy Land</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">6 000 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Глубокое очищение кожи спины. Эффективно при акне и закупоренных порах.</p>
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Что включено</h4>
+                  <ul>
+                    <li>Очищение и подготовка кожи</li>
+                    <li>Глубокое распаривание</li>
+                    <li>Механическая экстракция</li>
+                    <li>Антибактериальная обработка</li>
+                    <li>Лечебная маска</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Длительность</h4>
+                  <p>90-120 минут</p>
+                </div>
+                <div class="detail-item">
+                  <h4>Показания</h4>
+                  <ul>
+                    <li>Акне на спине</li>
+                    <li>Закупоренные поры</li>
+                    <li>Повышенная жирность кожи</li>
+                  </ul>
+                </div>
+              </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Удаление милиумов</span>
+              <span class="accordion-desc">За 1 штуку</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">220 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p>Удаление белых угрей (милиумов) — безопасная процедура механического удаления.</p>
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Что такое милиумы</h4>
+                  <p>Небольшие белые кисты, образующиеся из-за закупорки сальных желёз.</p>
+                </div>
+              </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Пилинги -->
+      <div class="service-category">
+        <h3 class="category-title">Пилинги Holy Land</h3>
+        
+        <!-- Alpha Complex -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Alpha Complex</span>
+              <span class="accordion-desc">Мягкий пилинг на основе фруктовых кислот</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">от 2 900 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Alpha Complex</strong> — это мягкий пилинг на основе фруктовых кислот (AHA) для обновления кожи и выравнивания тона. Подходит для всех типов кожи, включая чувствительную. Обеспечивает мягкое отшелушивание, улучшает текстуру и цвет лица.</p>
+              
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Показания</h4>
+                  <ul>
+                    <li>Тусклый цвет лица</li>
+                    <li>Неровный тон кожи</li>
+                    <li>Мелкие морщины</li>
+                    <li>Расширенные поры</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Длительность</h4>
+                  <p>40-70 минут (в зависимости от зоны)</p>
+                </div>
+                <div class="detail-item">
+                  <h4>Курс</h4>
+                  <p>4-6 процедур с интервалом 7-14 дней</p>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Цены -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                  Цены
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отдельные зоны</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо</span>
+                          <span class="price-item-value">2 900 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Комплексные варианты</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо + шея</span>
+                          <span class="price-item-value">3 400 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо + шея + декольте</span>
+                          <span class="price-item-value">3 600 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Отзывы -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  Отзывы
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отзывы пациентов</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Отзывы по этой процедуре появятся здесь после публикации.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Статьи -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                  Статьи по теме
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Полезные материалы</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Статьи о пилингах и уходе за кожей появятся здесь в ближайшее время.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Alpha-Beta Deep Clean Peel With Retinol -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Alpha-Beta Deep Clean Peel With Retinol</span>
+              <span class="accordion-desc">Комбинированный пилинг с ретинолом для глубокого обновления</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">от 3 600 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Alpha-Beta Deep Clean Peel With Retinol</strong> — это комбинированный пилинг, сочетающий альфа-гидроксикислоты (AHA), бета-гидроксикислоты (BHA) и ретинол. Обеспечивает глубокое обновление кожи, эффективен при возрастных изменениях, пигментации и постакне. <strong>Важно:</strong> Не рекомендуется в период активного солнца. Требуется SPF 50+.</p>
+              
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Показания</h4>
+                  <ul>
+                    <li>Возрастные изменения</li>
+                    <li>Пигментация</li>
+                    <li>Морщины</li>
+                    <li>Постакне</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Реабилитация</h4>
+                  <p>Шелушение 3-5 дней, требуется SPF 50+</p>
+                </div>
+                <div class="detail-item">
+                  <h4>Курс</h4>
+                  <p>3-5 процедур, интервал 2-4 недели</p>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Цены -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                  Цены
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отдельные зоны</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо</span>
+                          <span class="price-item-value">3 600 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Комплексные варианты</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо + шея</span>
+                          <span class="price-item-value">4 400 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо + шея + декольте</span>
+                          <span class="price-item-value">5 900 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Отзывы -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  Отзывы
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отзывы пациентов</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Отзывы по этой процедуре появятся здесь после публикации.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Статьи -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                  Статьи по теме
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Полезные материалы</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Статьи о ретиноле, пилингах и антивозрастном уходе появятся здесь в ближайшее время.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Лактолан -->
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Лактолан</span>
+              <span class="accordion-desc">Деликатный молочный пилинг для чувствительной кожи</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">от 2 400 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Лактолан</strong> — это деликатный молочный пилинг на основе молочной кислоты (лактата) для чувствительной и сухой кожи. Идеален для первого опыта пилинга. Обеспечивает мягкое обновление без агрессивного воздействия, глубоко увлажняет и смягчает кожу.</p>
+              
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Кому подходит</h4>
+                  <ul>
+                    <li>Чувствительная кожа</li>
+                    <li>Сухая кожа</li>
+                    <li>Первый опыт пилинга</li>
+                    <li>Обезвоженная кожа</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Результат</h4>
+                  <p>Увлажнение, смягчение, выравнивание текстуры, сияние кожи.</p>
+                </div>
+                <div class="detail-item">
+                  <h4>Длительность</h4>
+                  <p>40-60 минут (в зависимости от зоны)</p>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Цены -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                  Цены
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отдельные зоны</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо</span>
+                          <span class="price-item-value">2 400 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Комплексные варианты</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо + шея</span>
+                          <span class="price-item-value">3 000 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">Лицо + шея + декольте</span>
+                          <span class="price-item-value">3 600 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Отзывы -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  Отзывы
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отзывы пациентов</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Отзывы по этой процедуре появятся здесь после публикации.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Статьи -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                  Статьи по теме
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Полезные материалы</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Статьи о деликатных пилингах и уходе за чувствительной кожей появятся здесь в ближайшее время.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+                <div class="service-stubs">
+                  <div class="stub-section">
+                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5>
+                    <div class="stub-placeholder">
+                      <div class="stub-item"><div class="stub-avatar">В</div><div class="stub-text"><strong>Виктория С.</strong><span>«Кожа шёлковая»</span></div><span class="stub-badge">Скоро</span></div>
+                    </div>
+                  </div>
+                  <div class="stub-section">
+                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5>
+                    <div class="stub-placeholder">
+                      <div class="stub-item"><div class="stub-text"><strong>Молочные пилинги</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Аппаратное лечение -->
+      <div class="service-category">
+        <h3 class="category-title">Удаление новообразований</h3>
+        
+        <div class="accordion-item">
+          <button class="accordion-header" aria-expanded="false">
+            <div class="accordion-info">
+              <span class="accordion-name">Удаление доброкачественных новообразований</span>
+              <span class="accordion-desc">ЭХВЧ-МТУСИ 50 — электрохирургическое удаление</span>
+            </div>
+            <div class="accordion-right">
+              <span class="accordion-price">от 680 ₽</span>
+              <span class="accordion-icon"></span>
+            </div>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>ЭХВЧ-МТУСИ 50</strong> — это метод электрохирургического удаления доброкачественных новообразований кожи (папиллом, гемангиом, бородавок) с помощью высокочастотного тока. Метод безопасен, обеспечивает минимальное повреждение окружающих тканей и быстрое заживление. Процедура проводится под местной анестезией.</p>
+              
+              <div class="service-details">
+                <div class="detail-item">
+                  <h4>Преимущества метода</h4>
+                  <ul>
+                    <li>Безопасное удаление без повреждения здоровых тканей</li>
+                    <li>Минимальный риск рецидивов</li>
+                    <li>Быстрое заживление</li>
+                    <li>Возможность гистологического исследования</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Уход после процедуры</h4>
+                  <ul>
+                    <li>Обрабатывать антисептиком 2 раза в день</li>
+                    <li>Не мочить 24 часа</li>
+                    <li>Не отрывать корочку (отпадёт сама через 7-14 дней)</li>
+                    <li>Избегать солнца до полного заживления</li>
+                  </ul>
+                </div>
+                <div class="detail-item">
+                  <h4>Восстановление</h4>
+                  <p>Заживление занимает 7-14 дней в зависимости от размера новообразования.</p>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Цены -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                  Цены
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Папилломы, гемангиомы</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">1 степень (до 0,5 см)</span>
+                          <span class="price-item-value">680 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">2 степень (0,5–1 см)</span>
+                          <span class="price-item-value">1 200 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">3 степень (более 1 см)</span>
+                          <span class="price-item-value">1 980 ₽</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Бородавки</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="price-list">
+                        <div class="price-item">
+                          <span class="price-item-name">1 степень (до 0,5 см)</span>
+                          <span class="price-item-value">1 200 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">2 степень (0,5–1 см)</span>
+                          <span class="price-item-value">2 200 ₽</span>
+                        </div>
+                        <div class="price-item">
+                          <span class="price-item-name">3 степень (более 1 см)</span>
+                          <span class="price-item-value">3 300 ₽</span>
+                        </div>
+                      </div>
+                      <p style="margin-top: 1rem; font-size: var(--font-size-sm); color: var(--color-text-secondary);">Бородавки требуют более глубокой обработки, чем папилломы, поэтому стоимость выше.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Отзывы -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                  Отзывы
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Отзывы пациентов</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Отзывы по этой процедуре появятся здесь после публикации.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Вложенные аккордеоны: Статьи -->
+              <div class="nested-accordion-section">
+                <h4 class="nested-accordion-title">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                  Статьи по теме
+                </h4>
+                
+                <div class="nested-accordion-item">
+                  <button class="nested-accordion-header" aria-expanded="false">
+                    <span class="nested-accordion-name">Полезные материалы</span>
+                    <span class="nested-accordion-icon"></span>
+                  </button>
+                  <div class="nested-accordion-content">
+                    <div class="nested-accordion-body">
+                      <div class="nested-stub-section">
+                        <div class="nested-stub-content">
+                          <p>Статьи об удалении новообразований, уходе после процедуры и профилактике появятся здесь в ближайшее время.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+            </div>
+          </div>
+        </div>
+      </div>
+          
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="accordion-info">
+                <span class="accordion-name">2 степень</span>
+                <span class="accordion-desc">0,5–1 см</span>
+              </div>
+              <div class="accordion-right">
+                <span class="accordion-price">2 200 ₽</span>
+                <span class="accordion-icon"></span>
+              </div>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <p>Удаление бородавок среднего размера (0,5–1 см).</p>
+                <div class="service-details">
+                  <div class="detail-item">
+                    <h4>Особенности</h4>
+                    <ul>
+                      <li>Глубокая обработка</li>
+                      <li>Местная анестезия</li>
+                      <li>Профилактика рецидива</li>
+                    </ul>
+                  </div>
+                  <div class="detail-item">
+                    <h4>Восстановление</h4>
+                    <p>7-14 дней до полного заживления</p>
+                  </div>
+                </div>
+                <div class="service-stubs">
+                  <div class="stub-section">
+                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5>
+                    <div class="stub-placeholder">
+                      <div class="stub-item"><div class="stub-avatar">Е</div><div class="stub-text"><strong>Евгений Л.</strong><span>«Без следа»</span></div><span class="stub-badge">Скоро</span></div>
+                    </div>
+                  </div>
+                  <div class="stub-section">
+                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5>
+                    <div class="stub-placeholder">
+                      <div class="stub-item"><div class="stub-text"><strong>Профилактика</strong><span>Советы</span></div><span class="stub-badge">Скоро</span></div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <button class="accordion-header" aria-expanded="false">
+              <div class="accordion-info">
+                <span class="accordion-name">3 степень</span>
+                <span class="accordion-desc">более 1 см</span>
+              </div>
+              <div class="accordion-right">
+                <span class="accordion-price">3 300 ₽</span>
+                <span class="accordion-icon"></span>
+              </div>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <p>Удаление крупных бородавок (более 1 см) — требует особого внимания.</p>
+                <div class="service-details">
+                  <div class="detail-item">
+                    <h4>Особенности</h4>
+                    <ul>
+                      <li>Тщательное удаление корня</li>
+                      <li>Возможно поэтапное удаление</li>
+                      <li>Контроль заживления</li>
+                    </ul>
+                  </div>
+                  <div class="detail-item">
+                    <h4>Рекомендации</h4>
+                    <p>Повторный осмотр через 2 недели для контроля.</p>
+                  </div>
+                </div>
+                <div class="service-stubs">
+                  <div class="stub-section">
+                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5>
+                    <div class="stub-placeholder">
+                      <div class="stub-item"><div class="stub-avatar">М</div><div class="stub-text"><strong>Михаил В.</strong><span>«Результат отличный»</span></div><span class="stub-badge">Скоро</span></div>
+                    </div>
+                  </div>
+                  <div class="stub-section">
+                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5>
+                    <div class="stub-placeholder">
+                      <div class="stub-item"><div class="stub-text"><strong>Крупные образования</strong><span>Что делать</span></div><span class="stub-badge">Скоро</span></div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="services-cta-section">
+        <div class="services-cta-card">
+          <h3>Запишитесь на консультацию</h3>
+          <p>Специалист подберёт оптимальный курс процедур для вас</p>
+          <button type="button" class="btn-primary" data-open-modal="contactModal">Записаться</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="revealWrap" class="reveal-wrap">
+    <section class="contacts-section" id="contacts">
+      <div class="form-map-container">
+        <form class="form-container" id="contactForm" action="https://formspree.io/f/xgvzbrzz" method="POST">
+          <h2>Запланируйте свой визит</h2>
+          <div class="form-top-row">
+            <div class="input-group">
+              <input type="text" name="name" id="name" placeholder=" " autocomplete="name" required />
+              <label for="name">Ваше имя</label>
+            </div>
+            <div class="input-group">
+              <input type="tel" name="phone" id="phone" placeholder=" " autocomplete="tel" required />
+              <label for="phone">Телефон</label>
+            </div>
+            <div class="input-group">
+              <label for="customDropdown" id="time-label">Время для звонка</label>
+              <div class="custom-dropdown" id="customDropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="time-label">
+                <div class="selected" id="selected-time">Выберите время</div>
+                <div class="dropdown-options" role="listbox">
+                  <div class="option" role="option" tabindex="0">с 9:00 до 12:00</div>
+                  <div class="option" role="option" tabindex="0">с 12:00 до 16:00</div>
+                  <div class="option" role="option" tabindex="0">с 16:00 до 18:00</div>
+                  <div class="option" role="option" tabindex="0">с 18:00 до 21:00</div>
+                </div>
+              </div>
+              <input type="hidden" name="technology" id="time" required />
+            </div>
+          </div>
+          <div class="form-bottom-row">
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="agree">
+              <label for="agree">
+                <svg class="checkmark" viewBox="0 0 24 24">
+                  <polyline points="4 12 9 17 20 6">
+                </svg>
+                Я согласен с политикой конфиденциальности и на обработку персональных данных</label>
+            </div>
+            <div class="button-wrapper">
+              <button type="submit" class="send-btn"><span>Отправить</span></button>
+            </div>
+          </div>
+          <div class="warning" id="warningText">Пожалуйста, согласитесь с политикой конфиденциальности.</div>
+        </form>
+        <div class="map-contacts">
+          <div class="contact-info">
+            <h2>Контакты</h2>
+            <p><strong>Телефон:</strong> +7 (900) 000-00-00</p>
+            <p><strong>Адрес:</strong> Санкт-Петербург, ул. Примерная, д. 1</p>
+            <p><strong>Часы работы:</strong> 10:00 - 19:00, Пн–Пт</p>
+            <p><strong>Email:</strong> info@example.com</p>
+          </div>
+          <div id="map-wrapper">
+            <div id="map-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="page-footer" aria-labelledby="footerTitle">
+      <div class="footer-inner">
+        <div class="footer-col footer-brand">
+          <div class="footer-logo" aria-label="Логотип">BL</div>
+          <div class="footer-socials">
+            <a class="social-btn wa whatsapp-btn" href="#" aria-label="WhatsApp">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+              </svg>
+            </a>
+            <a class="social-btn tg telegram-btn" href="#" aria-label="Telegram">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </a>
+          </div>
+          <a class="made-by" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 8.9 9 8z"/></svg>
+            <span>made by Заглушка</span>
+          </a>
+        </div>
+        <div class="footer-col" aria-label="Карта услуг">
+          <h4>Карта услуг</h4>
+          <ul class="footer-nav">
+            <li><a href="cosmetology.html">Косметология</a></li>
+            <li><a href="injections.html">Инъекционные методики</a></li>
+            <li><a href="massage.html">Массаж</a></li>
+          </ul>
+        </div>
+        <nav class="footer-col" aria-label="Навигация">
+          <h4 id="footerTitle">Меню</h4>
+          <ul class="footer-nav">
+            <li><a href="../index.html#services-section">Услуги</a></li>
+            <li><a href="../index.html#about">О клинике</a></li>
+            <li><a href="../index.html#alr">Отличия</a></li>
+            <li><a href="../index.html#sliderContainer">Галерея</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li><a href="blog.html">Блог</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="#" class="policy-link">Политика конфиденциальности</a>
+        </div>
+        <div class="footer-copy">
+          <span>© <span id="copyYear"></span> Клиника. Все права защищены.</span>
+        </div>
+        <a class="made-by-mobile" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 8.9 9 8z"/></svg>
+          <span>made by Заглушка</span>
+        </a>
+      </div>
+      <script>document.getElementById('copyYear').textContent = new Date().getFullYear();</script>
+    </footer>
+  </section>
+
+  <!-- Contact Modal -->
+  <div class="contact-modal" id="contactModal">
+    <div class="contact-modal-content">
+      <button class="contact-modal-close" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="contact-modal-header">
+        <h2>Записаться на приём</h2>
+        <p>Оставьте заявку и мы свяжемся с вами для подтверждения записи</p>
+      </div>
+      <form class="contact-modal-form" id="contactModalForm">
+        <div class="form-group">
+          <label for="modal-name">Ваше имя</label>
+          <input type="text" id="modal-name" name="name" required placeholder="Введите ваше имя">
+        </div>
+        <div class="form-group">
+          <label for="modal-phone">Телефон</label>
+          <input type="tel" id="modal-phone" name="phone" required placeholder="+7 (___) ___-__-__">
+        </div>
+        <div class="form-group">
+          <label for="modal-service">Услуга</label>
+          <input type="text" id="modal-service" name="service" placeholder="Интересующая услуга">
+        </div>
+        <button type="submit" class="form-submit-btn">Отправить заявку</button>
+        <p class="form-privacy">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script type="module" src="../js/services-main.js"></script>
+  <script>
+  // Инициализация карты для страниц услуг
+  (function initMap() {
+    function setupMapAnimation() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const mapWrapper = document.querySelector('#map-wrapper');
+      if (!mapWrapper) return;
+
+      gsap.set('#map-wrapper', { height: 0, overflow: 'hidden' });
+
+      ScrollTrigger.create({
+        trigger: "#map-wrapper",
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          const width = mapWrapper.getBoundingClientRect().width;
+          const targetHeight = window.innerWidth <= 768 ? Math.max(290, width) : width;
+          gsap.to('#map-wrapper', {
+            height: targetHeight,
+            duration: 2.48,
+            ease: 'power2.out',
+            onComplete: () => { mapWrapper.style.overflow = ''; }
+          });
+        }
+      });
+      ScrollTrigger.refresh();
+    }
+
+    ymaps.ready(() => {
+      const myMap = new ymaps.Map("map-placeholder", {
+        center: [59.962224, 30.320791],
+        zoom: 16,
+        controls: ['zoomControl', 'fullscreenControl']
+      });
+      const myPlacemark = new ymaps.Placemark([59.962224, 30.320791], {
+        hintContent: 'Метка',
+        balloonContent: 'Это ваша точка'
+      });
+      myMap.geoObjects.add(myPlacemark);
+    });
+
+    if (document.getElementById('preloader')) {
+      window.addEventListener('preloaderComplete', () => {
+        setTimeout(setupMapAnimation, 200);
+      });
+    } else {
+      if (document.readyState === 'complete') {
+        setupMapAnimation();
+      } else {
+        window.addEventListener('load', setupMapAnimation);
+      }
+    }
+  })();
+  </script>
 </body>
 </html>

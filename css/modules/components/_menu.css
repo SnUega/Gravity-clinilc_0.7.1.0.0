@@ -2,11 +2,11 @@
     @media (min-width: 1367px) {
       .menu-top-section { align-items: stretch; }
       .menu-left, .menu-right { display: flex; flex-direction: column; }
-      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
+      .menu-left { align-items: stretch; justify-content: space-between; height: 100%; }
       .menu-left h2 { text-align: center; margin-bottom: 1.2rem; }
-      .menu-left .navc-links { margin-top: 18px; }
+      .menu-left .navc-links { margin-top: 18px; flex: 0 0 auto; }
       .menu-left li { text-align: center; margin-bottom: 1rem; }
-      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 36px; }
+      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 36px; flex: 0 0 auto; }
       .contact-buttons { justify-content: center; }
       .menu-right h2 { text-align: center; }
       .menu-right .blog-container { margin-bottom: 36px; }
@@ -590,6 +590,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+      position: relative;
       justify-content: space-between;
     }
 
@@ -616,6 +617,41 @@
       line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+
+    /* Blog Stub Styles */
+    .blog-stub {
+      opacity: 0.85;
+    }
+
+    .blog-stub .stub-placeholder-icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(122, 0, 199, 0.1) 0%, rgba(69, 196, 249, 0.1) 100%);
+      border-radius: 8px;
+    }
+
+    .blog-stub .stub-placeholder-icon svg {
+      width: 40%;
+      height: 40%;
+      fill: rgba(122, 0, 199, 0.3);
+    }
+
+    .blog-stub .stub-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: linear-gradient(135deg, rgba(122, 0, 199, 0.2) 0%, rgba(69, 196, 249, 0.2) 100%);
+      color: var(--menu-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
 
@@ -721,11 +757,11 @@
       /* Выравнивание как на Air: растянуть колонки по высоте и зафиксировать кнопки у низа */
       .menu-top-section { align-items: stretch; }
       .menu-left, .menu-right { display: flex; flex-direction: column; }
-      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
+      .menu-left { align-items: stretch; justify-content: space-between; height: 100%; }
       .menu-left h2 { text-align: center; }
-      .menu-left ul { margin-top: 20px; }
+      .menu-left ul { margin-top: 20px; flex: 0 0 auto; }
       .menu-left li { text-align: center; }
-      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 34px; }
+      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 36px; flex: 0 0 auto; }
       .contact-buttons { justify-content: center; }
       .menu-right h2 { text-align: center; }
       .menu-right .blog-container { margin-bottom: 34px; }
@@ -741,14 +777,14 @@
       .menu-top-section { justify-content: space-between; gap: 20px; align-items: stretch; }
       .menu-left,
       .menu-right { flex: 0 0 50%; max-width: 50%; padding: 24px; display: flex; flex-direction: column; }
-      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
-      .menu-left h2 { text-align: center; margin-bottom: 1.1rem; }
-      .menu-left ul { margin-top: 12px; }
+      .menu-left { align-items: stretch; justify-content: space-between; height: 100%; }
+      .menu-left h2 { text-align: center; margin-bottom: 1.1rem; flex: 0 0 auto; }
+      .menu-left ul { margin-top: 12px; flex: 0 0 auto; }
       .menu-left li { margin-bottom: 0.9rem; text-align: center; }
       .menu-left a { font-size: 1.05rem; }
 
       /* Кнопки и divider у нижнего края; симметрия с блогом справа */
-      .menu-contacts-section { margin-top: auto; padding-top: 28px; margin-bottom: 28px; }
+      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 36px; flex: 0 0 auto; }
       .menu-contacts { text-align: center; }
       .contact-buttons { justify-content: center; gap: 0.8rem; }
 
@@ -763,13 +799,13 @@
     @media (min-width: 1136px) and (max-width: 1180px) and (orientation: landscape) {
       .menu-top-section { align-items: stretch; }
       .menu-left, .menu-right { padding: 28px; display: flex; flex-direction: column; }
-      .menu-left { align-items: stretch; justify-content: flex-start; height: 100%; }
-      .menu-left h2 { text-align: center; margin-bottom: 1.6rem; }
+      .menu-left { align-items: stretch; justify-content: space-between; height: 100%; }
+      .menu-left h2 { text-align: center; margin-bottom: 1.6rem; flex: 0 0 auto; }
       /* Явно опускаем список ссылок под заголовком */
-      .menu-left .navc-links { margin-top: 16px !important; }
+      .menu-left .navc-links { margin-top: 16px !important; flex: 0 0 auto; }
       .menu-left li { margin-bottom: 0.95rem; text-align: center; }
       /* Кнопки и divider у нижнего края; симметрия с блогом справа */
-      .menu-contacts-section { margin-top: auto; padding-top: 14px; margin-bottom: 34px; }
+      .menu-contacts-section { margin-top: auto; padding-top: 16px; margin-bottom: 36px; flex: 0 0 auto; }
       .contact-buttons { gap: 1rem; justify-content: center; }
       .menu-right h2 { text-align: center; }
       /* Высота мини‑блога увеличена */

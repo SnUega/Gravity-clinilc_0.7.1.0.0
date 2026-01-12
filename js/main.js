@@ -147,6 +147,32 @@ async function init() {
     
     console.log('✅ Core modules loaded');
     
+    // Обработка якорных ссылок при загрузке страницы
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      const target = document.querySelector(hash);
+      if (target) {
+        // Ждем полной загрузки страницы и инициализации Lenis
+        const scrollToHash = async () => {
+          try {
+            const { smoothScrollToTarget } = await import('./modules/header/helpers.js');
+            // Ждем инициализации Lenis если используется
+            if (usesLenis && window.lenis) {
+              await new Promise(resolve => setTimeout(resolve, 300));
+            }
+            smoothScrollToTarget(target, -80);
+          } catch (error) {
+            // Fallback: используем scrollToElement
+            const { scrollToElement } = await import('./core/dom.js');
+            scrollToElement(target, -80);
+          }
+        };
+        
+        // Запускаем после небольшой задержки для полной загрузки
+        setTimeout(scrollToHash, 800);
+      }
+    }
+    
   } catch (error) {
     errorHandler.handle(error, {
       module: 'main',

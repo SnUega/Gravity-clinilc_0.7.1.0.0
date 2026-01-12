@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог — Клиника Притяжение</title>
+  <meta name="description" content="Блог клиники Притяжение: статьи о косметологии, уходе за кожей, современных методиках и советы специалистов.">
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css">
+  
+  </head>
+<body class="blog-page">
+
+  <!-- Header -->
+  <header class="navc-header">
+    <div class="navc-row">
+      <a href="../index.html" class="navc-logo">Логотип</a>
+      <button class="navc-burger" aria-label="Открыть меню" aria-controls="navc-panel" aria-expanded="false">
+        <span class="navc-burger__line top"></span>
+        <span class="navc-burger__line middle"></span>
+        <span class="navc-burger__line bottom"></span>
+        <svg class="navc-ring" viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="ring-left" cx="32" cy="32" r="31" />
+          <circle class="ring-right" cx="32" cy="32" r="31" />
+        </svg>
+      </button>
+      <button class="navc-call-btn" type="button" aria-label="Позвонить" data-tel="+79999999999">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.07 21 3 11.93 3 1.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu Panel (full) -->
+  <div class="navc-menu">
+    <div class="navc-stem">
+      <div class="navc-panel" id="navc-panel" role="dialog" aria-modal="true">
+        <div class="navc-inner">
+          <div class="navc-menu-logo" aria-label="Логотип">ЛОГОТИП</div>
+          
+          <div class="menu-top-section">
+            <div class="menu-left">
+              <h2>Меню</h2>
+              <ul class="navc-links">
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="cosmetology.html">Косметология</a></li>
+                <li><a href="injections.html">Инъекционная косметология</a></li>
+                <li><a href="massage.html">Массаж</a></li>
+                <li><a href="../index.html#contacts">Контакты</a></li>
+              </ul>
+              
+              <div class="menu-contacts-section">
+                <div class="menu-contacts">
+                  <div class="contact-buttons">
+                    <a class="contact-btn phone-btn" href="tel:+79999999999" aria-label="Позвонить">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1v3.5a1 1 0 01-1 1C12.07 21 3 11.93 3 1.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/>
+                      </svg>
+                    </a>
+                    <a class="contact-btn email-btn" href="mailto:info@example.com" aria-label="Написать email">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2"/>
+                        <polyline points="2,4 12,12 22,4"/>
+                      </svg>
+                    </a>
+                    <a class="contact-btn whatsapp-btn" href="#" aria-label="WhatsApp">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                      </svg>
+                    </a>
+                    <a class="contact-btn telegram-btn" href="#" aria-label="Telegram">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="menu-right">
+              <h2><a href="blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
+              <div class="blog-container">
+                <div class="blog-scroll-area" id="blogScrollArea">
+                  <div class="blog-article" data-article-id="1">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder.jpg" alt="Как выбрать косметолога?" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Как выбрать косметолога?</h3>
+                      <p class="article-preview">Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="2">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder_1.jpg" alt="Топ-5 процедур" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Топ-5 процедур</h3>
+                      <p class="article-preview">Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="3">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder.jpg" alt="Правила подготовки к процедурам" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Правила подготовки к процедурам</h3>
+                      <p class="article-preview">Правильная подготовка к косметологическим процедурам обеспечивает максимальный результат и безопасность...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="4">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder_1.jpg" alt="Уход за кожей зимой" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Уход за кожей зимой</h3>
+                      <p class="article-preview">Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="5">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder.jpg" alt="Антивозрастные процедуры" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Антивозрастные процедуры</h3>
+                      <p class="article-preview">Современная косметология предлагает множество эффективных методов борьбы с признаками старения...</p>
+                    </div>
+                  </div>
+                  <div class="blog-article" data-article-id="6">
+                    <div class="article-thumbnail">
+                      <img src="../img/img-placeholder_1.jpg" alt="Питание для здоровой кожи" />
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Питание для здоровой кожи</h3>
+                      <p class="article-preview">Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья...</p>
+                    </div>
+                  </div>
+                  <!-- Blog Stub -->
+                  <div class="blog-article blog-stub" data-article-id="stub">
+                    <div class="article-thumbnail">
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="article-content">
+                      <h3 class="article-title">Мы готовим для вас нечто особенное</h3>
+                      <p class="article-preview">Наша команда экспертов работает над созданием полезного и интересного контента. Совсем скоро здесь появятся новые статьи...</p>
+                      <span class="stub-badge">Скоро</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Hint -->
+  <div class="blog-mobile-hint" id="mobileHint">
+    <div class="hint-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <span>Листайте вниз</span>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="blog-hero">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumbs--blog" aria-label="Навигация">
+        <ol class="breadcrumbs-list">
+          <li class="breadcrumbs-item">
+            <a href="../index.html" class="breadcrumbs-link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+              Главная
+            </a>
+          </li>
+          <li class="breadcrumbs-item">
+            <span class="breadcrumbs-current">Блог</span>
+          </li>
+        </ol>
+      </nav>
+      
+      <div class="blog-hero-content">
+        <div class="blog-hero-badge">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+          </svg>
+          Блог клиники
+        </div>
+        
+        <h1 class="blog-hero-title">
+          Знания для вашей
+          <span>красоты</span>
+        </h1>
+        
+        <p class="blog-hero-description">
+          Экспертные статьи о косметологии, уходе за кожей и современных методиках омоложения от специалистов нашей клиники
+        </p>
+      </div>
+    </section>
+
+    <!-- Coming Soon Section -->
+    <section class="blog-coming-soon">
+      <div class="coming-soon-card">
+        <div class="coming-soon-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+          </svg>
+        </div>
+        
+        <h2 class="coming-soon-title">Мы готовим для вас нечто особенное</h2>
+        <p class="coming-soon-subtitle">Блог откроется совсем скоро</p>
+        
+        <p class="coming-soon-text">
+          Наша команда экспертов работает над созданием полезного и интересного контента. 
+          Совсем скоро здесь появятся статьи о новейших методиках, советы по уходу за кожей, 
+          ответы на частые вопросы и истории преображений наших пациентов.
+        </p>
+        
+        <!-- Features -->
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h4 class="feature-title">Экспертные статьи</h4>
+            <p class="feature-desc">Материалы от практикующих врачей-косметологов с многолетним опытом</p>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+              </svg>
+            </div>
+            <h4 class="feature-title">Разбор процедур</h4>
+            <p class="feature-desc">Подробные описания методик, показаний и ожидаемых результатов</p>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </div>
+            <h4 class="feature-title">Советы по уходу</h4>
+            <p class="feature-desc">Рекомендации по домашнему уходу и поддержанию результата</p>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <h4 class="feature-title">Истории успеха</h4>
+            <p class="feature-desc">Реальные случаи и отзывы пациентов с результатами процедур</p>
+          </div>
+        </div>
+        
+        <!-- Newsletter -->
+        <div class="newsletter-section">
+          <h3 class="newsletter-title">Хотите узнать первыми?</h3>
+          <p class="newsletter-desc">Оставьте свой email и мы сообщим, когда блог заработает</p>
+          
+          <form class="newsletter-form" id="newsletterForm">
+            <input 
+              type="email" 
+              class="newsletter-input" 
+              placeholder="Ваш email" 
+              required
+              aria-label="Email для подписки"
+            >
+            <button type="submit" class="newsletter-btn">Подписаться</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Preview Articles -->
+    <section class="preview-section">
+      <div class="preview-header">
+        <h2 class="preview-title">Что мы готовим</h2>
+        <span class="preview-badge">Скоро в блоге</span>
+      </div>
+      
+      <div class="preview-grid">
+        <article class="preview-card">
+          <div class="preview-image">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+          <div class="preview-content">
+            <span class="preview-tag">Инъекции</span>
+            <h3 class="preview-card-title">Как выбрать филлер: гид по препаратам</h3>
+            <p class="preview-card-desc">Разбираемся в отличиях между Juvederm, Profillers и другими брендами</p>
+          </div>
+        </article>
+        
+        <article class="preview-card">
+          <div class="preview-image">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+          <div class="preview-content">
+            <span class="preview-tag">Уход</span>
+            <h3 class="preview-card-title">5 ошибок в уходе за кожей после 30</h3>
+            <p class="preview-card-desc">Что мешает вашей коже выглядеть молодо и как это исправить</p>
+          </div>
+        </article>
+        
+        <article class="preview-card">
+          <div class="preview-image">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+          <div class="preview-content">
+            <span class="preview-tag">Процедуры</span>
+            <h3 class="preview-card-title">Биоревитализация vs. мезотерапия</h3>
+            <p class="preview-card-desc">В чём разница и что подойдёт именно вам</p>
+          </div>
+        </article>
+        
+        <article class="preview-card">
+          <div class="preview-image">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+          <div class="preview-content">
+            <span class="preview-tag">Массаж</span>
+            <h3 class="preview-card-title">Почему массаж лица работает</h3>
+            <p class="preview-card-desc">Научное обоснование эффективности массажных техник</p>
+          </div>
+        </article>
+        
+        <article class="preview-card">
+          <div class="preview-image">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+          <div class="preview-content">
+            <span class="preview-tag">Советы</span>
+            <h3 class="preview-card-title">Подготовка к инъекционным процедурам</h3>
+            <p class="preview-card-desc">Чек-лист для тех, кто собирается на первую процедуру</p>
+          </div>
+        </article>
+        
+        <article class="preview-card">
+          <div class="preview-image">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+            </svg>
+          </div>
+          <div class="preview-content">
+            <span class="preview-tag">FAQ</span>
+            <h3 class="preview-card-title">Ответы на частые вопросы о ботоксе</h3>
+            <p class="preview-card-desc">Развеиваем мифы и отвечаем на реальные вопросы пациентов</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section id="revealWrap" class="reveal-wrap">
+    <section class="contacts-section" id="contacts">
+      <div class="form-map-container">
+        <form class="form-container" id="contactForm" action="https://formspree.io/f/xgvzbrzz" method="POST">
+          <h2>Запланируйте свой визит</h2>
+          <div class="form-top-row">
+            <div class="input-group">
+              <input type="text" name="name" id="name" placeholder=" " autocomplete="name" required />
+              <label for="name">Ваше имя</label>
+            </div>
+            <div class="input-group">
+              <input type="tel" name="phone" id="phone" placeholder=" " autocomplete="tel" required />
+              <label for="phone">Телефон</label>
+            </div>
+            <div class="input-group">
+              <label for="customDropdown" id="time-label">Время для звонка</label>
+              <div class="custom-dropdown" id="customDropdown" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="time-label">
+                <div class="selected" id="selected-time">Выберите время</div>
+                <div class="dropdown-options" role="listbox">
+                  <div class="option" role="option" tabindex="0">с 9:00 до 12:00</div>
+                  <div class="option" role="option" tabindex="0">с 12:00 до 16:00</div>
+                  <div class="option" role="option" tabindex="0">с 16:00 до 18:00</div>
+                  <div class="option" role="option" tabindex="0">с 18:00 до 21:00</div>
+                </div>
+              </div>
+              <input type="hidden" name="technology" id="time" required />
+            </div>
+          </div>
+          <div class="form-bottom-row">
+            <div class="checkbox-wrapper">
+              <input type="checkbox" id="agree">
+              <label for="agree">
+                <svg class="checkmark" viewBox="0 0 24 24">
+                  <polyline points="4 12 9 17 20 6">
+                </svg>
+                Я согласен с политикой конфиденциальности и на обработку персональных данных</label>
+            </div>
+            <div class="button-wrapper">
+              <button type="submit" class="send-btn"><span>Отправить</span></button>
+            </div>
+          </div>
+          <div class="warning" id="warningText">Пожалуйста, согласитесь с политикой конфиденциальности.</div>
+        </form>
+        <div class="map-contacts">
+          <div class="contact-info">
+            <h2>Контакты</h2>
+            <p><strong>Телефон:</strong> +7 (900) 000-00-00</p>
+            <p><strong>Адрес:</strong> Санкт-Петербург, ул. Примерная, д. 1</p>
+            <p><strong>Часы работы:</strong> 10:00 - 19:00, Пн–Пт</p>
+            <p><strong>Email:</strong> info@example.com</p>
+          </div>
+          <div id="map-wrapper">
+            <div id="map-placeholder"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="page-footer" aria-labelledby="footerTitle">
+      <div class="footer-inner">
+        <div class="footer-col footer-brand">
+          <div class="footer-logo" aria-label="Логотип">BL</div>
+          <div class="footer-socials">
+            <a class="social-btn wa whatsapp-btn" href="#" aria-label="WhatsApp">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+              </svg>
+            </a>
+            <a class="social-btn tg telegram-btn" href="#" aria-label="Telegram">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+              </svg>
+            </a>
+          </div>
+          <a class="made-by" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 8.9 9 8z"/></svg>
+            <span>made by Заглушка</span>
+          </a>
+        </div>
+        <div class="footer-col" aria-label="Карта услуг">
+          <h4>Карта услуг</h4>
+          <ul class="footer-nav">
+            <li><a href="cosmetology.html">Косметология</a></li>
+            <li><a href="injections.html">Инъекционные методики</a></li>
+            <li><a href="massage.html">Массаж</a></li>
+          </ul>
+        </div>
+        <nav class="footer-col" aria-label="Навигация">
+          <h4 id="footerTitle">Меню</h4>
+          <ul class="footer-nav">
+            <li><a href="../index.html#services-section">Услуги</a></li>
+            <li><a href="../index.html#about">О клинике</a></li>
+            <li><a href="../index.html#alr">Отличия</a></li>
+            <li><a href="../index.html#sliderContainer">Галерея</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+            <li><a href="blog.html">Блог</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-links">
+          <a href="#" class="policy-link">Политика конфиденциальности</a>
+        </div>
+        <div class="footer-copy">
+          <span>© <span id="copyYear"></span> Клиника. Все права защищены.</span>
+        </div>
+        <a class="made-by-mobile" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2l3 6 6 .9-4.5 4.3 1 6-5.5-3-5.5 3 1-6L3 8.9 9 8z"/></svg>
+          <span>made by Заглушка</span>
+        </a>
+      </div>
+      <script>document.getElementById('copyYear').textContent = new Date().getFullYear();</script>
+    </footer>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
+  <script type="module" src="../js/blog-main.js"></script>
+  <script>
+  // Инициализация карты для страницы блога
+  (function initMap() {
+    function setupMapAnimation() {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const mapWrapper = document.querySelector('#map-wrapper');
+      if (!mapWrapper) return;
+
+      gsap.set('#map-wrapper', { height: 0, overflow: 'hidden' });
+
+      ScrollTrigger.create({
+        trigger: "#map-wrapper",
+        start: "top 80%",
+        once: true,
+        onEnter: () => {
+          const width = mapWrapper.getBoundingClientRect().width;
+          const targetHeight = window.innerWidth <= 768 ? Math.max(290, width) : width;
+          gsap.to('#map-wrapper', {
+            height: targetHeight,
+            duration: 2.48,
+            ease: 'power2.out',
+            onComplete: () => { mapWrapper.style.overflow = ''; }
+          });
+        }
+      });
+      ScrollTrigger.refresh();
+    }
+
+    ymaps.ready(() => {
+      const myMap = new ymaps.Map("map-placeholder", {
+        center: [59.962224, 30.320791],
+        zoom: 16,
+        controls: ['zoomControl', 'fullscreenControl']
+      });
+      const myPlacemark = new ymaps.Placemark([59.962224, 30.320791], {
+        hintContent: 'Метка',
+        balloonContent: 'Это ваша точка'
+      });
+      myMap.geoObjects.add(myPlacemark);
+    });
+
+    if (document.getElementById('preloader')) {
+      window.addEventListener('preloaderComplete', () => {
+        setTimeout(setupMapAnimation, 200);
+      });
+    } else {
+      if (document.readyState === 'complete') {
+        setupMapAnimation();
+      } else {
+        window.addEventListener('load', setupMapAnimation);
+      }
+    }
+  })();
+  </script>
+</body>
+</html>
