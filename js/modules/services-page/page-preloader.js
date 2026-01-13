@@ -17,11 +17,44 @@ export function initPagePreloader() {
     return;
   }
   
+  const fill = preloader.querySelector('.page-preloader-fill');
+  
+  // Анимация заполнения (как на страницах услуг)
+  if (fill) {
+    let progress = 0;
+    const targetProgress = 100;
+    const duration = 400; // ms
+    const startTime = Date.now();
+    
+    function animateFill() {
+      const elapsed = Date.now() - startTime;
+      progress = Math.min((elapsed / duration) * targetProgress, targetProgress);
+      
+      fill.style.height = `${progress}%`;
+      
+      if (progress < targetProgress) {
+        requestAnimationFrame(animateFill);
+      }
+    }
+    
+    animateFill();
+  }
+  
   // Скрываем после загрузки
+  const hidePreloaderFunc = () => {
+    setTimeout(() => {
+      preloader.classList.add('loaded');
+      setTimeout(() => {
+        preloader.remove();
+        console.log('✅ Page preloader hidden');
+      }, 600);
+    }, 200);
+  };
+  
   if (document.readyState === 'complete') {
-    hidePreloader(preloader);
+    hidePreloaderFunc();
   } else {
-    window.addEventListener('load', () => hidePreloader(preloader), { once: true });
+    window.addEventListener('load', hidePreloaderFunc, { once: true });
   }
 }
 

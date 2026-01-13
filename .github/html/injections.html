@@ -6,34 +6,8 @@
   <title>Инъекционная косметология — Клиника Притяжение</title>
   <meta name="description" content="Инъекционные методики: ботулинотерапия, контурная пластика, биоревитализация, нитевой лифтинг.">
   
-  <!-- Base URL for GitHub Pages and regular hosting (auto-detected) -->
-  <script>
-    // Auto-detect base path for GitHub Pages and regular hosting
-    (function() {
-      const path = window.location.pathname;
-      const hostname = window.location.hostname;
-      
-      // Check if we're on GitHub Pages (github.io domain)
-      const isGitHubPages = hostname.includes('github.io');
-      
-      if (isGitHubPages) {
-        // For GitHub Pages: extract repo name from path
-        const pathParts = path.split('/').filter(p => p);
-        const repoName = pathParts[0] || '';
-        if (repoName && !repoName.includes('.')) {
-          document.write('<base href="/' + repoName + '/">');
-        } else {
-          document.write('<base href="/">');
-        }
-      } else {
-        // For regular hosting: use root path
-        document.write('<base href="/">');
-      }
-    })();
-  </script>
-  
   <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="services-page">
 
@@ -56,7 +30,7 @@
   <!-- Header -->
   <header class="navc-header">
     <div class="navc-row">
-      <a href="index.html" class="navc-logo">Логотип</a>
+      <a href="../index.html" class="navc-logo">Логотип</a>
       <button class="navc-burger" aria-label="Открыть меню" aria-controls="navc-panel" aria-expanded="false">
         <span class="navc-burger__line top"></span>
         <span class="navc-burger__line middle"></span>
@@ -82,12 +56,12 @@
             <div class="menu-left">
               <h2>Меню</h2>
               <ul class="navc-links">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="index.html#services-section">Услуги</a></li>
-                <li><a href="html/cosmetology.html">Косметология</a></li>
-                <li><a href="html/massage.html">Массаж</a></li>
-                <li><a href="html/blog.html">Блог</a></li>
-                <li><a href="index.html#contacts">Контакты</a></li>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../index.html#services-section">Услуги</a></li>
+                <li><a href="cosmetology.html">Косметология</a></li>
+                <li><a href="massage.html">Массаж</a></li>
+                <li><a href="blog.html">Блог</a></li>
+                <li><a href="#contacts">Контакты</a></li>
               </ul>
               <div class="menu-contacts-section">
                 <div class="menu-contacts">
@@ -118,64 +92,55 @@
               </div>
             </div>
             <div class="menu-right">
-              <h2><a href="html/blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
+              <h2><a href="blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
               <div class="blog-container">
                 <div class="blog-scroll-area" id="blogScrollArea">
-                  <div class="blog-article" data-article-id="1">
+                  <!-- Заглушки для блога -->
+                  <div class="blog-article blog-stub" data-article-id="stub-1">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Как выбрать косметолога?" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Как выбрать косметолога?</h3>
-                      <p class="article-preview">Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...</p>
+                      <h3 class="article-title">Мы готовим для вас нечто особенное</h3>
+                      <p class="article-preview">Наша команда экспертов работает над созданием полезного и интересного контента. Совсем скоро здесь появятся новые статьи...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="2">
+                  
+                  <div class="blog-article blog-stub" data-article-id="stub-2">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Топ-5 процедур" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Топ-5 процедур</h3>
-                      <p class="article-preview">Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...</p>
+                      <h3 class="article-title">Экспертные материалы в разработке</h3>
+                      <p class="article-preview">Мы тщательно готовим для вас качественные статьи о косметологии, уходе за кожей и современных методиках. Оставайтесь на связи...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="3">
+                  
+                  <div class="blog-article blog-stub" data-article-id="stub-3">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Правила подготовки к процедурам" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Правила подготовки к процедурам</h3>
-                      <p class="article-preview">Правильная подготовка к косметологическим процедурам обеспечивает максимальный результат и безопасность...</p>
+                      <h3 class="article-title">Полезные советы и рекомендации</h3>
+                      <p class="article-preview">Наши специалисты делятся профессиональными знаниями и опытом. Скоро вы найдете здесь много полезной информации...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="4">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Уход за кожей зимой" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Уход за кожей зимой</h3>
-                      <p class="article-preview">Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять...</p>
-                    </div>
-                  </div>
-                  <div class="blog-article" data-article-id="5">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Антивозрастные процедуры" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Антивозрастные процедуры</h3>
-                      <p class="article-preview">Современная косметология предлагает множество эффективных методов борьбы с признаками старения...</p>
-                    </div>
-                  </div>
-                  <div class="blog-article" data-article-id="6">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Питание для здоровой кожи" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Питание для здоровой кожи</h3>
-                      <p class="article-preview">Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья...</p>
-                    </div>
-                  </div>
-                  <!-- Blog Stub -->
+                  
                   <div class="blog-article blog-stub" data-article-id="stub">
                     <div class="article-thumbnail">
                       <div class="stub-placeholder-icon">
@@ -203,7 +168,7 @@
   <nav class="breadcrumbs" aria-label="Навигация">
     <ol class="breadcrumbs-list">
       <li class="breadcrumbs-item">
-        <a href="index.html" class="breadcrumbs-link breadcrumbs-link--home">
+        <a href="../index.html" class="breadcrumbs-link breadcrumbs-link--home">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
           Главная
         </a>
@@ -255,7 +220,7 @@
           </div>
         </div>
         
-        <a href="index.html" class="services-hero-back">
+        <a href="../index.html" class="services-hero-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           На главную
         </a>
@@ -457,7 +422,6 @@
                     <p>Мгновенный эффект, сохраняется до 12 месяцев.</p>
                   </div>
                 </div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -562,7 +526,6 @@
                   <div class="detail-item"><h4>Показания</h4><ul><li>Коррекция подбородка</li><li>Чёткий угол нижней челюсти</li><li>Контур лица</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">В</div><div class="stub-text"><strong>Виктория С.</strong><span>«Красивый овал»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Коррекция подбородка</strong><span>Методы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -579,8 +542,8 @@
                   <div class="detail-item"><h4>Преимущества</h4><ul><li>Мягкий естественный результат</li><li>Увлажнение губ</li><li>Разглаживание кисетных морщин</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Л</div><div class="stub-text"><strong>Людмила В.</strong><span>«Нежные губы»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Уход за губами</strong><span>Советы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -601,7 +564,6 @@
                   <div class="detail-item"><h4>Показания</h4><ul><li>Мелкие морщины</li><li>Увлажнение губ</li><li>Освежение кожи</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Е</div><div class="stub-text"><strong>Елена В.</strong><span>«Отличный филлер»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Profillers обзор</strong><span>Подробнее</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -617,7 +579,6 @@
                   <div class="detail-item"><h4>Показания</h4><ul><li>Средние морщины</li><li>Увеличение губ</li><li>Мелкие складки</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">С</div><div class="stub-text"><strong>Светлана Д.</strong><span>«Довольна»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Выбор филлера</strong><span>Гид</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -633,7 +594,6 @@
                   <div class="detail-item"><h4>Показания</h4><ul><li>Глубокие складки</li><li>Объём скул</li><li>Контурная пластика</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ю</div><div class="stub-text"><strong>Юлия А.</strong><span>«Хороший эффект»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Объёмные филлеры</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -649,8 +609,8 @@
                   <div class="detail-item"><h4>Показания</h4><ul><li>Подбородок</li><li>Угол челюсти</li><li>Выраженные складки</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Г</div><div class="stub-text"><strong>Галина Н.</strong><span>«Рекомендую»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Моделирование</strong><span>Подробнее</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -671,8 +631,8 @@
                   <div class="detail-item"><h4>Результат</h4><p>До 12-18 месяцев</p></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Р</div><div class="stub-text"><strong>Регина М.</strong><span>«Отлично!»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Dermalax обзор</strong><span>Сравнение</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -726,7 +686,6 @@
                   <div class="detail-item"><h4>Результат</h4><ul><li>Глубокое увлажнение</li><li>Сияние кожи</li><li>Выравнивание тона</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">А</div><div class="stub-text"><strong>Алина К.</strong><span>«Увлажняет!»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Биоревитализация</strong><span>Гид</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -742,7 +701,6 @@
                   <div class="detail-item"><h4>Преимущества</h4><ul><li>Стимуляция коллагена</li><li>Антиоксидантная защита</li><li>Лифтинг-эффект</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">В</div><div class="stub-text"><strong>Вероника Л.</strong><span>«Эффект виден»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>IAL-System</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -758,8 +716,8 @@
                   <div class="detail-item"><h4>Подходит для</h4><ul><li>Локальные зоны</li><li>Первая процедура</li><li>Поддерживающий курс</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Д</div><div class="stub-text"><strong>Дарья П.</strong><span>«Удобно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Первая процедура</strong><span>Советы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -779,7 +737,6 @@
                   <div class="detail-item"><h4>Результат</h4><ul><li>Лифтинг</li><li>Увлажнение</li><li>Уплотнение кожи</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Н</div><div class="stub-text"><strong>Надежда К.</strong><span>«Очень нравится»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Revi препараты</strong><span>Сравнение</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -795,7 +752,6 @@
                   <div class="detail-item"><h4>Эффект</h4><p>Гладкость и бархатистость кожи</p></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">О</div><div class="stub-text"><strong>Ольга С.</strong><span>«Шёлковая кожа»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Revi Silk</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -811,7 +767,6 @@
                   <div class="detail-item"><h4>Зоны</h4><ul><li>Лицо</li><li>Шея</li><li>Декольте</li><li>Кисти рук</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">П</div><div class="stub-text"><strong>Полина В.</strong><span>«Рекомендую»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Зоны обработки</strong><span>Подробнее</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -827,7 +782,6 @@
                   <div class="detail-item"><h4>Показания</h4><ul><li>Возрастная кожа</li><li>Потеря тургора</li><li>Птоз тканей</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Т</div><div class="stub-text"><strong>Тамара Н.</strong><span>«Подтянулось»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Лифтинг</strong><span>Методы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -843,7 +797,6 @@
                   <div class="detail-item"><h4>Курс</h4><p>3-4 процедуры с интервалом 2-3 недели</p></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">У</div><div class="stub-text"><strong>Ульяна М.</strong><span>«Лучший выбор»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Курс процедур</strong><span>Как выбрать</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -859,8 +812,8 @@
                   <div class="detail-item"><h4>Результат</h4><ul><li>Уменьшение тёмных кругов</li><li>Разглаживание морщин</li><li>Увлажнение</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ф</div><div class="stub-text"><strong>Фаина Р.</strong><span>«Свежий взгляд»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Уход за глазами</strong><span>Советы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -880,7 +833,6 @@
                   <div class="detail-item"><h4>Подходит для</h4><ul><li>Возраст 25-35 лет</li><li>Профилактика старения</li><li>Поддержание тонуса</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Х</div><div class="stub-text"><strong>Христина Л.</strong><span>«Профилактика»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Novacutan</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -896,8 +848,8 @@
                   <div class="detail-item"><h4>Подходит для</h4><ul><li>Возраст 35+</li><li>Коррекция морщин</li><li>Восстановление тургора</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ц</div><div class="stub-text"><strong>Цецилия М.</strong><span>«Эффект есть»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Зрелая кожа</strong><span>Уход</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -915,7 +867,6 @@
                 <div class="detail-item"><h4>Результат</h4><ul><li>Глубокое увлажнение</li><li>Лифтинг</li><li>Стимуляция коллагена и эластина</li></ul></div>
               </div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ч</div><div class="stub-text"><strong>Чулпан А.</strong><span>«Вау-эффект!»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Profhilo</strong><span>Всё о препарате</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -968,7 +919,6 @@
                   <div class="detail-item"><h4>Результат</h4><ul><li>Гладкость кожи</li><li>Увлажнение</li><li>Мягкий лифтинг</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ш</div><div class="stub-text"><strong>Шарлотта П.</strong><span>«Гладкая кожа»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Nithya</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -984,7 +934,6 @@
                   <div class="detail-item"><h4>Зоны</h4><ul><li>Лицо</li><li>Шея</li><li>Декольте</li><li>Кисти рук</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Щ</div><div class="stub-text"><strong>Щербинина Т.</strong><span>«Экономично»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Объём препарата</strong><span>Как выбрать</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -1000,7 +949,6 @@
                   <div class="detail-item"><h4>Действие</h4><ul><li>Стимуляция фибробластов</li><li>Синтез коллагена</li><li>Уплотнение кожи</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Э</div><div class="stub-text"><strong>Элла В.</strong><span>«Кожа плотнее»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Стимуляция</strong><span>Как работает</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -1016,7 +964,6 @@
                   <div class="detail-item"><h4>Преимущества</h4><p>Экономичнее при обработке больших зон</p></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ю</div><div class="stub-text"><strong>Юлиана К.</strong><span>«Выгодно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Nithya линейка</strong><span>Сравнение</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -1032,7 +979,6 @@
                   <div class="detail-item"><h4>Действие</h4><ul><li>Антиоксидантная защита</li><li>Укрепление кожи</li><li>Профилактика старения</li></ul></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Я</div><div class="stub-text"><strong>Яна М.</strong><span>«Защищает»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Антиоксиданты</strong><span>Для кожи</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
             </div>
           </div>
@@ -1048,8 +994,8 @@
                   <div class="detail-item"><h4>Курс</h4><p>3-4 процедуры с интервалом 2-3 недели</p></div>
                 </div>
                 <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">А</div><div class="stub-text"><strong>Алиса Р.</strong><span>«Прошла курс»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Курс защиты</strong><span>Результаты</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1136,7 +1082,6 @@
               <p>Максимальная подтяжка с использованием 20 нитей для выраженного лифтинга.</p>
               <div class="service-details"><div class="detail-item"><h4>Зоны</h4><ul><li>Всё лицо</li><li>Овал</li><li>Щёки</li><li>Брыли</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Б</div><div class="stub-text"><strong>Белла К.</strong><span>«Минус 10 лет»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Нитевой лифтинг</strong><span>Подробнее</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1150,7 +1095,6 @@
               <p>Мягкие нити для деликатной подтяжки с естественным результатом.</p>
               <div class="service-details"><div class="detail-item"><h4>Особенности</h4><p>Более мягкий лифтинг, идеально для начала коррекции.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">В</div><div class="stub-text"><strong>Валерия М.</strong><span>«Естественно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Выбор нитей</strong><span>Гид</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1164,7 +1108,6 @@
               <p>Нити с гиалуроновой кислотой для лифтинга с дополнительным увлажнением.</p>
               <div class="service-details"><div class="detail-item"><h4>Преимущества</h4><ul><li>Лифтинг + увлажнение</li><li>Пролонгированный эффект</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Г</div><div class="stub-text"><strong>Галина Н.</strong><span>«Двойной эффект»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Нити с ГК</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1178,7 +1121,6 @@
               <p>Канюльные нити для безопасной установки с минимальной травматизацией.</p>
               <div class="service-details"><div class="detail-item"><h4>Особенности</h4><p>Атравматичная установка, быстрая реабилитация.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Д</div><div class="stub-text"><strong>Диана Л.</strong><span>«Быстро»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Канюльные нити</strong><span>Преимущества</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1192,7 +1134,6 @@
               <p>Расширенный комплект канюльных нитей для более выраженного эффекта.</p>
               <div class="service-details"><div class="detail-item"><h4>Результат</h4><p>Выраженный лифтинг с минимальной реабилитацией.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Е</div><div class="stub-text"><strong>Евгения К.</strong><span>«Рекомендую»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Количество нитей</strong><span>Как выбрать</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1206,7 +1147,6 @@
               <p>Нити для подтяжки тела — живот, бёдра, руки.</p>
               <div class="service-details"><div class="detail-item"><h4>Зоны</h4><ul><li>Живот</li><li>Бёдра</li><li>Руки</li><li>Ягодицы</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Ж</div><div class="stub-text"><strong>Жанна П.</strong><span>«Подтянула живот»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Нити для тела</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1220,7 +1160,6 @@
               <p>Максимальный комплект для комплексной подтяжки тела.</p>
               <div class="service-details"><div class="detail-item"><h4>Результат</h4><p>Выраженный лифтинг большой зоны или нескольких зон.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">З</div><div class="stub-text"><strong>Зинаида М.</strong><span>«Комплексно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Лифтинг тела</strong><span>Методы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1234,7 +1173,6 @@
               <p>Длинные нити для подтяжки овала лица и шеи.</p>
               <div class="service-details"><div class="detail-item"><h4>Зоны</h4><p>Овал, брыли, шея.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">И</div><div class="stub-text"><strong>Инна К.</strong><span>«Чёткий овал»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Длинные нити</strong><span>Применение</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1248,7 +1186,6 @@
               <p>Расширенный комплект длинных нитей для выраженной подтяжки.</p>
               <div class="service-details"><div class="detail-item"><h4>Результат</h4><p>Выраженный лифтинг овала и шеи.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">К</div><div class="stub-text"><strong>Карина Р.</strong><span>«Супер результат»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Подтяжка шеи</strong><span>Методы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1262,7 +1199,6 @@
               <p>Нить второго поколения с улучшенной фиксацией.</p>
               <div class="service-details"><div class="detail-item"><h4>Особенности</h4><p>Усиленные насечки для лучшего лифтинга.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Л</div><div class="stub-text"><strong>Лариса В.</strong><span>«Надёжно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Нити 2G</strong><span>Новинка</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1276,7 +1212,6 @@
               <p>Мезонити для уплотнения кожи и мягкого лифтинга.</p>
               <div class="service-details"><div class="detail-item"><h4>Действие</h4><ul><li>Уплотнение кожи</li><li>Стимуляция коллагена</li><li>Мягкий лифтинг</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">М</div><div class="stub-text"><strong>Марина С.</strong><span>«Плотная кожа»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Мезонити</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1290,7 +1225,6 @@
               <p>Расширенный комплект мезонитей для комплексной работы.</p>
               <div class="service-details"><div class="detail-item"><h4>Зоны</h4><p>Лицо, шея, декольте.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Н</div><div class="stub-text"><strong>Надежда Л.</strong><span>«Выгодно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Nano Spring</strong><span>Сравнение</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1304,7 +1238,6 @@
               <p>Элегантные тонкие нити для деликатных зон и естественного результата.</p>
               <div class="service-details"><div class="detail-item"><h4>Зоны</h4><ul><li>Периорбитальная зона</li><li>Лоб</li><li>Шея</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">О</div><div class="stub-text"><strong>Ольга Р.</strong><span>«Элегантно»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Elegance</strong><span>Особенности</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1352,7 +1285,6 @@
               <p>Ботулотоксин для лечения гипергидроза. Дозировка подбирается индивидуально.</p>
               <div class="service-details"><div class="detail-item"><h4>Расчёт</h4><p>Среднее количество единиц на одну зону — 100-150 ед.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">П</div><div class="stub-text"><strong>Павел Н.</strong><span>«Работает»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Диспорт</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1366,7 +1298,6 @@
               <p>Лечение выраженного гипергидроза с использованием увеличенной дозы препарата.</p>
               <div class="service-details"><div class="detail-item"><h4>Результат</h4><p>Снижение потоотделения на 80-90%. Эффект 8-12 месяцев.</p></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Р</div><div class="stub-text"><strong>Роман К.</strong><span>«Забыл о проблеме»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Гипергидроз</strong><span>Лечение</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1401,7 +1332,6 @@
                 </div>
               </div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">С</div><div class="stub-text"><strong>Светлана М.</strong><span>«Энергия»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Лаеннек</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1416,7 +1346,6 @@
               <p>Японский плацентарный препарат нового поколения для глубокого омоложения.</p>
               <div class="service-details"><div class="detail-item"><h4>Действие</h4><ul><li>Регенерация тканей</li><li>Детоксикация</li><li>Омоложение</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">Т</div><div class="stub-text"><strong>Татьяна В.</strong><span>«Омолодилась»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Curasen</strong><span>Новинка</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1435,20 +1364,11 @@
               <p>Ферментный препарат для лечения рубцов, фиброза и спаечных процессов.</p>
               <div class="service-details"><div class="detail-item"><h4>Показания</h4><ul><li>Келоидные рубцы</li><li>Атрофические рубцы</li><li>Постакне</li><li>Фиброз после филлеров</li></ul></div></div>
               <div class="service-stubs"><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-avatar">У</div><div class="stub-text"><strong>Ульяна К.</strong><span>«Рубцы ушли»</span></div><span class="stub-badge">Скоро</span></div></div></div><div class="stub-section"><h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5><div class="stub-placeholder"><div class="stub-item"><div class="stub-text"><strong>Лечение рубцов</strong><span>Методы</span></div><span class="stub-badge">Скоро</span></div></div></div></div>
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="services-cta-section">
-        <div class="services-cta-card">
-          <h3>Запишитесь на консультацию</h3>
-          <p>Врач подберёт оптимальные процедуры для вас</p>
-          <button type="button" class="btn-primary" data-open-modal="contactModal">Записаться</button>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -1534,20 +1454,20 @@
         <div class="footer-col" aria-label="Карта услуг">
           <h4>Карта услуг</h4>
           <ul class="footer-nav">
-            <li><a href="html/cosmetology.html">Косметология</a></li>
-            <li><a href="html/injections.html">Инъекционные методики</a></li>
-            <li><a href="html/massage.html">Массаж</a></li>
+            <li><a href="cosmetology.html">Косметология</a></li>
+            <li><a href="injections.html">Инъекционные методики</a></li>
+            <li><a href="massage.html">Массаж</a></li>
           </ul>
         </div>
         <nav class="footer-col" aria-label="Навигация">
           <h4 id="footerTitle">Меню</h4>
           <ul class="footer-nav">
-            <li><a href="index.html#services-section">Услуги</a></li>
-            <li><a href="index.html#about">О клинике</a></li>
-            <li><a href="index.html#alr">Отличия</a></li>
-            <li><a href="index.html#sliderContainer">Галерея</a></li>
+            <li><a href="../index.html#services-section">Услуги</a></li>
+            <li><a href="../index.html#about">О клинике</a></li>
+            <li><a href="../index.html#alr">Отличия</a></li>
+            <li><a href="../index.html#sliderContainer">Галерея</a></li>
             <li><a href="#contacts">Контакты</a></li>
-            <li><a href="html/blog.html">Блог</a></li>
+            <li><a href="blog.html">Блог</a></li>
           </ul>
         </nav>
       </div>
@@ -1603,7 +1523,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-  <script type="module" src="js/services-main.js"></script>
+  <script type="module" src="../js/services-main.js"></script>
   <script>
   // Инициализация карты для страниц услуг
   (function initMap() {

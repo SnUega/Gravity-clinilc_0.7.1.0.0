@@ -473,6 +473,7 @@ async function handleFormSubmit(e) {
 /**
  * Управление поведением hero при скролле
  * Когда секция контактов появляется, hero "шторкой" уезжает влево
+ * Оптимизировано для устранения глитчей
  */
 function initHeroScrollBehavior() {
   const hero = document.querySelector('.services-hero');
@@ -482,68 +483,95 @@ function initHeroScrollBehavior() {
   if (!hero || !contactsSection) return;
 
   let isHeroHidden = false;
+  let isTransitioning = false;
+  let lastScrollY = window.scrollY;
+  let refreshTimeout = null;
+
+  // Дебаунс для ScrollTrigger.refresh()
+  const debouncedRefresh = () => {
+    if (refreshTimeout) clearTimeout(refreshTimeout);
+    refreshTimeout = setTimeout(() => {
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.refresh();
+      }
+    }, 600);
+  };
 
   // Отслеживаем когда контакты появляются в viewport
   const checkContactsVisibility = () => {
-    const contactsRect = contactsSection.getBoundingClientRect();
-    const threshold = window.innerHeight * 0.8; // Срабатывает когда контакты в 80% от низа экрана
+    // Не обновляем во время перехода
+    if (isTransitioning) return;
     
-    // Если контакты видны (верх контактов выше порога)
-    if (contactsRect.top < threshold) {
-      if (!isHeroHidden) {
-        isHeroHidden = true;
+    const contactsRect = contactsSection.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const scrollDirection = window.scrollY > lastScrollY ? 'down' : 'up';
+    lastScrollY = window.scrollY;
+    
+    // Порог срабатывания - когда контакты видны на 50% экрана снизу
+    const showThreshold = viewportHeight * 0.5;
+    // Порог скрытия - когда контакты уходят полностью вниз
+    const hideThreshold = viewportHeight * 0.8;
+    
+    const shouldShow = contactsRect.top < showThreshold && contactsRect.bottom > 100;
+    const shouldHide = contactsRect.top > hideThreshold || contactsRect.bottom < 0;
+    
+    if (shouldShow && !isHeroHidden) {
+      isTransitioning = true;
+      isHeroHidden = true;
+      
+      // Применяем классы с небольшой задержкой для плавности
+      requestAnimationFrame(() => {
         hero.classList.add('hero-hiding');
         body.classList.add('contacts-visible');
         
-        // Обновляем ScrollTrigger после анимации
         setTimeout(() => {
-          if (window.ScrollTrigger) {
-            window.ScrollTrigger.refresh();
-          }
-        }, 550);
-      }
-    } else {
-      if (isHeroHidden) {
-        isHeroHidden = false;
+          isTransitioning = false;
+          debouncedRefresh();
+        }, 500);
+      });
+    } else if (shouldHide && isHeroHidden) {
+      isTransitioning = true;
+      isHeroHidden = false;
+      
+      requestAnimationFrame(() => {
         hero.classList.remove('hero-hiding');
         body.classList.remove('contacts-visible');
         
-        // Обновляем ScrollTrigger после анимации
         setTimeout(() => {
-          if (window.ScrollTrigger) {
-            window.ScrollTrigger.refresh();
-          }
-        }, 550);
-      }
+          isTransitioning = false;
+          debouncedRefresh();
+        }, 500);
+      });
     }
   };
 
-  // Используем IntersectionObserver для отслеживания появления контактов
+  // Используем IntersectionObserver с более широким threshold
   const observer = new IntersectionObserver((entries) => {
-    checkContactsVisibility();
+    // Используем rAF для синхронизации с рендерингом
+    requestAnimationFrame(checkContactsVisibility);
   }, {
-    threshold: [0, 0.1, 0.2],
-    rootMargin: '0px'
+    threshold: [0, 0.25, 0.5, 0.75, 1],
+    rootMargin: '100px 0px'
   });
 
   observer.observe(contactsSection);
   
-  // Также отслеживаем скролл для более плавной реакции
-  let ticking = false;
+  // Throttled scroll handler
+  let scrollTicking = false;
   const handleScroll = () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(() => {
         checkContactsVisibility();
-        ticking = false;
+        scrollTicking = false;
       });
-      ticking = true;
     }
   };
   
   window.addEventListener('scroll', handleScroll, { passive: true });
   
-  // Проверяем при загрузке
-  setTimeout(checkContactsVisibility, 100);
+  // Проверяем при загрузке после небольшой задержки
+  setTimeout(checkContactsVisibility, 300);
 }
 
 /**
@@ -579,5 +607,84 @@ function initMobileHint() {
   }, 5000);
 }
 
+/**
+ * Инициализация кликов по мини-статьям блога в меню
+ * Переход на страницу статьи или показ toast для заглушек
+ */
+function initBlogArticleClicks() {
+  const articles = document.querySelectorAll('.blog-article, .blog-stub');
+  
+  articles.forEach(article => {
+    article.addEventListener('click', (e) => {
+      e.preventDefault();
+      
+      const slug = article.dataset.slug;
+      const isStub = article.classList.contains('blog-stub') || 
+                     article.querySelector('.stub-placeholder-icon') ||
+                     !slug || slug.startsWith('coming-soon');
+      
+      if (isStub) {
+        showComingSoonToast();
+      } else {
+        // Переход на страницу статьи (когда будут созданы реальные статьи)
+        showComingSoonToast();
+        // window.location.href = `article-${slug}.html`;
+      }
+    });
+  });
+}
+
+/**
+ * Показать toast уведомление "Скоро"
+ */
+function showComingSoonToast() {
+  // Удаляем существующий toast
+  const existingToast = document.querySelector('.coming-soon-toast');
+  if (existingToast) {
+    existingToast.remove();
+  }
+  
+  // Создаем toast
+  const toast = document.createElement('div');
+  toast.className = 'coming-soon-toast';
+  toast.textContent = '📝 Статья скоро будет доступна';
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, #7a00c7 0%, #45c4f9 100%);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(122, 0, 199, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  `;
+  document.body.appendChild(toast);
+  
+  // Анимация появления
+  requestAnimationFrame(() => {
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    toast.style.opacity = '1';
+  });
+  
+  // Автоматическое скрытие
+  setTimeout(() => {
+    toast.style.transform = 'translateX(-50%) translateY(100px)';
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 400);
+  }, 2500);
+}
+
 // Запускаем инициализацию
 init();
+
+// Инициализация кликов по статьям после загрузки DOM
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    initBlogArticleClicks();
+  }, 500);
+});

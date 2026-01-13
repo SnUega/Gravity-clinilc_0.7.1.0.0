@@ -6,37 +6,11 @@
   <title>Косметология — Клиника Притяжение</title>
   <meta name="description" content="Профессиональные косметологические услуги: чистки лица, пилинги, удаление новообразований. Консультации врача-дерматолога.">
   
-  <!-- Base URL for GitHub Pages and regular hosting (auto-detected) -->
-  <script>
-    // Auto-detect base path for GitHub Pages and regular hosting
-    (function() {
-      const path = window.location.pathname;
-      const hostname = window.location.hostname;
-      
-      // Check if we're on GitHub Pages (github.io domain)
-      const isGitHubPages = hostname.includes('github.io');
-      
-      if (isGitHubPages) {
-        // For GitHub Pages: extract repo name from path
-        const pathParts = path.split('/').filter(p => p);
-        const repoName = pathParts[0] || '';
-        if (repoName && !repoName.includes('.')) {
-          document.write('<base href="/' + repoName + '/">');
-        } else {
-          document.write('<base href="/">');
-        }
-      } else {
-        // For regular hosting: use root path
-        document.write('<base href="/">');
-      }
-    })();
-  </script>
-  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet">
   
   <!-- CSS -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body class="services-page">
 
@@ -74,7 +48,7 @@
   <!-- Header (same as main page) -->
   <header class="navc-header">
     <div class="navc-row">
-      <a href="index.html" class="navc-logo">Логотип</a>
+      <a href="../index.html" class="navc-logo">Логотип</a>
       <button class="navc-burger" aria-label="Открыть меню" aria-controls="navc-panel" aria-expanded="false">
         <span class="navc-burger__line top"></span>
         <span class="navc-burger__line middle"></span>
@@ -102,12 +76,12 @@
             <div class="menu-left">
               <h2>Меню</h2>
               <ul class="navc-links">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="index.html#services-section">Услуги</a></li>
-                <li><a href="html/injections.html">Инъекционная косметология</a></li>
-                <li><a href="html/massage.html">Массаж</a></li>
-                <li><a href="html/blog.html">Блог</a></li>
-                <li><a href="index.html#contacts">Контакты</a></li>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="../index.html#services-section">Услуги</a></li>
+                <li><a href="injections.html">Инъекционная косметология</a></li>
+                <li><a href="massage.html">Массаж</a></li>
+                <li><a href="blog.html">Блог</a></li>
+                <li><a href="#contacts">Контакты</a></li>
               </ul>
               <div class="menu-contacts-section">
                 <div class="menu-contacts">
@@ -138,64 +112,55 @@
               </div>
             </div>
             <div class="menu-right">
-              <h2><a href="html/blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
+              <h2><a href="blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
               <div class="blog-container">
                 <div class="blog-scroll-area" id="blogScrollArea">
-                  <div class="blog-article" data-article-id="1">
+                  <!-- Заглушки для блога -->
+                  <div class="blog-article blog-stub" data-article-id="stub-1">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Как выбрать косметолога?" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Как выбрать косметолога?</h3>
-                      <p class="article-preview">Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...</p>
+                      <h3 class="article-title">Мы готовим для вас нечто особенное</h3>
+                      <p class="article-preview">Наша команда экспертов работает над созданием полезного и интересного контента. Совсем скоро здесь появятся новые статьи...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="2">
+                  
+                  <div class="blog-article blog-stub" data-article-id="stub-2">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Топ-5 процедур" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Топ-5 процедур</h3>
-                      <p class="article-preview">Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...</p>
+                      <h3 class="article-title">Экспертные материалы в разработке</h3>
+                      <p class="article-preview">Мы тщательно готовим для вас качественные статьи о косметологии, уходе за кожей и современных методиках. Оставайтесь на связи...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="3">
+                  
+                  <div class="blog-article blog-stub" data-article-id="stub-3">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Правила подготовки к процедурам" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Правила подготовки к процедурам</h3>
-                      <p class="article-preview">Правильная подготовка к косметологическим процедурам обеспечивает максимальный результат и безопасность...</p>
+                      <h3 class="article-title">Полезные советы и рекомендации</h3>
+                      <p class="article-preview">Наши специалисты делятся профессиональными знаниями и опытом. Скоро вы найдете здесь много полезной информации...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="4">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Уход за кожей зимой" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Уход за кожей зимой</h3>
-                      <p class="article-preview">Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять...</p>
-                    </div>
-                  </div>
-                  <div class="blog-article" data-article-id="5">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Антивозрастные процедуры" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Антивозрастные процедуры</h3>
-                      <p class="article-preview">Современная косметология предлагает множество эффективных методов борьбы с признаками старения...</p>
-                    </div>
-                  </div>
-                  <div class="blog-article" data-article-id="6">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Питание для здоровой кожи" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Питание для здоровой кожи</h3>
-                      <p class="article-preview">Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья...</p>
-                    </div>
-                  </div>
-                  <!-- Blog Stub -->
+                  
                   <div class="blog-article blog-stub" data-article-id="stub">
                     <div class="article-thumbnail">
                       <div class="stub-placeholder-icon">
@@ -223,7 +188,7 @@
   <nav class="breadcrumbs" aria-label="Навигация">
     <ol class="breadcrumbs-list">
       <li class="breadcrumbs-item">
-        <a href="index.html" class="breadcrumbs-link breadcrumbs-link--home">
+        <a href="../index.html" class="breadcrumbs-link breadcrumbs-link--home">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
           Главная
         </a>
@@ -275,7 +240,7 @@
           </div>
         </div>
         
-        <a href="index.html" class="services-hero-back">
+        <a href="../index.html" class="services-hero-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
@@ -434,6 +399,7 @@
                   </ul>
                 </div>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
               
               <!-- Stubs: Reviews & Articles -->
               <div class="service-stubs">
@@ -485,7 +451,6 @@
                 </div>
               </div>
               
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -827,7 +792,6 @@
                 </div>
               </div>
               
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -962,26 +926,21 @@
                 </div>
               </div>
               
-              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
-            </div>
-          </div>
-        </div>
-                <div class="service-stubs">
-                  <div class="stub-section">
-                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5>
-                    <div class="stub-placeholder">
-                      <div class="stub-item"><div class="stub-avatar">В</div><div class="stub-text"><strong>Виктория С.</strong><span>«Кожа шёлковая»</span></div><span class="stub-badge">Скоро</span></div>
-                    </div>
-                  </div>
-                  <div class="stub-section">
-                    <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5>
-                    <div class="stub-placeholder">
-                      <div class="stub-item"><div class="stub-text"><strong>Молочные пилинги</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div>
-                    </div>
+              <div class="service-stubs">
+                <div class="stub-section">
+                  <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>Отзывы</h5>
+                  <div class="stub-placeholder">
+                    <div class="stub-item"><div class="stub-avatar">В</div><div class="stub-text"><strong>Виктория С.</strong><span>«Кожа шёлковая»</span></div><span class="stub-badge">Скоро</span></div>
                   </div>
                 </div>
-                <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
+                <div class="stub-section">
+                  <h5><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Статьи</h5>
+                  <div class="stub-placeholder">
+                    <div class="stub-item"><div class="stub-text"><strong>Молочные пилинги</strong><span>Обзор</span></div><span class="stub-badge">Скоро</span></div>
+                  </div>
+                </div>
               </div>
+              <button type="button" class="accordion-cta" data-open-modal="contactModal">Записаться</button>
             </div>
           </div>
         </div>
@@ -1142,9 +1101,8 @@
             </div>
           </div>
         </div>
-      </div>
-          
-          <div class="accordion-item">
+        
+        <div class="accordion-item">
             <button class="accordion-header" aria-expanded="false">
               <div class="accordion-info">
                 <span class="accordion-name">2 степень</span>
@@ -1240,14 +1198,6 @@
         </div>
       </div>
 
-      <!-- CTA -->
-      <div class="services-cta-section">
-        <div class="services-cta-card">
-          <h3>Запишитесь на консультацию</h3>
-          <p>Специалист подберёт оптимальный курс процедур для вас</p>
-          <button type="button" class="btn-primary" data-open-modal="contactModal">Записаться</button>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -1333,20 +1283,20 @@
         <div class="footer-col" aria-label="Карта услуг">
           <h4>Карта услуг</h4>
           <ul class="footer-nav">
-            <li><a href="html/cosmetology.html">Косметология</a></li>
-            <li><a href="html/injections.html">Инъекционные методики</a></li>
-            <li><a href="html/massage.html">Массаж</a></li>
+            <li><a href="cosmetology.html">Косметология</a></li>
+            <li><a href="injections.html">Инъекционные методики</a></li>
+            <li><a href="massage.html">Массаж</a></li>
           </ul>
         </div>
         <nav class="footer-col" aria-label="Навигация">
           <h4 id="footerTitle">Меню</h4>
           <ul class="footer-nav">
-            <li><a href="index.html#services-section">Услуги</a></li>
-            <li><a href="index.html#about">О клинике</a></li>
-            <li><a href="index.html#alr">Отличия</a></li>
-            <li><a href="index.html#sliderContainer">Галерея</a></li>
+            <li><a href="../index.html#services-section">Услуги</a></li>
+            <li><a href="../index.html#about">О клинике</a></li>
+            <li><a href="../index.html#alr">Отличия</a></li>
+            <li><a href="../index.html#sliderContainer">Галерея</a></li>
             <li><a href="#contacts">Контакты</a></li>
-            <li><a href="html/blog.html">Блог</a></li>
+            <li><a href="blog.html">Блог</a></li>
           </ul>
         </nav>
       </div>
@@ -1402,7 +1352,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-  <script type="module" src="js/services-main.js"></script>
+  <script type="module" src="../js/services-main.js"></script>
   <script>
   // Инициализация карты для страниц услуг
   (function initMap() {

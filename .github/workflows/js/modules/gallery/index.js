@@ -11,28 +11,28 @@ import { waitForLibrary } from '../../core/utils.js';
  */
 const defaultCategories = {
   "Здание": [
-    "../img/IMG_4583.jpg",
-    "../img/ASH.jpg"
+    "./img/IMG_4583.jpg",
+    "./img/ASH.jpg"
   ],
   "Холл": [
-    "../img/img-placeholder.jpg",
-    "../img/img-placeholder_1.jpg"
+    "./img/img-placeholder.jpg",
+    "./img/img-placeholder_1.jpg"
   ],
   "Инъекционная": [
-    "../img/img-placeholder.jpg",
-    "../img/img-placeholder_1.jpg"
+    "./img/img-placeholder.jpg",
+    "./img/img-placeholder_1.jpg"
   ],
   "Лицевая эстетика": [
-    "../img/IMG_4583.jpg",
-    "../img/ASH.jpg"
+    "./img/IMG_4583.jpg",
+    "./img/ASH.jpg"
   ],
   "Тело эстетика": [
-    "../img/img-placeholder.jpg",
-    "../img/img-placeholder_1.jpg"
+    "./img/img-placeholder.jpg",
+    "./img/img-placeholder_1.jpg"
   ],
   "Комната отдыха": [
-    "../img/img-placeholder.jpg",
-    "../img/img-placeholder_1.jpg"
+    "./img/img-placeholder.jpg",
+    "./img/img-placeholder_1.jpg"
   ],
 };
 

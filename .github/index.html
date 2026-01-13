@@ -5,39 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Клиника</title>
   
-  <!-- Base URL for GitHub Pages and regular hosting (auto-detected) -->
-  <script>
-    // Auto-detect base path for GitHub Pages and regular hosting
-    (function() {
-      const path = window.location.pathname;
-      const hostname = window.location.hostname;
-      
-      // Check if we're on GitHub Pages (github.io domain)
-      const isGitHubPages = hostname.includes('github.io');
-      
-      if (isGitHubPages) {
-        // For GitHub Pages: extract repo name from path
-        const pathParts = path.split('/').filter(p => p);
-        const repoName = pathParts[0] || '';
-        if (repoName && !repoName.includes('.')) {
-          document.write('<base href="/' + repoName + '/">');
-        } else {
-          document.write('<base href="/">');
-        }
-      } else {
-        // For regular hosting: use root path
-        document.write('<base href="/">');
-      }
-    })();
-  </script>
-  
   <!---FONTS--->
   <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet" />
   <!---CSS--->
   <!-- Modular CSS (all modules imported via main.css) -->
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="./css/main.css">
   <!---LIBS--->
-  <link rel="stylesheet" href="lib/swiper/swiper-bundle.min.css">
+  <link rel="stylesheet" href="./lib/swiper/swiper-bundle.min.css">
 
 
 </head>
@@ -75,7 +49,7 @@
     <!-- Word animation container -->
     <div class="word-container">
       <div class="word-mask">
-        <img src="img/word-prityajenie.webp" alt="притяжение" class="word-image">
+        <img src="./img/word-prityajenie.webp" alt="притяжение" class="word-image">
       </div>
     </div>
   </div>
@@ -153,106 +127,64 @@
               <h2><a href="html/blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
                 <div class="blog-container">
                   <div class="blog-scroll-area" id="blogScrollArea">
-                    <!-- Статьи будут загружаться динамически из CRM -->
-                    <div class="blog-article" data-article-id="1">
+                    <!-- Заглушки для блога -->
+                    <div class="blog-article blog-stub" data-article-id="stub-1">
                       <div class="article-thumbnail">
-                        <img src="img/img-placeholder.jpg" alt="Как выбрать косметолога?" />
+                        <div class="stub-placeholder-icon">
+                          <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                          </svg>
+                        </div>
                       </div>
                       <div class="article-content">
-                        <h3 class="article-title">Как выбрать косметолога?</h3>
-                        <p class="article-preview">Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...</p>
+                        <h3 class="article-title">Мы готовим для вас нечто особенное</h3>
+                        <p class="article-preview">Наша команда экспертов работает над созданием полезного и интересного контента. Совсем скоро здесь появятся новые статьи...</p>
+                        <span class="stub-badge">Скоро</span>
                       </div>
                     </div>
                     
-                    <div class="blog-article" data-article-id="2">
+                    <div class="blog-article blog-stub" data-article-id="stub-2">
                       <div class="article-thumbnail">
-                        <img src="img/img-placeholder_1.jpg" alt="Топ-5 процедур июня" />
+                        <div class="stub-placeholder-icon">
+                          <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                          </svg>
+                        </div>
                       </div>
                       <div class="article-content">
-                        <h3 class="article-title">Топ-5 процедур июня</h3>
-                        <p class="article-preview">Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...</p>
+                        <h3 class="article-title">Экспертные материалы в разработке</h3>
+                        <p class="article-preview">Мы тщательно готовим для вас качественные статьи о косметологии, уходе за кожей и современных методиках. Оставайтесь на связи...</p>
+                        <span class="stub-badge">Скоро</span>
                       </div>
                     </div>
                     
-                    <div class="blog-article" data-article-id="3">
+                    <div class="blog-article blog-stub" data-article-id="stub-3">
                       <div class="article-thumbnail">
-                        <img src="./img/img-placeholder.jpg" alt="Правила подготовки к лазерной эпиляции" />
+                        <div class="stub-placeholder-icon">
+                          <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                          </svg>
+                        </div>
                       </div>
                       <div class="article-content">
-                        <h3 class="article-title">Правила подготовки к лазерной эпиляции</h3>
-                        <p class="article-preview">Лазерная эпиляция — эффективный способ удаления нежелательных волос. Правильная подготовка к процедуре обеспечивает максимальный результат...</p>
+                        <h3 class="article-title">Полезные советы и рекомендации</h3>
+                        <p class="article-preview">Наши специалисты делятся профессиональными знаниями и опытом. Скоро вы найдете здесь много полезной информации...</p>
+                        <span class="stub-badge">Скоро</span>
                       </div>
                     </div>
                     
-                    <!-- Дополнительные статьи для демонстрации прокрутки -->
-                    <div class="blog-article" data-article-id="4">
+                    <div class="blog-article blog-stub" data-article-id="stub-4">
                       <div class="article-thumbnail">
-                        <img src="img/img-placeholder_1.jpg" alt="Уход за кожей зимой" />
+                        <div class="stub-placeholder-icon">
+                          <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                          </svg>
+                        </div>
                       </div>
                       <div class="article-content">
-                        <h3 class="article-title">Уход за кожей зимой</h3>
-                        <p class="article-preview">Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять на состояние кожи...</p>
-                      </div>
-                    </div>
-                    
-                    <div class="blog-article" data-article-id="5">
-                      <div class="article-thumbnail">
-                        <img src="./img/img-placeholder.jpg" alt="Антивозрастные процедуры" />
-                      </div>
-                      <div class="article-content">
-                        <h3 class="article-title">Антивозрастные процедуры</h3>
-                        <p class="article-preview">Современная косметология предлагает множество эффективных методов борьбы с признаками старения. Рассмотрим самые популярные...</p>
-                      </div>
-                    </div>
-                    
-                    <div class="blog-article" data-article-id="6">
-                      <div class="article-thumbnail">
-                        <img src="img/img-placeholder_1.jpg" alt="Питание для здоровой кожи" />
-                      </div>
-                      <div class="article-content">
-                        <h3 class="article-title">Питание для здоровой кожи</h3>
-                        <p class="article-preview">Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья и молодости кожи...</p>
-                      </div>
-                    </div>
-                    
-                    <div class="blog-article" data-article-id="7">
-                      <div class="article-thumbnail">
-                        <img src="./img/img-placeholder.jpg" alt="Современные методы омоложения" />
-                      </div>
-                      <div class="article-content">
-                        <h3 class="article-title">Современные методы омоложения</h3>
-                        <p class="article-preview">Технологии в области эстетической медицины развиваются стремительно. Новые методы позволяют достигать впечатляющих результатов...</p>
-                      </div>
-                    </div>
-                    
-                    <!-- Дополнительные статьи для демонстрации -->
-                    <div class="blog-article" data-article-id="8">
-                      <div class="article-thumbnail">
-                        <img src="img/img-placeholder_1.jpg" alt="Уход за кожей после процедур" />
-                      </div>
-                      <div class="article-content">
-                        <h3 class="article-title">Уход за кожей после процедур</h3>
-                        <p class="article-preview">Правильный уход после косметологических процедур — залог успешного результата. Рассмотрим основные принципы...</p>
-                      </div>
-                    </div>
-                    
-                    <div class="blog-article" data-article-id="9">
-                      <div class="article-thumbnail">
-                        <img src="./img/img-placeholder.jpg" alt="Профилактика старения кожи" />
-                      </div>
-                      <div class="article-content">
-                        <h3 class="article-title">Профилактика старения кожи</h3>
-                        <p class="article-preview">Предотвратить старение кожи легче, чем бороться с его последствиями. Узнайте о современных методах профилактики...</p>
-                      </div>
-                    </div>
-                    
-                    <div class="blog-article" data-article-id="10">
-                      <div class="article-thumbnail">
-                        <img src="img/img-placeholder_1.jpg" alt="Сезонный уход за кожей" />
-                      </div>
-                      <div class="article-content">
-                        <h3 class="article-title">Сезонный уход за кожей</h3>
-                        <p class="article-preview">Кожа требует разного ухода в зависимости от времени года. Разберем особенности ухода по сезонам...</p>
+                        <h3 class="article-title">Актуальные новости и обновления</h3>
+                        <p class="article-preview">Следите за последними новостями из мира косметологии, новыми процедурами и специальными предложениями нашей клиники...</p>
+                        <span class="stub-badge">Скоро</span>
                       </div>
                     </div>
                   </div>
@@ -787,7 +719,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
 
   <!---JS--->
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="./js/main.js"></script>
   
 </body>
 </html>

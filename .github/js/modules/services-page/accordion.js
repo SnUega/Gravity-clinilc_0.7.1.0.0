@@ -4,9 +4,42 @@
  */
 
 /**
+ * Добавить кнопку "Записаться" в аккордеоны, где её нет
+ */
+function ensureAccordionButtons() {
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  
+  accordionItems.forEach(item => {
+    const content = item.querySelector('.accordion-content');
+    if (!content) return;
+    
+    // Проверяем есть ли уже кнопка
+    const existingButton = content.querySelector('.accordion-cta');
+    if (existingButton) return;
+    
+    // Находим accordion-body или используем content напрямую
+    const body = content.querySelector('.accordion-body');
+    const targetContainer = body || content;
+    
+    // Создаём кнопку
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'accordion-cta';
+    button.setAttribute('data-open-modal', 'contactModal');
+    button.textContent = 'Записаться';
+    
+    // Добавляем кнопку в конец
+    targetContainer.appendChild(button);
+  });
+}
+
+/**
  * Инициализация аккордеонов (основных и вложенных)
  */
 export function initAccordions() {
+  // Добавляем кнопки в аккордеоны, где их нет
+  ensureAccordionButtons();
+  
   // Основные аккордеоны
   const accordionHeaders = document.querySelectorAll('.accordion-header:not(.accordion-header--static)');
   
@@ -73,29 +106,47 @@ function handleAccordionClick(event) {
   
   const isOpen = header.getAttribute('aria-expanded') === 'true';
   
-  // Закрываем другие аккордеоны в той же категории
+  // Сохраняем позицию заголовка относительно viewport до любых изменений
+  const headerRect = header.getBoundingClientRect();
+  const headerTopBefore = headerRect.top;
+  
+  // Закрываем другие аккордеоны на странице
   closeOtherAccordions(item);
   
   // Переключаем текущий
-  toggleAccordion(header, content, !isOpen);
+  toggleAccordion(header, content, !isOpen, true);
+  
+  // Компенсируем сдвиг позиции после закрытия других аккордеонов
+  // Используем requestAnimationFrame для синхронизации с рендером
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const newHeaderRect = header.getBoundingClientRect();
+      const drift = newHeaderRect.top - headerTopBefore;
+      
+      // Если заголовок сдвинулся более чем на 5px, корректируем скролл
+      if (Math.abs(drift) > 5) {
+        window.scrollBy({
+          top: drift,
+          behavior: 'instant'
+        });
+      }
+    });
+  });
 }
 
 /**
- * Закрыть другие аккордеоны в той же группе
+ * Закрыть все другие аккордеоны на странице
  * @param {HTMLElement} currentItem 
  */
 function closeOtherAccordions(currentItem) {
-  const category = currentItem.closest('.service-category, .product-group');
-  
-  if (!category) return;
-  
-  category.querySelectorAll('.accordion-item').forEach(otherItem => {
+  // Закрываем все аккордеоны на странице, кроме текущего
+  document.querySelectorAll('.accordion-item').forEach(otherItem => {
     if (otherItem !== currentItem) {
       const otherHeader = otherItem.querySelector('.accordion-header');
       const otherContent = otherItem.querySelector('.accordion-content');
       
-      if (otherHeader && otherContent) {
-        toggleAccordion(otherHeader, otherContent, false);
+      if (otherHeader && otherContent && otherHeader.getAttribute('aria-expanded') === 'true') {
+        toggleAccordion(otherHeader, otherContent, false, true);
       }
     }
   });
@@ -107,7 +158,7 @@ function closeOtherAccordions(currentItem) {
  * @param {HTMLElement} content 
  * @param {boolean} open 
  */
-function toggleAccordion(header, content, open) {
+function toggleAccordion(header, content, open, skipScroll = false) {
   const item = header.closest('.accordion-item');
   header.setAttribute('aria-expanded', open);
   item.setAttribute('aria-expanded', open);
@@ -121,18 +172,7 @@ function toggleAccordion(header, content, open) {
       content.style.maxHeight = content.scrollHeight + 'px';
     }, 100);
     
-    // Плавный скролл к открытому аккордеону
-    setTimeout(() => {
-      const itemRect = item.getBoundingClientRect();
-      const headerHeight = document.querySelector('.navc-header')?.offsetHeight || 80;
-      const scrollOffset = itemRect.top + window.scrollY - headerHeight - 20;
-      
-      if (window.lenis) {
-        window.lenis.scrollTo(scrollOffset, { duration: 0.6 });
-      } else {
-        window.scrollTo({ top: scrollOffset, behavior: 'smooth' });
-      }
-    }, 150);
+    // Убран автоматический скролл - пользователь сам управляет позицией просмотра
     
     // Обновляем высоту при изменении содержимого (включая вложенные аккордеоны)
     const resizeObserver = new ResizeObserver(() => {

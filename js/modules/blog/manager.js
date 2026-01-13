@@ -40,7 +40,7 @@ export class BlogManager {
     return `
       <div class="blog-article" data-article-id="${article.id}" data-slug="${article.slug || ''}">
         <div class="article-thumbnail">
-          <img src="${article.thumbnail || '../img/img-placeholder.jpg'}" alt="${article.title}" loading="lazy" />
+          <img src="${article.thumbnail || './img/img-placeholder.jpg'}" alt="${article.title}" loading="lazy" />
         </div>
         <div class="article-content">
           <h3 class="article-title">${article.title}</h3>
@@ -131,7 +131,7 @@ export class BlogManager {
         id: 1,
         title: "Как выбрать косметолога?",
         preview: "Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...",
-        thumbnail: "../img/img-placeholder.jpg",
+        thumbnail: "img/img-placeholder.jpg",
         date: "2024-01-15",
         category: "Советы",
         slug: "kak-vybrat-kosmetologa"
@@ -140,7 +140,7 @@ export class BlogManager {
         id: 2,
         title: "Топ-5 процедур июня",
         preview: "Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...",
-        thumbnail: "../img/img-placeholder_1.jpg",
+        thumbnail: "img/img-placeholder_1.jpg",
         date: "2024-01-10",
         category: "Процедуры",
         slug: "top-5-procedur-iyunya"
@@ -149,7 +149,7 @@ export class BlogManager {
         id: 3,
         title: "Правила подготовки к лазерной эпиляции",
         preview: "Лазерная эпиляция — эффективный способ удаления нежелательных волос. Правильная подготовка к процедуре обеспечивает максимальный результат...",
-        thumbnail: "../img/img-placeholder.jpg",
+        thumbnail: "img/img-placeholder.jpg",
         date: "2024-01-05",
         category: "Подготовка",
         slug: "pravila-podgotovki-k-lazernoy-epilyatsii"
@@ -158,7 +158,7 @@ export class BlogManager {
         id: 4,
         title: "Уход за кожей зимой",
         preview: "Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять на состояние кожи...",
-        thumbnail: "../img/img-placeholder_1.jpg",
+        thumbnail: "img/img-placeholder_1.jpg",
         date: "2024-01-01",
         category: "Уход",
         slug: "uhod-za-kozhey-zimoy"
@@ -167,7 +167,7 @@ export class BlogManager {
         id: 5,
         title: "Антивозрастные процедуры",
         preview: "Современная косметология предлагает множество эффективных методов борьбы с признаками старения. Рассмотрим самые популярные...",
-        thumbnail: "../img/img-placeholder.jpg",
+        thumbnail: "img/img-placeholder.jpg",
         date: "2023-12-28",
         category: "Антивозраст",
         slug: "antivozrastnye-protsedury"
@@ -176,7 +176,7 @@ export class BlogManager {
         id: 6,
         title: "Питание для здоровой кожи",
         preview: "Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья и молодости кожи...",
-        thumbnail: "../img/img-placeholder_1.jpg",
+        thumbnail: "img/img-placeholder_1.jpg",
         date: "2023-12-25",
         category: "Питание",
         slug: "pitanie-dlya-zdorovoy-kozhi"
@@ -185,7 +185,7 @@ export class BlogManager {
         id: 7,
         title: "Современные методы омоложения",
         preview: "Технологии в области эстетической медицины развиваются стремительно. Новые методы позволяют достигать впечатляющих результатов...",
-        thumbnail: "../img/img-placeholder.jpg",
+        thumbnail: "img/img-placeholder.jpg",
         date: "2023-12-20",
         category: "Технологии",
         slug: "sovremennye-metody-omolozheniya"
@@ -210,6 +210,15 @@ export class BlogManager {
     }
 
     // Очищаем существующие статьи
+    // Проверяем, есть ли уже заглушки (blog-stub)
+    const existingStubs = this.blogScrollArea.querySelectorAll('.blog-stub');
+    
+    // Если есть заглушки, не заменяем их
+    if (existingStubs.length > 0) {
+      console.log('Blog stubs found, skipping article rendering');
+      return;
+    }
+
     this.blogScrollArea.innerHTML = '';
 
     // Ограничиваем количество статей

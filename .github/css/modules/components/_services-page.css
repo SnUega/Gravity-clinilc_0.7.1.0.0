@@ -137,6 +137,11 @@ body.services-page main.services-page-layout:has(~ #revealWrap) {
   align-self: flex-start;
   /* Анимация "шторки" - hero уезжает влево при появлении контактов */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* GPU acceleration для плавных анимаций */
+  will-change: transform, opacity, width;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
   /* Скрываем скроллбар */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE и Edge */
@@ -413,6 +418,7 @@ body.services-page #revealWrap {
 }
 
 .services-list-header {
+  margin-top: 1.5rem; /* Отступ от хлебных крошек */
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid var(--color-border);
@@ -1057,6 +1063,12 @@ body.services-page #revealWrap {
   margin-top: 1.5rem;
 }
 
+/* Кнопка внутри accordion-content но вне accordion-body */
+.accordion-content > .accordion-cta {
+  margin: 1.5rem;
+  margin-top: 0;
+}
+
 /* Service Stubs (Reviews & Articles) */
 .service-stubs {
   display: grid;
@@ -1504,7 +1516,7 @@ body.services-page #revealWrap {
     left: 0;
     margin-left: 0;
     background: var(--color-bg-light);
-    padding: 6rem 1.5rem 1rem;
+    padding: 7rem 1.5rem 1.5rem; /* Больше отступ от header */
   }
   
   .services-page-layout {
@@ -1533,6 +1545,10 @@ body.services-page #revealWrap {
 
 /* Mobile */
 @media (max-width: 768px) {
+  .breadcrumbs {
+    padding: 7.5rem 1.5rem 1.5rem; /* Ещё больше отступ на мобильных */
+  }
+  
   .services-hero {
     min-height: 45vh;
     padding: 5rem 1.5rem 2.5rem;
@@ -1552,6 +1568,7 @@ body.services-page #revealWrap {
   
   .services-list-wrapper {
     padding: 1.5rem;
+    padding-top: 2.5rem; /* Больше воздуха сверху */
   }
   
   .service-item {
@@ -1874,33 +1891,58 @@ body.services-page #revealWrap {
 /* ============================================
    Menu adjustments for services pages
    ============================================ */
-/* Уменьшаем отступ между навигацией и соцкнопками на страницах услуг */
+/* Настройка отступов для соцкнопок на страницах услуг */
 body.services-page .menu-contacts-section {
   margin-top: auto;
-  padding-top: 8px !important; /* Уменьшаем отступ сверху */
+  padding-top: 12px !important; /* Отступ от divider */
   margin-bottom: 36px;
+  flex: 0 0 auto;
+}
+
+body.services-page .menu-right .blog-container {
+  margin-top: auto;
+  margin-bottom: 36px;
+  flex: 0 0 auto;
 }
 
 /* Desktop / MacBook */
 @media (min-width: 1367px) {
   body.services-page .menu-contacts-section {
-    padding-top: 8px !important;
+    padding-top: 12px !important;
     margin-bottom: 36px;
+  }
+  
+  body.services-page .menu-right .blog-container {
+    margin-top: auto;
+    margin-bottom: 36px;
+    flex: 0 0 auto;
   }
 }
 
 /* iPad Pro landscape */
 @media (min-width: 1024px) and (max-width: 1135px) and (orientation: landscape) {
   body.services-page .menu-contacts-section {
-    padding-top: 8px !important;
+    padding-top: 12px !important;
     margin-bottom: 28px;
+  }
+  
+  body.services-page .menu-right .blog-container {
+    margin-top: auto;
+    margin-bottom: 28px;
+    flex: 0 0 auto;
   }
 }
 
 /* iPad Air landscape */
 @media (min-width: 1136px) and (max-width: 1180px) and (orientation: landscape) {
   body.services-page .menu-contacts-section {
-    padding-top: 8px !important;
+    padding-top: 12px !important;
     margin-bottom: 34px;
+  }
+  
+  body.services-page .menu-right .blog-container {
+    margin-top: auto;
+    margin-bottom: 34px;
+    flex: 0 0 auto;
   }
 }

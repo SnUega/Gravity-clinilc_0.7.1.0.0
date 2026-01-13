@@ -177,12 +177,15 @@ export class Preloader {
       // Разблокируем скролл
       this.unlockScroll();
 
-      // Сбрасываем скролл в начало (hero)
-      // Используем Lenis если доступен, иначе нативный scrollTo
-      if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-        window.lenis.scrollTo(0, { immediate: true });
-      } else {
-        window.scrollTo(0, 0);
+      // Сбрасываем скролл в начало (hero) только если нет hash в URL
+      // Если есть hash, переход на секцию произойдет после завершения прелоадера
+      if (!window.location.hash) {
+        // Используем Lenis если доступен, иначе нативный scrollTo
+        if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+          window.lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+        }
       }
 
       // Эмитим событие завершения прелоадера
@@ -209,11 +212,13 @@ export class Preloader {
       window.history.scrollRestoration = 'manual';
     } catch (e) {}
 
-    // Сбрасываем скролл в начало при загрузке
-    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-      window.lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo(0, 0);
+    // Сбрасываем скролл в начало при загрузке только если нет hash в URL
+    if (!window.location.hash) {
+      if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+        window.lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
     }
 
     // Блокируем скролл сразу при загрузке скрипта

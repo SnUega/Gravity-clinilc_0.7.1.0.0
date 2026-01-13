@@ -6,45 +6,50 @@
   <title>Блог — Клиника Притяжение</title>
   <meta name="description" content="Блог клиники Притяжение: статьи о косметологии, уходе за кожей, современных методиках и советы специалистов.">
   
-  <!-- Base URL for GitHub Pages and regular hosting (auto-detected) -->
-  <script>
-    // Auto-detect base path for GitHub Pages and regular hosting
-    (function() {
-      const path = window.location.pathname;
-      const hostname = window.location.hostname;
-      
-      // Check if we're on GitHub Pages (github.io domain)
-      const isGitHubPages = hostname.includes('github.io');
-      
-      if (isGitHubPages) {
-        // For GitHub Pages: extract repo name from path
-        const pathParts = path.split('/').filter(p => p);
-        const repoName = pathParts[0] || '';
-        if (repoName && !repoName.includes('.')) {
-          document.write('<base href="/' + repoName + '/">');
-        } else {
-          document.write('<base href="/">');
-        }
-      } else {
-        // For regular hosting: use root path
-        document.write('<base href="/">');
-      }
-    })();
-  </script>
-  
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Unbounded:200,300,regular,500,600,700,800,900" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="../css/main.css">
   
   </head>
 <body class="blog-page">
 
+  <!-- Page Preloader (same style as main page) -->
+  <div id="page-preloader" class="page-preloader">
+    <div class="page-preloader-content">
+      <div class="page-preloader-logo">
+        <svg class="page-preloader-base" viewBox="0 0 100 100" width="80" height="80">
+          <circle 
+            cx="50" 
+            cy="50" 
+            r="45" 
+            fill="none" 
+            stroke="rgba(122, 0, 199, 0.2)" 
+            stroke-width="3"
+          />
+        </svg>
+        <div class="page-preloader-fill">
+          <svg class="page-preloader-progress" viewBox="0 0 100 100" width="80" height="80">
+            <circle 
+              cx="50" 
+              cy="50" 
+              r="45" 
+              fill="none" 
+              stroke="#7a00c7" 
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header class="navc-header">
     <div class="navc-row">
-      <a href="index.html" class="navc-logo">Логотип</a>
+      <a href="../index.html" class="navc-logo">Логотип</a>
       <button class="navc-burger" aria-label="Открыть меню" aria-controls="navc-panel" aria-expanded="false">
         <span class="navc-burger__line top"></span>
         <span class="navc-burger__line middle"></span>
@@ -73,11 +78,11 @@
             <div class="menu-left">
               <h2>Меню</h2>
               <ul class="navc-links">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="html/cosmetology.html">Косметология</a></li>
-                <li><a href="html/injections.html">Инъекционная косметология</a></li>
-                <li><a href="html/massage.html">Массаж</a></li>
-                <li><a href="index.html#contacts">Контакты</a></li>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="cosmetology.html">Косметология</a></li>
+                <li><a href="injections.html">Инъекционная косметология</a></li>
+                <li><a href="massage.html">Массаж</a></li>
+                <li><a href="../index.html#contacts">Контакты</a></li>
               </ul>
               
               <div class="menu-contacts-section">
@@ -110,64 +115,55 @@
             </div>
             
             <div class="menu-right">
-              <h2><a href="html/blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
+              <h2><a href="blog.html" style="color: inherit; text-decoration: none;">Блог</a></h2>
               <div class="blog-container">
                 <div class="blog-scroll-area" id="blogScrollArea">
-                  <div class="blog-article" data-article-id="1">
+                  <!-- Заглушки для блога -->
+                  <div class="blog-article blog-stub" data-article-id="stub-1">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Как выбрать косметолога?" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Как выбрать косметолога?</h3>
-                      <p class="article-preview">Выбор косметолога — это важный шаг на пути к красоте и здоровью кожи. В этой статье мы расскажем о ключевых критериях...</p>
+                      <h3 class="article-title">Мы готовим для вас нечто особенное</h3>
+                      <p class="article-preview">Наша команда экспертов работает над созданием полезного и интересного контента. Совсем скоро здесь появятся новые статьи...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="2">
+                  
+                  <div class="blog-article blog-stub" data-article-id="stub-2">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Топ-5 процедур" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Топ-5 процедур</h3>
-                      <p class="article-preview">Лето — идеальное время для обновления и ухода за кожей. Представляем вашему вниманию самые популярные процедуры...</p>
+                      <h3 class="article-title">Экспертные материалы в разработке</h3>
+                      <p class="article-preview">Мы тщательно готовим для вас качественные статьи о косметологии, уходе за кожей и современных методиках. Оставайтесь на связи...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="3">
+                  
+                  <div class="blog-article blog-stub" data-article-id="stub-3">
                     <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Правила подготовки к процедурам" />
+                      <div class="stub-placeholder-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="article-content">
-                      <h3 class="article-title">Правила подготовки к процедурам</h3>
-                      <p class="article-preview">Правильная подготовка к косметологическим процедурам обеспечивает максимальный результат и безопасность...</p>
+                      <h3 class="article-title">Полезные советы и рекомендации</h3>
+                      <p class="article-preview">Наши специалисты делятся профессиональными знаниями и опытом. Скоро вы найдете здесь много полезной информации...</p>
+                      <span class="stub-badge">Скоро</span>
                     </div>
                   </div>
-                  <div class="blog-article" data-article-id="4">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Уход за кожей зимой" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Уход за кожей зимой</h3>
-                      <p class="article-preview">Зимний период требует особого подхода к уходу за кожей. Холодный воздух и отопление могут негативно влиять...</p>
-                    </div>
-                  </div>
-                  <div class="blog-article" data-article-id="5">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder.jpg" alt="Антивозрастные процедуры" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Антивозрастные процедуры</h3>
-                      <p class="article-preview">Современная косметология предлагает множество эффективных методов борьбы с признаками старения...</p>
-                    </div>
-                  </div>
-                  <div class="blog-article" data-article-id="6">
-                    <div class="article-thumbnail">
-                      <img src="img/img-placeholder_1.jpg" alt="Питание для здоровой кожи" />
-                    </div>
-                    <div class="article-content">
-                      <h3 class="article-title">Питание для здоровой кожи</h3>
-                      <p class="article-preview">Красота кожи начинается изнутри. Правильное питание играет ключевую роль в поддержании здоровья...</p>
-                    </div>
-                  </div>
-                  <!-- Blog Stub -->
+                  
                   <div class="blog-article blog-stub" data-article-id="stub">
                     <div class="article-thumbnail">
                       <div class="stub-placeholder-icon">
@@ -209,7 +205,7 @@
       <nav class="breadcrumbs--blog" aria-label="Навигация">
         <ol class="breadcrumbs-list">
           <li class="breadcrumbs-item">
-            <a href="index.html" class="breadcrumbs-link">
+            <a href="../index.html" class="breadcrumbs-link">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
               Главная
             </a>
@@ -319,15 +315,57 @@
       </div>
     </section>
 
+    <!-- Search and Filter Section -->
+    <section class="blog-filter-section">
+      <div class="filter-container">
+        <!-- Search Input -->
+        <div class="search-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input 
+            type="text" 
+            class="search-input" 
+            id="blogSearch"
+            placeholder="Поиск статей..."
+            aria-label="Поиск статей"
+          >
+          <button class="search-clear" id="searchClear" style="display: none;" aria-label="Очистить поиск">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Tag Filters -->
+        <div class="filter-tags-wrapper">
+          <span class="filter-label">Темы:</span>
+          <div class="filter-tags" id="filterTags">
+            <div class="filter-tags-inner">
+              <div class="filter-highlight" id="filterHighlight"></div>
+              <button class="tag-badge active" data-tag="all">Все</button>
+              <button class="tag-badge" data-tag="injections">Инъекции</button>
+              <button class="tag-badge" data-tag="care">Уход</button>
+              <button class="tag-badge" data-tag="cosmetology">Косметология</button>
+              <button class="tag-badge" data-tag="antiage">Антивозраст</button>
+              <button class="tag-badge" data-tag="procedures">Процедуры</button>
+              <button class="tag-badge" data-tag="advice">Советы</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Preview Articles -->
-    <section class="preview-section">
+    <section class="preview-section" id="articlesGrid">
       <div class="preview-header">
         <h2 class="preview-title">Что мы готовим</h2>
         <span class="preview-badge">Скоро в блоге</span>
       </div>
       
-      <div class="preview-grid">
-        <article class="preview-card">
+      <div class="preview-grid" id="previewGrid">
+        <article class="preview-card" data-tags="injections" data-slug="how-to-choose-filler">
           <div class="preview-image">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -340,7 +378,7 @@
           </div>
         </article>
         
-        <article class="preview-card">
+        <article class="preview-card" data-tags="care,antiage" data-slug="5-skincare-mistakes">
           <div class="preview-image">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -353,7 +391,7 @@
           </div>
         </article>
         
-        <article class="preview-card">
+        <article class="preview-card" data-tags="procedures,cosmetology" data-slug="biorevit-vs-meso">
           <div class="preview-image">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -366,7 +404,7 @@
           </div>
         </article>
         
-        <article class="preview-card">
+        <article class="preview-card" data-tags="procedures,advice" data-slug="face-massage-science">
           <div class="preview-image">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -379,7 +417,7 @@
           </div>
         </article>
         
-        <article class="preview-card">
+        <article class="preview-card" data-tags="injections,advice" data-slug="injection-prep-checklist">
           <div class="preview-image">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -392,7 +430,7 @@
           </div>
         </article>
         
-        <article class="preview-card">
+        <article class="preview-card" data-tags="injections,antiage" data-slug="botox-faq">
           <div class="preview-image">
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
@@ -404,6 +442,15 @@
             <p class="preview-card-desc">Развеиваем мифы и отвечаем на реальные вопросы пациентов</p>
           </div>
         </article>
+      </div>
+      
+      <!-- No Results Message -->
+      <div class="no-results" id="noResults" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+          <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <h3>Статьи не найдены</h3>
+        <p>Попробуйте изменить параметры поиска или выбрать другие теги</p>
       </div>
     </section>
   </main>
@@ -490,20 +537,20 @@
         <div class="footer-col" aria-label="Карта услуг">
           <h4>Карта услуг</h4>
           <ul class="footer-nav">
-            <li><a href="html/cosmetology.html">Косметология</a></li>
-            <li><a href="html/injections.html">Инъекционные методики</a></li>
-            <li><a href="html/massage.html">Массаж</a></li>
+            <li><a href="cosmetology.html">Косметология</a></li>
+            <li><a href="injections.html">Инъекционные методики</a></li>
+            <li><a href="massage.html">Массаж</a></li>
           </ul>
         </div>
         <nav class="footer-col" aria-label="Навигация">
           <h4 id="footerTitle">Меню</h4>
           <ul class="footer-nav">
-            <li><a href="index.html#services-section">Услуги</a></li>
-            <li><a href="index.html#about">О клинике</a></li>
-            <li><a href="index.html#alr">Отличия</a></li>
-            <li><a href="index.html#sliderContainer">Галерея</a></li>
+            <li><a href="../index.html#services-section">Услуги</a></li>
+            <li><a href="../index.html#about">О клинике</a></li>
+            <li><a href="../index.html#alr">Отличия</a></li>
+            <li><a href="../index.html#sliderContainer">Галерея</a></li>
             <li><a href="#contacts">Контакты</a></li>
-            <li><a href="html/blog.html">Блог</a></li>
+            <li><a href="blog.html">Блог</a></li>
           </ul>
         </nav>
       </div>
@@ -528,7 +575,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
-  <script type="module" src="js/blog-main.js"></script>
+  <script type="module" src="../js/blog-main.js"></script>
   <script>
   // Инициализация карты для страницы блога
   (function initMap() {
