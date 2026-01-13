@@ -6,14 +6,14 @@
 export function getSliderData(cardType) {
   const data = {
     awards: [
-      { image: './img/img-placeholder.jpg', description: 'Лучшая клиника эстетической медицины 2023' },
-      { image: './img/img-placeholder.jpg', description: 'Сертификат качества ISO 9001' },
-      { image: './img/img-placeholder.jpg', description: 'Диплом "Инновации в медицине"' }
+      { image: 'img/img-placeholder.jpg', description: 'Лучшая клиника эстетической медицины 2023' },
+      { image: 'img/img-placeholder.jpg', description: 'Сертификат качества ISO 9001' },
+      { image: 'img/img-placeholder.jpg', description: 'Диплом "Инновации в медицине"' }
     ],
     licenses: [
-      { image: './img/img-placeholder.jpg', description: 'Лицензия на медицинскую деятельность' },
-      { image: './img/img-placeholder.jpg', description: 'Сертификат специалиста по косметологии' },
-      { image: './img/img-placeholder.jpg', description: 'Разрешение на работу с лазерным оборудованием' }
+      { image: 'img/img-placeholder.jpg', description: 'Лицензия на медицинскую деятельность' },
+      { image: 'img/img-placeholder.jpg', description: 'Сертификат специалиста по косметологии' },
+      { image: 'img/img-placeholder.jpg', description: 'Разрешение на работу с лазерным оборудованием' }
     ],
     reviews: [
       { text: 'Отличная клиника! Профессиональный подход, современное оборудование.', author: 'Анна К.', avatar: '👤', rating: '★★★★★' },

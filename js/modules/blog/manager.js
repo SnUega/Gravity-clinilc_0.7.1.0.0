@@ -40,7 +40,7 @@ export class BlogManager {
     return `
       <div class="blog-article" data-article-id="${article.id}" data-slug="${article.slug || ''}">
         <div class="article-thumbnail">
-          <img src="${article.thumbnail || './img/img-placeholder.jpg'}" alt="${article.title}" loading="lazy" />
+          <img src="${article.thumbnail || 'img/img-placeholder.jpg'}" alt="${article.title}" loading="lazy" />
         </div>
         <div class="article-content">
           <h3 class="article-title">${article.title}</h3>
