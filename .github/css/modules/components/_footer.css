@@ -1,0 +1,748 @@
+/* ============================================
+   Footer Component - Reveal Layout & Styles
+   ============================================ */
+
+/* Footer reveal layout - базовые стили для параллакс-раскрытия */
+.reveal-wrap { 
+  position: relative; 
+  overflow: hidden; 
+  background: #111; 
+}
+
+#contacts { 
+  position: relative; 
+  z-index: 2; 
+  height: 120vh; 
+  border-radius: 0 0 24px 24px; 
+  overflow: hidden; 
+  background: #fff; 
+  will-change: transform; 
+}
+
+#revealWrap { 
+  border-radius: 0; 
+  overflow: hidden; 
+  background: #111; 
+}
+
+/* Основные стили футера */
+#page-footer { 
+  background: #111; 
+  color: #eaeaea; 
+  position: absolute; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  min-height: clamp(420px, 50vh, 620px); 
+  padding: clamp(120px, 14vh, 220px) 8% 56px; 
+  z-index: 1; 
+  will-change: clip-path; 
+  border-radius: 0; 
+}
+
+#page-footer a { 
+  color: #eaeaea; 
+  text-decoration: none; 
+}
+
+#page-footer .footer-inner { 
+  display: grid; 
+  grid-template-columns: 1.2fr 1fr 1fr; 
+  gap: 36px; 
+  max-width: 1280px; 
+  margin: 0 auto; 
+}
+
+#page-footer .footer-col h4 { 
+  margin-bottom: 14px; 
+  font-size: 22px; 
+}
+
+#page-footer .footer-nav { 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+}
+
+#page-footer .footer-nav li { 
+  margin-bottom: 14px; 
+  padding-left: clamp(2.5px, 0.27vw, 4.5px); 
+}
+
+#page-footer .footer-nav a { 
+  font-size: 18px; 
+}
+
+#page-footer .footer-nav.two-cols { 
+  columns: 2; 
+  column-gap: 28px; 
+}
+
+#page-footer .footer-logo { 
+  width: 90px; 
+  height: 90px; 
+  border-radius: 16px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: linear-gradient(180deg, #fff, #d9d9d9); 
+  color: #111; 
+  font-weight: 800; 
+  letter-spacing: .12em; 
+  margin-bottom: 14px; 
+  font-size: 24px; 
+}
+
+#page-footer .footer-desc { 
+  color: #cfcfcf; 
+  font-size: 18px; 
+}
+
+#page-footer .footer-bottom { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 24px; 
+  max-width: 1280px; 
+  margin: 8px auto 0; 
+  padding-top: 24px; 
+  border-top: 1px solid rgba(255, 255, 255, 0.12); 
+}
+
+/* Скрываем "made by" в footer-bottom на десктопе (показываем только на мобильных) */
+#page-footer .footer-bottom .made-by-mobile {
+  display: none;
+}
+
+/* Social buttons - только SVG без фона */
+#page-footer .social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+#page-footer .social-btn svg {
+  width: 56px;
+  height: 56px;
+  transition: all 0.3s ease;
+  fill: #cfcfcf;
+}
+
+#page-footer .social-btn:hover {
+  transform: translateY(1px);
+}
+
+#page-footer .social-btn:hover svg {
+  fill: #666;
+  transform: scale(0.95);
+}
+
+#page-footer .made-by { 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 8px; 
+  color: #cfcfcf; 
+  font-size: 15px; 
+  white-space: nowrap; 
+}
+
+/* Footer nav hover underline (thin, currentColor, left-to-right) */
+#page-footer .footer-nav a { 
+  position: relative; 
+  text-decoration: none; 
+}
+
+#page-footer .footer-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px; /* thin */
+  background: currentColor; /* same color as text */
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 200ms ease;
+}
+
+#page-footer .footer-nav a:hover::after,
+#page-footer .footer-nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  /* Верхняя зона футера: поднять выше и задать сетку */
+  #page-footer .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr max-content max-content; /* бренд занимает оставшееся место, две правые колонки по размеру контента - будут близко друг к другу */
+    align-items: stretch; /* растягиваем колонки на одну высоту */
+    gap: clamp(24px, 3vw, 48px); /* адаптивный gap между колонками */
+    padding-top: 0; /* убираем верхний отступ — поднимаем блоки */
+    padding-bottom: clamp(40px, 8vh, 120px); /* увеличиваем нижний отступ */
+  }
+
+  /* Прижимаем брендовую колонку к левому полю */
+  #page-footer .footer-brand {
+    justify-self: start;
+  }
+
+  /* Правые колонки прижимаются к правому краю */
+  #page-footer .footer-col[aria-label="Карта услуг"],
+  #page-footer nav.footer-col { 
+    justify-self: end; 
+  }
+
+  /* Увеличиваем отступ между двумя правыми колонками */
+  #page-footer .footer-col[aria-label="Карта услуг"] {
+    margin-right: clamp(32px, 4vw, 64px); /* дополнительный отступ справа для "Карта услуг" (увеличивает gap между колонками) */
+  }
+
+  #page-footer .footer-bottom {
+    position: relative;
+    display: grid !important;
+    grid-template-columns: 1fr; /* нижняя часть теперь только центр */
+    grid-template-rows: auto auto;      /* 1: копирайт; 2: политика */
+    align-items: center;
+    row-gap: 8px;
+    justify-items: center;
+  }
+
+  #page-footer .footer-copy {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+  }
+
+  #page-footer .footer-links {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center; 
+  }
+
+  /* Верхняя часть: брендовая колонка содержит соцкнопки и made-by */
+  #page-footer .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* центрируем все элементы по горизонтали */
+    position: relative;
+    padding-bottom: 12px; /* минимальный зазор до divider, убираем лишнюю пустоту */
+    min-height: unset; /* не тянем колонку искусственно */
+    height: auto;
+  }
+  
+  #page-footer .footer-brand .footer-socials {
+    display: inline-flex;
+    gap: 10px;
+    margin-top: clamp(20px, 5vh, 70px); /* опускаем соц.кнопки ниже под логотипом */
+    margin-left: 0; /* убираем отступ, центрируем относительно логотипа */
+  }
+  
+  #page-footer .footer-brand .made-by {
+    position: absolute;
+    left: 50%; /* центрируем относительно логотипа */
+    transform: translateX(-50%); /* сдвигаем на половину своей ширины для точного центра */
+    bottom: -60px; /* опускаем ниже */
+    margin-top: 0;
+    color: #cfcfcf;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 6px;
+    align-items: center;
+    white-space: nowrap; /* запрещаем перенос текста */
+  }
+
+  /* Увеличенный логотип в футере - адаптивный для всех экранов 1024px+ */
+  #page-footer .footer-logo {
+    width: clamp(140px, 13vw, 240px) !important;
+    height: clamp(140px, 13vw, 240px) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(32px, 3.2vw, 56px) !important;
+    border-radius: 16px;
+  }
+
+  /* Крупнее заголовки и ссылки колонок */
+  #page-footer .footer-col[aria-label="Карта услуг"] h4,
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(28px, 3.2vw, 40px);
+    margin: 0 0 14px 0;
+  }
+  
+  #page-footer .footer-col[aria-label="Карта услуг"] .footer-nav li a,
+  #page-footer nav.footer-col .footer-nav li a,
+  #page-footer .footer-col[aria-label="Карта услуг"] .footer-nav li,
+  #page-footer nav.footer-col .footer-nav li {
+    font-size: clamp(18px, 1.4vw, 26px);
+    line-height: 1.3;
+  }
+  
+  /* Отступ для пунктов списка в колонках (смещение вправо относительно заголовка) */
+  #page-footer .footer-col[aria-label="Карта услуг"] .footer-nav li,
+  #page-footer nav.footer-col .footer-nav li {
+    padding-left: clamp(2.5px, 0.3vw, 5px);
+  }
+}
+
+/* Mobile (max-width: 767px) - исключаем iPad mini */
+@media (max-width: 767px) {
+  #page-footer {
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+  
+  #page-footer .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 4vh, 40px);
+    text-align: center;
+    padding-right: 0; /* убираем padding справа */
+  }
+  
+  #page-footer .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #page-footer .footer-logo {
+    width: clamp(140px, 28vw, 200px) !important;
+    height: clamp(140px, 28vw, 200px) !important;
+    font-size: clamp(32px, 6.5vw, 52px) !important;
+    margin: 0 auto clamp(16px, 2.5vh, 24px);
+  }
+  
+  #page-footer .footer-brand .footer-socials {
+    margin-left: 0;
+    margin-top: 0;
+    justify-content: center;
+  }
+  
+  /* Скрываем существующий "made by" в бренде на мобильных */
+  #page-footer .footer-brand .made-by {
+    display: none;
+  }
+
+  /* Divider перед меню (аналогичный footer-bottom - та же ширина) */
+  #page-footer nav.footer-col::before {
+    content: '';
+    display: block;
+    width: 100%; /* на всю ширину footer-inner (который имеет max-width: 1280px) */
+    max-width: 1280px; /* та же ширина что и footer-bottom */
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 0 auto clamp(20px, 3vh, 32px) auto; /* центрируем как footer-bottom */
+    /* Та же ширина что и footer-bottom (max-width: 1280px, margin: 0 auto) */
+  }
+  
+  /* Скрываем колонку "Карта услуг" на мобильных */
+  #page-footer .footer-col[aria-label="Карта услуг"] {
+    display: none;
+  }
+  
+  /* Колонка навигации центрирована на мобильных */
+  #page-footer nav.footer-col {
+    justify-self: center; /* центрируем вместо end */
+    text-align: center; /* центрируем текст */
+    width: 100%; /* занимает всю ширину */
+    margin-right: 0; /* убираем отрицательный margin */
+  }
+  
+  #page-footer .footer-col h4 {
+    font-size: clamp(20px, 4vw, 28px);
+  }
+  
+  /* Увеличиваем размер шрифта для заголовка навигации */
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(32px, 7vw, 50px);
+    text-align: center; /* центрируем заголовок меню */
+  }
+  
+  #page-footer .footer-nav {
+    display: inline-block;
+    text-align: center; /* центрируем навигацию на мобильных */
+  }
+  
+  #page-footer .footer-nav a {
+    font-size: clamp(16px, 3.5vw, 22px);
+  }
+  
+  /* Увеличиваем размер шрифта для ссылок навигации */
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(24px, 6vw, 40px);
+    white-space: nowrap; /* предотвращаем перенос текста */
+  }
+  
+  #page-footer nav.footer-col .footer-nav li {
+    margin-bottom: clamp(10px, 2vh, 14px);
+    padding-left: 0; /* убираем отступ слева, так как все центрировано */
+    white-space: nowrap; /* предотвращаем перенос текста */
+  }
+  
+  #page-footer .footer-bottom {
+    flex-direction: column;
+    gap: clamp(12px, 2vh, 20px);
+    margin-top: clamp(20px, 3vh, 32px);
+  }
+  
+  #page-footer .footer-copy {
+    text-align: center;
+  }
+  
+  #page-footer .footer-links {
+    text-align: center;
+  }
+
+  /* Показываем "made by" в footer-bottom только на мобильных (скрыт на десктопе) */
+  #page-footer .footer-bottom .made-by-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #cfcfcf;
+    font-size: 15px;
+    margin-top: 0; /* убираем margin-top, используем gap в footer-bottom */
+    text-decoration: none;
+  }
+
+  #page-footer .footer-bottom .made-by-mobile:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Tablet portrait (769px - 1024px, portrait) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+  /* Footer для планшетов в портрете */
+  #page-footer .footer-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* бренд | пусто | навигация */
+    gap: clamp(32px, 4vh, 48px);
+    text-align: initial;
+    align-items: start;
+  }
+  
+  /* Позиции колонок: бренд слева, навигация справа */
+  #page-footer .footer-brand { 
+    grid-column: 1; 
+    justify-self: start; 
+  }
+  
+  #page-footer nav.footer-col { 
+    grid-column: 3; 
+    justify-self: end; 
+    width: max-content; 
+    text-align: left; 
+  }
+  
+  #page-footer .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #page-footer .footer-logo {
+    width: clamp(160px, 18vw, 240px) !important;
+    height: clamp(160px, 18vw, 240px) !important;
+    font-size: clamp(42px, 4.8vw, 64px) !important;
+    margin: 0 auto clamp(20px, 3vh, 32px);
+  }
+  
+  #page-footer .footer-brand .footer-socials {
+    margin-left: 0;
+    margin-top: 0;
+    justify-content: center;
+  }
+  
+  #page-footer .footer-brand .made-by {
+    position: static;
+    transform: none;
+    left: auto;
+    bottom: auto;
+    margin-top: clamp(24px, 4vh, 40px);
+  }
+  
+  /* Скрываем колонку "Карта услуг" на планшетах в портрете */
+  #page-footer .footer-col[aria-label="Карта услуг"] {
+    display: none;
+  }
+  
+  /* Колонка навигации выравнивается по левому краю */
+  #page-footer nav.footer-col {
+    justify-self: start;
+    text-align: left;
+  }
+  
+  #page-footer .footer-nav {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  /* Увеличиваем размер шрифта для заголовка навигации */
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(28px, 4.5vw, 42px);
+  }
+  
+  /* Увеличиваем размер шрифта для ссылок навигации */
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(20px, 3.5vw, 32px);
+  }
+  
+  #page-footer nav.footer-col .footer-nav li {
+    padding-left: clamp(2.5px, 0.3vw, 5px);
+  }
+  
+  #page-footer .footer-bottom {
+    margin-top: clamp(24px, 4vh, 40px);
+  }
+}
+
+/* iPad mini и Air в портрете (768px - 820px, portrait) */
+@media (min-width: 768px) and (max-width: 820px) and (orientation: portrait) {
+  #page-footer {
+    padding-top: clamp(60px, 8vh, 100px) !important;
+    /* немного увеличим поля для mini/air в портрете */
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  
+  /* Трехколоночная сетка: бренд | пусто | навигация */
+  #page-footer .footer-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: clamp(24px, 3vh, 36px) !important;
+    align-items: start;
+    text-align: initial;
+  }
+  
+  /* Показываем оригинальный "made by" на iPad mini */
+  #page-footer .footer-brand .made-by {
+    display: inline-flex !important; /* переопределяем display: none из мобильного медиа-запроса */
+    margin-top: clamp(24px, 3.5vh, 40px) !important;
+    font-size: clamp(15px, 2.5vw, 20px);
+  }
+
+  /* Скрываем мобильный "made by" на iPad mini */
+  #page-footer .footer-bottom .made-by-mobile {
+    display: none !important;
+  }
+
+  /* Логотип для iPad mini в вертикали - значительно увеличен */
+  #page-footer .footer-logo {
+    width: clamp(160px, 20vw, 220px) !important;
+    height: clamp(160px, 20vw, 220px) !important;
+    font-size: clamp(44px, 5.5vw, 64px) !important;
+    margin-bottom: clamp(16px, 2.5vh, 24px) !important;
+  }
+  
+  /* Footer-bottom на iPad mini - колонкой */
+  #page-footer .footer-bottom {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: clamp(12px, 2vh, 20px) !important;
+    margin-top: clamp(8px, 1.5vh, 16px) !important;
+  }
+
+  #page-footer .footer-copy {
+    text-align: center !important;
+  }
+
+  #page-footer .footer-links {
+    text-align: center !important;
+  }
+
+  /* Скрываем колонку услуг, фиксируем позиции бренда и навигации */
+  #page-footer .footer-col[aria-label="Карта услуг"] { 
+    display: none; 
+  }
+  
+  #page-footer .footer-brand { 
+    grid-column: 1; 
+    justify-self: start; 
+  }
+  
+  #page-footer nav.footer-col { 
+    grid-column: 3; 
+    justify-self: end; 
+    width: max-content; 
+    text-align: left; 
+  }
+
+  /* Немного уменьшаем шрифт для колонки "Меню" на iPad mini */
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(30px, 5vw, 42px) !important; /* меньше уменьшение */
+  }
+
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(24px, 4vw, 36px) !important; /* меньше уменьшение */
+  }
+}
+
+/* iPad Pro в портрете (1024px, portrait) */
+@media (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) {
+  #page-footer .footer-logo {
+    width: clamp(180px, 20vw, 280px) !important;
+    height: clamp(180px, 20vw, 280px) !important;
+    font-size: clamp(48px, 5.4vw, 72px) !important;
+    margin-bottom: clamp(20px, 3vh, 32px) !important;
+  }
+  
+  #page-footer .footer-brand .footer-socials {
+    margin-top: clamp(20px, 3vh, 32px) !important;
+  }
+  
+  #page-footer .footer-brand .made-by {
+    margin-top: clamp(16px, 2.5vh, 24px) !important;
+    font-size: clamp(15px, 2.0vw, 20px) !important;
+  }
+  
+  #page-footer .footer-bottom {
+    margin-top: clamp(8px, 1.5vh, 16px) !important;
+  }
+  
+  #page-footer .footer-inner {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  #page-footer {
+    padding-bottom: clamp(24px, 3.5vh, 40px) !important;
+  }
+  
+  /* Увеличиваем размер шрифта для заголовка навигации на Pro */
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(30px, 4.8vw, 44px) !important;
+  }
+  
+  /* Увеличиваем размер шрифта для ссылок навигации на Pro */
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(21px, 3.8vw, 34px) !important;
+  }
+}
+
+/* iPad mini and small tablets: landscape (768px - 1024px, landscape) */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* Увеличенные поля для футера */
+  #page-footer {
+    padding-left: 16%;
+    padding-right: 16%;
+  }
+  
+  /* Увеличенный логотип для iPad mini и Air в горизонтали - заметно увеличен */
+  #page-footer .footer-logo {
+    width: clamp(200px, 20vw, 260px) !important;
+    height: clamp(200px, 20vw, 260px) !important;
+    font-size: clamp(48px, 5vw, 68px) !important;
+  }
+
+  /* Увеличенный шрифт для "made by" на планшетах в горизонтали */
+  #page-footer .footer-brand .made-by {
+    font-size: clamp(18px, 2vw, 24px) !important;
+  }
+  
+  /* Увеличенные соцкнопки для планшетов в горизонтали */
+  #page-footer .social-btn svg {
+    width: clamp(64px, 6vw, 72px) !important;
+    height: clamp(64px, 6vw, 72px) !important;
+  }
+
+  /* Увеличенный шрифт для ссылок в колонках на планшетах в горизонтали */
+  #page-footer .footer-col[aria-label="Карта услуг"] .footer-nav a,
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(20px, 2vw, 28px) !important;
+  }
+
+  /* Увеличенный шрифт для заголовков колонок */
+  #page-footer .footer-col[aria-label="Карта услуг"] h4,
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(24px, 2.5vw, 32px) !important;
+  }
+}
+
+/* iPad Pro в landscape (1024px - 1366px, landscape) */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: landscape) {
+  /* Увеличенные поля для футера на iPad Pro */
+  #page-footer {
+    padding-left: 14%;
+    padding-right: 14%;
+  }
+  
+  /* Увеличенный логотип для iPad Pro в горизонтали */
+  #page-footer .footer-logo {
+    width: clamp(160px, 15vw, 260px) !important;
+    height: clamp(160px, 15vw, 260px) !important;
+    font-size: clamp(36px, 3.6vw, 60px) !important;
+  }
+  
+  /* Увеличенные соцкнопки для iPad Pro */
+  #page-footer .social-btn svg {
+    width: clamp(68px, 6.5vw, 80px) !important;
+    height: clamp(68px, 6.5vw, 80px) !important;
+  }
+
+  /* Стандартный шрифт для ссылок в колонках на iPad Pro */
+  #page-footer .footer-col[aria-label="Карта услуг"] .footer-nav a,
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(18px, 2vw, 26px) !important;
+  }
+
+  /* Шрифт для заголовков колонок */
+  #page-footer .footer-col[aria-label="Карта услуг"] h4,
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(26px, 2.8vw, 36px) !important;
+  }
+
+  /* Увеличенный шрифт для "made by" на iPad Pro в горизонтали */
+  #page-footer .footer-brand .made-by {
+    font-size: clamp(18px, 2vw, 24px) !important;
+  }
+}
+
+/* MacBook и большие ноутбуки (1367px+, landscape) */
+@media (min-width: 1367px) and (orientation: landscape) {
+  /* Увеличенные поля для футера на MacBook */
+  #page-footer {
+    padding-left: 14%;
+    padding-right: 14%;
+  }
+  
+  /* Увеличенный логотип для MacBook */
+  #page-footer .footer-logo {
+    width: clamp(160px, 15vw, 260px) !important;
+    height: clamp(160px, 15vw, 260px) !important;
+    font-size: clamp(36px, 3.6vw, 60px) !important;
+  }
+  
+  /* Увеличенные соцкнопки для MacBook */
+  #page-footer .social-btn svg {
+    width: clamp(68px, 6.5vw, 80px) !important;
+    height: clamp(68px, 6.5vw, 80px) !important;
+  }
+
+  /* Увеличенный шрифт для ссылок в колонках на MacBook */
+  #page-footer .footer-col[aria-label="Карта услуг"] .footer-nav a,
+  #page-footer nav.footer-col .footer-nav a {
+    font-size: clamp(20px, 2.2vw, 28px) !important; /* пропорционально увеличен для MacBook */
+  }
+
+  /* Увеличенный шрифт для заголовков колонок */
+  #page-footer .footer-col[aria-label="Карта услуг"] h4,
+  #page-footer nav.footer-col h4 {
+    font-size: clamp(26px, 2.8vw, 36px) !important;
+  }
+
+  /* Увеличенный шрифт для "made by" на MacBook */
+  #page-footer .footer-brand .made-by {
+    font-size: clamp(18px, 2vw, 24px) !important;
+  }
+}

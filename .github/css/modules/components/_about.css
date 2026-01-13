@@ -1,0 +1,154 @@
+
+    /* Card styles */
+
+    .about {
+        overflow-x: hidden;
+    }
+    
+    section.about {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 2rem;
+    overflow: hidden;
+  }
+
+  .about-title {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  .about-title h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-title p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+
+  .cards-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: nowrap;
+    z-index: 2;
+    width: 100%;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    width: 33.333%;
+    height: 60vh;
+    margin-left: -12.6%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 
+      20px 20px 60px #d0d0d0,
+      -20px -20px 60px #ffffff;
+    padding: 1rem;
+    opacity: 0;
+    transform: translateY(50px);
+    z-index: 2;
+    pointer-events: auto;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card:hover {
+    box-shadow: 
+      25px 25px 75px #c0c0c0,
+      -25px -25px 75px #ffffff;
+    transform: translateY(50px) translateY(-2px);
+  }
+
+  .card:first-child {
+    margin-left: 0;
+  }
+
+  .card h3 {
+    margin-bottom: 0.5rem;
+    margin-top: 30%;
+    z-index: 1;
+    position: relative;
+  }
+
+  .card button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #7a00c7;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 
+      4px 4px 12px rgba(122, 0, 199, 0.3),
+      -4px -4px 12px rgba(255, 255, 255, 0.5);
+  }
+
+  .card button:hover {
+    background: #45c4f9;
+    transform: translateY(-1px);
+    box-shadow: 
+      6px 6px 16px rgba(69, 196, 249, 0.4),
+      -6px -6px 16px rgba(255, 255, 255, 0.6);
+  }
+
+  .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,1);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(100%);
+      pointer-events: none;
+      z-index: 3;
+  }
+
+  /* Touch targets: на мобильных/планшетах, когда карточки перекрываются, пропускаем тапы мимо тела карточки,
+     оставляя интерактивными только кнопки внутри, чтобы нижележащие кнопки были доступны */
+  @media (hover: none) and (pointer: coarse) {
+    .cards-container { pointer-events: none; }
+    .card { pointer-events: none; }
+    .card button { pointer-events: auto; }
+    .overlay { pointer-events: none; }
+    .overlay button { pointer-events: auto; }
+  }
+
+  .overlay h4 {
+    margin-bottom: 1rem;
+  }
+
+  .overlay p {
+    margin-bottom: 1rem;
+  }
+
+  .overlay button {
+    background: #dc3545;
+  }
+

@@ -1,0 +1,27 @@
+/* ============================================
+   CSS Reset & Base Styles
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  font-family: sans-serif;
+  transition: filter 0.3s ease;
+  overflow-x: hidden;
+}
+
+body.lock-scroll {
+  overflow: hidden;
+  height: 100vh;
+  overscroll-behavior: none;
+}
+

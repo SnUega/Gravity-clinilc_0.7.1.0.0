@@ -1,0 +1,145 @@
+/* ============================================
+   CSS Variables - Design Tokens
+   ============================================ */
+
+:root {
+  /* Viewport Index */
+  --index: calc(1vw + 1vh);
+  
+  /* ALR Section Variables */
+  --alr-primary: #667eea;
+  --alr-secondary: #764ba2;
+  --alr-duration: 0.3s;
+  --alr-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --alr-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+  --alr-shadow-hover: 0 8px 25px rgba(102, 126, 234, 0.4);
+  --alr-border-radius: 12px;
+  --alr-border-radius-large: 16px;
+  --alr-z-base: 1;
+  --alr-z-content: 5;
+  --alr-z-overlay: 10;
+  --alr-z-modal: 1000;
+  
+  /* Menu Variables */
+  --menu-primary: #7a00c7;
+  --menu-text: #111;
+  --menu-text-secondary: #333;
+  --menu-text-muted: #666;
+  --menu-border: #e0e0e0;
+  --menu-bg-light: #f9f9f9;
+  --menu-bg-white: #fff;
+  --menu-shadow: 0 4px 12px rgba(122, 0, 199, 0.1);
+  --menu-border-radius: 0.75rem;
+  --menu-border-radius-small: 0.5rem;
+  
+  /* Contact Button Variables */
+  --contact-btn-size: 3rem;
+  --contact-btn-icon-size: 1.125rem;
+  --contact-btn-gap-mobile: 0.75rem;
+  --contact-btn-gap-desktop: 1.25rem;
+  --contact-btn-gap-tablet: 2rem;
+  
+  /* Blog Variables */
+  --blog-scroll-height: 31.25rem;
+  --blog-scroll-width: 110%;
+  --blog-article-gap: 1rem;
+  --blog-thumbnail-size: 6.25rem;
+  --blog-title-size: 1rem;
+  --blog-preview-size: 0.875rem;
+  
+  /* Responsive Breakpoints */
+  --breakpoint-mobile: 768px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1366px;
+  
+  /* Services Section Variables */
+  --services-card-bg: #ffffff;
+  
+  /* ============================================
+     Global Color Palette
+     ============================================ */
+  
+  /* Primary Colors */
+  --color-primary: #7a00c7;
+  --color-primary-hover: #45c4f9;
+  --color-primary-light: rgba(122, 0, 199, 0.1);
+  
+  /* Text Colors */
+  --color-text-primary: #111;
+  --color-text-secondary: #333;
+  --color-text-muted: #666;
+  --color-text-light: #999;
+  --color-text-white: #fff;
+  --color-text-footer: #eaeaea;
+  --color-text-footer-muted: #cfcfcf;
+  
+  /* Background Colors */
+  --color-bg-white: #fff;
+  --color-bg-light: #f8f9fa;
+  --color-bg-lighter: #f9f9f9;
+  --color-bg-dark: #111;
+  --color-bg-overlay: rgba(0, 0, 0, 0.45);
+  --color-bg-overlay-light: rgba(0, 0, 0, 0.08);
+  
+  /* Border Colors */
+  --color-border: #e0e0e0;
+  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+  
+  /* Status Colors */
+  --color-error: #d60000;
+  --color-success: #25d366;
+  
+  /* ============================================
+     Spacing Scale
+     ============================================ */
+  
+  --spacing-xs: 0.25rem;    /* 4px */
+  --spacing-sm: 0.5rem;     /* 8px */
+  --spacing-md: 1rem;       /* 16px */
+  --spacing-lg: 1.5rem;     /* 24px */
+  --spacing-xl: 2rem;        /* 32px */
+  --spacing-2xl: 3rem;       /* 48px */
+  --spacing-3xl: 4rem;       /* 64px */
+  
+  /* Specific Spacing */
+  --spacing-section: clamp(60px, 8vh, 100px);
+  --spacing-container: 8%;
+  --spacing-container-mobile: 6%;
+  
+  /* ============================================
+     Typography Scale
+     ============================================ */
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;      /* 18px */
+  --font-size-xl: 1.25rem;       /* 20px */
+  --font-size-2xl: 1.5rem;       /* 24px */
+  --font-size-3xl: 2rem;         /* 32px */
+  --font-size-4xl: 2.5rem;        /* 40px */
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.6;
+  --line-height-loose: 1.8;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.08em;
+  --letter-spacing-wider: 0.12em;
+  --letter-spacing-widest: 0.15em;
+}
+

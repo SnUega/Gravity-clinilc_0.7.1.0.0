@@ -1,0 +1,1325 @@
+/* ALR Section */
+  #alr { 
+    height: 100vh; 
+    background: #f8f9fa; 
+    position: relative;
+    overflow: hidden;
+  }
+  .alr-container { 
+    height: 100%; 
+    position: relative;
+  }
+  
+  /* ALR mobile hint moved to modules/components/_mobile-hint.css */
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  .alr-col.loading {
+    animation: pulse 2s infinite;
+  }
+  
+  .alr-col.loaded {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  .alr-wrap { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    height: 100vh; 
+    position: relative;
+  }
+  
+  .alr-col { 
+    background: #fff; 
+    border: 1px solid rgba(0,0,0,0.08); 
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    will-change: transform;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Hover эффект для карточки "Награды" (левая) - во все стороны кроме левой */
+  .alr-col:nth-child(1):hover,
+  .service-card:nth-child(1):hover {
+    transform: translateY(-4px) translateX(2px) scale(1.02);
+    z-index: 10;
+    box-shadow: 
+      8px 8px 40px rgba(0,0,0,0.08),
+      0 8px 40px rgba(0,0,0,0.08),
+      0 0 0 1px rgba(0,0,0,0.03);
+  }
+  
+  /* Hover эффект для карточки "Отзывы" (центральная) - во все стороны */
+  .alr-col:nth-child(2):hover,
+  .service-card:nth-child(2):hover {
+    transform: translateY(-4px) scale(1.02);
+    z-index: 10;
+    box-shadow: 
+      -8px 8px 40px rgba(0,0,0,0.08),
+      8px 8px 40px rgba(0,0,0,0.08),
+      0 8px 40px rgba(0,0,0,0.08),
+      0 0 0 1px rgba(0,0,0,0.03);
+  }
+  
+  /* Hover эффект для карточки "Лицензии" (правая) - во все стороны кроме правой */
+  .alr-col:nth-child(3):hover,
+  .service-card:nth-child(3):hover {
+    transform: translateY(-4px) translateX(-2px) scale(1.02);
+    z-index: 10;
+    box-shadow: 
+      -8px 8px 40px rgba(0,0,0,0.08),
+      0 8px 40px rgba(0,0,0,0.08),
+      0 0 0 1px rgba(0,0,0,0.03);
+  }
+
+  /* Дополнительное масштабирование контента для services карточек */
+  .service-card:nth-child(1):hover .service-card-content,
+  .service-card:nth-child(2):hover .service-card-content,
+  .service-card:nth-child(3):hover .service-card-content {
+    transform: scale(1.05);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Отключаем hover эффекты для открытых карточек */
+  .alr-col.opened:hover {
+    transform: none;
+    box-shadow: none;
+    z-index: auto;
+  }
+  
+  /* Hover content for 3D models */
+  .alr-hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .alr-col:hover .alr-hover-content {
+    opacity: 1;
+  }
+  
+  /* Main content */
+  .alr-main-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .alr-col h3 { 
+    font-size: 32px; 
+    font-weight: 400; 
+    margin-bottom: 24px; 
+    color: #1a1a1a;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .alr-col p { 
+    font-size: 16px; 
+    line-height: 1.6; 
+    color: #666; 
+    margin-bottom: 40px;
+    max-width: 280px;
+  }
+  
+  .alr-btn { 
+    background: linear-gradient(135deg, var(--alr-primary) 0%, var(--alr-secondary) 100%);
+    color: #fff; 
+    border: none; 
+    padding: 16px 32px; 
+    border-radius: var(--alr-border-radius); 
+    font-size: 16px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    transition: all var(--alr-duration) var(--alr-ease);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: var(--alr-z-overlay);
+    will-change: transform;
+    box-shadow: var(--alr-shadow);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .alr-btn:hover { 
+    transform: translateX(-50%) translateY(-2px); 
+    box-shadow: var(--alr-shadow-hover);
+  }
+  
+  .alr-btn .arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+  
+  .alr-btn:hover .arrow {
+    transform: translateX(3px);
+  }
+  
+  /* Detail content (hidden by default) */
+  .alr-detail-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    z-index: var(--alr-z-content);
+    clip-path: inset(0 100% 0 0);
+    will-change: clip-path;
+    transition: clip-path 0.6s ease;
+  }
+  
+  .alr-detail-content h3 {
+    margin-top: 15%;
+    margin-bottom: 12px;
+  }
+  
+  .alr-detail-content p {
+    margin-top: 8px;
+    margin-bottom: 40px;
+    max-width: 400px;
+  }
+  
+  .alr-detail-content .alr-btn {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin-top: auto;
+    margin-bottom: 40px;
+  }
+  
+  .alr-detail-content .alr-btn:hover .arrow {
+    transform: translateX(-3px);
+  }
+  
+  /* Специальное правило для правой карточки - шторка справа налево */
+  .alr-col:nth-child(3) .alr-detail-content {
+    clip-path: inset(0 0 0 100%);
+  }
+  
+  /* ALR mobile hint styles moved to modules/components/_mobile-hint.css */
+  @media (max-width: 768px) {
+    
+    .alr-wrap {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x proximity; /* require closer approach to snap */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      overscroll-behavior-x: contain; /* avoid cascading overscroll */
+    }
+    
+    .alr-wrap::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .alr-col {
+      min-width: 100vw;
+      scroll-snap-align: start;
+      scroll-snap-stop: always; /* don't skip more than one card per swipe */
+      border-radius: 0;
+      flex-shrink: 0;
+    }
+    
+    .alr-col h3 {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    
+    .alr-col p {
+      font-size: 14px;
+      max-width: 320px;
+      margin-bottom: 32px;
+    }
+    
+    .alr-btn {
+      padding: 14px 28px;
+      font-size: 14px;
+      bottom: 12%;
+    }
+  }
+  
+  /* ALR mobile hint tablet styles moved to modules/components/_mobile-hint.css */
+  @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait),
+         (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) {
+    
+    .alr-wrap {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x proximity; /* require closer approach to snap */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      overscroll-behavior-x: contain; /* avoid cascading overscroll */
+    }
+    
+    .alr-wrap::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+    
+    .alr-col {
+      min-width: 100vw;
+      scroll-snap-align: start;
+      scroll-snap-stop: always; /* don't skip more than one card per swipe */
+      border-radius: 0;
+      flex-shrink: 0;
+    }
+    
+    .alr-col h3 {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+    
+    .alr-col p {
+      font-size: 18px;
+      max-width: 500px;
+      margin-bottom: 48px;
+    }
+    
+    .alr-btn {
+      padding: 24px 48px;
+      font-size: 20px;
+      bottom: 15%;
+    }
+  }
+  
+  /* ALR Slider styles - используется в contentPanel */
+  .alr-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 4;
+    clip-path: inset(100% 0 0 0);
+    will-change: clip-path;
+  }
+  
+  /* Шторка для боковых карточек */
+  .alr-shutter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: var(--alr-z-overlay);
+    pointer-events: none;
+    will-change: clip-path;
+  }
+  /* Внутренний контент в шторке: опускаем заголовок и описание ниже */
+  .alr-shutter h3 {
+    margin-top: calc(var(--index) * 4);
+    margin-bottom: calc(var(--index) * 0.6);
+  }
+  .alr-shutter p {
+    margin-bottom: calc(var(--index) * 2.8);
+    max-width: 400px;
+  }
+  
+  /* Панель контента для боковых карточек */
+  .alr-content-panel {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    z-index: var(--alr-z-content);
+    background: #fff;
+    pointer-events: auto;
+    will-change: transform;
+    overflow: hidden;
+  }
+  /* Во время синхронизированной анимации скрываем границы для исчезновения шва */
+  .alr-animating .alr-col,
+  .alr-animating .alr-content-panel {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  
+  .alr-slider-content {
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  /* Закрепляем контент к краю шва, чтобы визуальная ширина не "плавала" при раскрытии */
+  .alr-content-panel.align-left .alr-slider-content { align-items: flex-start; }
+  .alr-content-panel.align-right .alr-slider-content { align-items: flex-end; }
+  
+  .alr-slider .slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: var(--alr-border-radius);
+    /* tighter mask to hide edges a bit earlier */
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: content-box;
+  }
+  
+  .slider-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .slider-item.active {
+    opacity: 1;
+  }
+  
+  .alr-slider-image {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: var(--alr-border-radius);
+    margin-bottom: 24px;
+  }
+  
+  .alr-slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .alr-slider-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    color: #667eea;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .alr-slider-btn:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .alr-slider-description {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 400px;
+  }
+
+  /* Desktop layout for ALR slider inside shutter */
+  @media (min-width: 769px) {
+    .alr-slider-content {
+      padding: 36px 32px;
+      align-items: center;
+      justify-content: center;
+    }
+    .alr-slider .slider-container {
+      width: 100%;
+      max-width: none;
+      height: 100%;
+      border-radius: 16px;
+      padding-left: 20px;
+      padding-right: 20px;
+      box-sizing: content-box;
+    }
+    .slider-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0 0;
+    }
+    .alr-slider-image {
+      width: 65%;
+      height: 80%;
+      max-width: none;
+      object-fit: cover;
+      border-radius: 16px;
+      margin: 0;
+    }
+    .alr-slider-description {
+      margin-top: 16px;
+      width: 68%;
+      max-width: none;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Arrows centered vertically at image middle */
+    .alr-slider-content .alr-slider-nav {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 68%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0;
+      gap: 0;
+      pointer-events: none;
+      z-index: 20; /* выше изображений слайдов */
+    }
+    .alr-slider-content .alr-slider-btn { pointer-events: auto; z-index: 21; }
+  }
+  
+  /* .alr-slider-close removed - unused class */
+  
+  /* Reviews carousel */
+  .alr-reviews-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 4;
+    /* ранее использовалась маска clip-path; в простом режиме показываем сразу */
+  }
+  
+  .alr-reviews-content {
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .alr-reviews-heading {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin: 0;
+    color: #1a1a1a;
+    font-weight: 400;
+    z-index: 10;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+  }
+  
+  .alr-reviews-rows { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; 
+    max-width: 100vw; 
+    margin-left: calc(50% - 50vw); 
+    margin-right: calc(50% - 50vw); 
+    display: grid; 
+    grid-template-rows: auto auto; 
+    gap: 18px;
+  }
+  .alr-reviews-row { 
+    width: 100%; 
+    overflow: hidden; 
+    position: relative;
+  }
+  .alr-reviews-track { 
+    display: flex; 
+    gap: 24px; 
+    will-change: transform;
+    width: max-content;
+    flex-shrink: 0;
+  }
+  
+  .alr-review-item {
+    width: 400px;
+    background: #fff;
+    padding: 28px 24px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .alr-review-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #eaeaea;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .alr-review-stars {
+    color: #f6c343;
+    letter-spacing: 2px;
+    margin: 8px 0 14px 0;
+  }
+  
+  .alr-review-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  
+  .alr-review-author {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 14px;
+  }
+
+  /* Планшеты в горизонтальной ориентации - уменьшенные карточки отзывов */
+  @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .alr-review-item {
+      width: 320px;
+      padding: 20px 18px;
+      border-radius: 12px;
+    }
+    
+    .alr-review-avatar {
+      width: 56px;
+      height: 56px;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    
+    .alr-review-text {
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    
+    .alr-review-author {
+      font-size: 12px;
+    }
+    
+    .alr-review-stars {
+      font-size: 14px;
+      margin: 6px 0 10px 0;
+    }
+  }
+  
+  .alr-reviews-back {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounceUp 2s infinite;
+  }
+  
+  @keyframes bounceUp {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+  
+  /* Mobile modal styles */
+  .alr-mobile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  
+  .alr-mobile-modal .modal-content {
+    background: #fff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    max-height: 90vh;
+    min-height: 70vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  /* Мобильные устройства - увеличенная высота и центрирование */
+  @media (max-width: 767px) {
+    .alr-mobile-modal {
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .alr-mobile-modal .modal-content {
+      max-height: 85vh;
+      height: fit-content; /* Height adapts to content */
+      min-height: 60vh; /* Minimum height to prevent too small modals */
+      max-width: 95vw;
+    }
+    
+    /* Отступ контента для мобильных - смещаем ВСЁ содержимое кроме кнопки-крестика */
+    .alr-mobile-modal .modal-body {
+      margin-top: 60px; /* Смещаем весь контент вниз */
+    }
+  }
+  
+  /* Все планшеты в вертикальной ориентации - единый медиа-запрос с адаптивными значениями */
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    .alr-mobile-modal {
+      align-items: center;
+      justify-content: center;
+      padding: clamp(20px, 4vw, 40px); /* Адаптивные отступы: 20px-40px */
+    }
+    
+    .alr-mobile-modal .modal-content {
+      max-height: 85vh;
+      height: fit-content; /* Height adapts to content */
+      min-height: 60vh; /* Minimum height to prevent too small modals */
+      max-width: 95vw; /* Размер как у мобильных для всех планшетов */
+      width: 100%;
+    }
+    
+    /* Адаптивная высота плейсхолдера для всех планшетов */
+    .mobile-slider-image {
+      height: clamp(500px, 50vw, 800px) !important; /* Значительно увеличенная адаптивная высота: 500px-800px */
+    }
+    
+    .mobile-slider-container {
+      height: clamp(500px, 50vw, 800px) !important; /* Значительно увеличенная адаптивная высота контейнера */
+    }
+    
+    .mobile-slider-description {
+      font-size: clamp(18px, 2vw, 24px); /* Увеличенный адаптивный размер шрифта: 18px-24px */
+      margin-top: clamp(20px, 2vw, 25px); /* Адаптивные отступы */
+      margin-bottom: clamp(35px, 3vw, 40px);
+      padding: 0 clamp(15px, 2vw, 20px);
+    }
+    
+    /* Кнопка закрытия для всех планшетов */
+    .alr-mobile-modal .modal-close {
+      width: 60px;
+      height: 60px;
+      font-size: 32px;
+      top: 40px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      right: auto !important;
+    }
+    
+    /* Отступ контента для планшетов в вертикальной ориентации - смещаем ВСЁ содержимое кроме кнопки-крестика */
+    .alr-mobile-modal .modal-body {
+      margin-top: 60px; /* Смещаем весь контент вниз */
+    }
+    
+    /* Кнопки стрелки для всех планшетов */
+    .mobile-slider-btn {
+      width: 70px;
+      height: 70px;
+      font-size: 28px;
+    }
+  }
+  
+  /* Остальные планшеты в вертикальной ориентации (кроме iPad Pro) - уменьшенная высота плейсхолдера */
+  @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+    /* Уменьшенная высота плейсхолдера для остальных планшетов */
+    .mobile-slider-image {
+      height: clamp(350px, 35vw, 500px) !important; /* Уменьшенная высота: 350px-500px */
+    }
+    
+    .mobile-slider-container {
+      height: clamp(350px, 35vw, 500px) !important; /* Уменьшенная высота контейнера */
+    }
+  }
+  
+  /* iPad Pro (1024x1366) в вертикальной ориентации - отступ контента */
+  @media (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) {
+    /* Отступ контента для iPad Pro - смещаем ВСЁ содержимое кроме кнопки-крестика */
+    .alr-mobile-modal .modal-body {
+      margin-top: 80px; /* Смещаем весь контент вниз */
+    }
+  }
+  
+  /* Планшеты в альбомной ориентации - уменьшенная высота плейсхолдера и отступ контента */
+  @media (min-width: 768px) and (orientation: landscape) {
+    /* Отступ контента для планшетов в альбомной ориентации - смещаем ВСЁ содержимое кроме кнопки-крестика */
+    .alr-mobile-modal .modal-body {
+      margin-top: 60px; /* Смещаем весь контент вниз */
+    }
+    
+    /* Уменьшенная высота плейсхолдера для альбомной ориентации */
+    .mobile-slider-image {
+      height: clamp(200px, 20vh, 300px) !important; /* Меньшая высота для альбомной ориентации */
+    }
+    
+    .mobile-slider-container {
+      height: clamp(200px, 20vh, 300px) !important; /* Меньшая высота контейнера */
+    }
+  }
+  
+  .alr-mobile-modal .modal-close {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    color: #666;
+    font-size: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    line-height: 1; /* Center the cross properly */
+  }
+  
+  .alr-mobile-modal .modal-body {
+    padding: 40px 20px 20px;
+  }
+  
+  .alr-mobile-modal h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #1a1a1a;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .mobile-slider {
+    position: relative;
+  }
+  
+  .mobile-slider-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  /* Мобильные устройства - увеличенная высота плейсхолдера */
+  @media (max-width: 768px) {
+    .mobile-slider-image {
+      height: 280px; /* Увеличиваем высоту для мобильных */
+    }
+    
+    .mobile-slider-container {
+      height: 280px; /* Соответствующая высота контейнера */
+    }
+    
+    .mobile-slider-description {
+      font-size: 16px; /* Увеличиваем размер шрифта для мобильных */
+      margin-top: 20px;
+      margin-bottom: 35px;
+    }
+  }
+  
+  .mobile-slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .mobile-slider-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(102, 126, 234, 0.1);
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    color: #667eea;
+    font-size: 28px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .mobile-slider-btn:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: scale(1.1);
+  }
+  
+  .mobile-slider-description {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 15px;
+    margin-bottom: 60px; /* Increased default spacing */
+    padding: 0 10px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Adaptive spacing for navigation buttons using viewport units */
+  .mobile-slider-description {
+    margin-bottom: 16vh !important; /* Much more spacing for mobile and iPad Mini */
+    font-size: clamp(14px, 2.5vw, 24px) !important; /* Adaptive font size with min/max limits */
+  }
+  
+  .mobile-slider-nav {
+    margin-top: 8vh !important; /* Much more spacing for mobile and iPad Mini */
+    padding: 1vh 0 !important; /* Minimal padding to reduce empty space */
+  }
+
+  /* Specific spacing for iPad Mini */
+  @media (min-width: 768px) and (max-width: 768px) and (orientation: portrait) {
+    .mobile-slider-description {
+      margin-bottom: 20vh !important; /* More space for iPad Mini */
+    }
+    
+    .mobile-slider-nav {
+      margin-top: 12vh !important; /* More space for iPad Mini */
+    }
+  }
+
+  /* Additional spacing for larger tablets */
+  @media (min-width: 820px) {
+    .mobile-slider-description {
+      margin-bottom: 18vh !important; /* Even more space for iPad Air */
+    }
+    
+    .mobile-slider-nav {
+      margin-top: 10vh !important; /* Even more space for iPad Air */
+    }
+    
+    /* Adjust modal height for larger tablets */
+    .alr-mobile-modal .modal-content {
+      min-height: 60vh; /* Increased minimum for larger screens */
+    }
+  }
+
+  /* Extra spacing and larger buttons for iPad Pro */
+  @media (min-width: 1024px) {
+    .mobile-slider-description {
+      margin-bottom: 35vh !important; /* Much more space for iPad Pro */
+    }
+    
+    .mobile-slider-nav {
+      margin-top: 22vh !important; /* Much more space for iPad Pro */
+    }
+    
+    .mobile-slider-btn {
+      width: 8vw !important; /* Much larger adaptive button size */
+      height: 8vw !important;
+      font-size: 3vw !important;
+      min-width: 90px !important; /* Much larger minimum size */
+      min-height: 90px !important;
+    }
+    
+    /* Optimize modal height for iPad Pro to prevent scrolling */
+    .alr-mobile-modal .modal-content {
+      min-height: 70vh; /* Increased minimum height for iPad Pro */
+      max-height: 90vh; /* Increased max height to fit all content */
+    }
+    
+    /* Larger close button for iPad Pro */
+    .alr-mobile-modal .modal-close {
+      width: 80px !important;
+      height: 80px !important;
+      font-size: 42px !important;
+      top: 30px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      right: auto !important;
+    }
+  }
+
+  /* Reduce modal bottom padding for all mobile modals */
+  @media (max-width: 1024px) {
+    .alr-mobile-modal .modal-content {
+      padding-bottom: 2vh !important; /* Adaptive bottom padding */
+    }
+    
+    .alr-mobile-modal .modal-body {
+      padding-bottom: 1vh !important; /* Adaptive bottom padding */
+    }
+  }
+  
+  .mobile-slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  /* Mobile review cards in slider */
+  .mobile-review-card {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.15); /* underline separator */
+  }
+
+  .mobile-review-avatar {
+    width: 50px;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .mobile-review-info {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* avatar and name together */
+  }
+
+  .mobile-review-author {
+    font-size: clamp(14px, 3.6vw, 18px);
+    color: #222;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .mobile-review-stars {
+    color: #ffc107;
+    font-size: clamp(14px, 3.2vw, 18px);
+    margin: 0;
+    padding-left: 16px;
+    border-left: 1px solid rgba(0,0,0,0.15); /* vertical separator between name and stars */
+  }
+
+  .mobile-review-text {
+    font-size: clamp(14px, 3.8vw, 20px);
+    line-height: 1.6;
+    color: #333;
+    font-style: normal;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center text block */
+    text-align: center;
+    padding: 8px;
+  }
+
+  /* Responsive adjustments for review cards */
+  @media (max-width: 480px) { /* phones */
+    .mobile-review-card { padding: 14px; }
+    .mobile-review-header { column-gap: 10px; padding: 6px; }
+    .mobile-review-avatar { width: 40px; height: 40px; font-size: 18px; }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) { /* large phones */
+    .mobile-review-card { padding: 18px; }
+    .mobile-review-header { column-gap: 12px; }
+    .mobile-review-avatar { width: 46px; height: 46px; font-size: 20px; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) { /* tablets portrait incl. iPad Pro */
+    .mobile-review-card { 
+      padding: 28px; 
+    }
+    .mobile-review-header { 
+      column-gap: 20px; 
+      padding: 12px 14px; 
+      margin-bottom: 18px; 
+    }
+    .mobile-review-avatar { 
+      width: 72px; 
+      height: 72px; 
+      font-size: 32px; 
+    }
+    .mobile-review-info {
+      gap: 16px; /* more space between avatar and name on tablets */
+    }
+    .mobile-review-author {
+      font-size: 22px !important; /* force larger size */
+      font-weight: 700;
+    }
+    .mobile-review-stars {
+      font-size: 22px !important; /* force larger size */
+    }
+    .mobile-review-text {
+      font-size: 20px !important; /* force larger size */
+      padding: 16px;
+      line-height: 1.7;
+    }
+  }
+  
+  .mobile-slider-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .mobile-slider-item {
+    display: none;
+  }
+  
+  .mobile-slider-item.active {
+    display: block;
+  }
+  
+  
+  .mobile-reviews-slider {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .mobile-review-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .mobile-review-item.active {
+    opacity: 1;
+  }
+  
+  .mobile-review-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+    font-style: italic;
+  }
+  
+  .mobile-review-author {
+    font-weight: 600;
+    color: #667eea;
+    font-size: 12px;
+  }
+
+/* ALR Modals */
+  .modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.45); 
+    backdrop-filter: blur(8px);
+  }
+  .modal-content { 
+    background-color: #fff; 
+    margin: 5% auto; 
+    padding: 0; 
+    border-radius: 24px; 
+    width: 90%; 
+    max-width: 800px; 
+    max-height: 80vh; 
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  }
+  .modal-close { 
+    color: #aaa; 
+    float: right; 
+    font-size: 32px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    position: absolute; 
+    top: 20px; 
+    right: 24px; 
+    z-index: 1001;
+    transition: color 0.3s ease;
+  }
+  
+  /* Кнопка закрытия для ALR модалок (не thanks-modal) - по центру сверху */
+  .modal:not(#thanksModal) .modal-close,
+  .alr-mobile-modal .modal-close {
+    position: absolute !important;
+    top: 40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+  }
+  .modal-close:hover { 
+    color: #333; 
+  }
+  .modal-content h2 { 
+    padding: 40px 40px 20px; 
+    margin: 0; 
+    font-size: 32px; 
+    font-weight: 700; 
+    color: #1a1a1a; 
+    border-bottom: 1px solid #eee;
+  }
+  .modal-body { 
+    padding: 20px 40px 40px; 
+  }
+  
+  /* Award Items */
+  .award-item { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 20px; 
+    padding: 24px 0; 
+    border-bottom: 1px solid #f0f0f0; 
+  }
+  .award-item:last-child { 
+    border-bottom: none; 
+  }
+  .award-icon { 
+    font-size: 32px; 
+    flex-shrink: 0; 
+  }
+  .award-text h4 { 
+    margin: 0 0 8px; 
+    font-size: 20px; 
+    font-weight: 600; 
+    color: #1a1a1a; 
+  }
+  .award-text p { 
+    margin: 0; 
+    color: #666; 
+    line-height: 1.5; 
+  }
+  
+  /* License Items */
+  .license-item { 
+    padding: 24px 0; 
+    border-bottom: 1px solid #f0f0f0; 
+  }
+  .license-item:last-child { 
+    border-bottom: none; 
+  }
+  .license-item h4 { 
+    margin: 0 0 12px; 
+    font-size: 20px; 
+    font-weight: 600; 
+    color: #1a1a1a; 
+  }
+  .license-item p { 
+    margin: 4px 0; 
+    color: #666; 
+    font-size: 14px; 
+  }
+  
+  /* Review Items */
+  .review-item { 
+    padding: 24px 0; 
+    border-bottom: 1px solid #f0f0f0; 
+  }
+  .review-item:last-child { 
+    border-bottom: none; 
+  }
+  .review-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 12px; 
+  }
+  .review-author strong { 
+    font-size: 16px; 
+    color: #1a1a1a; 
+  }
+  .review-rating { 
+    font-size: 14px; 
+    margin-top: 4px; 
+  }
+  .review-date { 
+    font-size: 14px; 
+    color: #999; 
+  }
+  .review-item p { 
+    margin: 0; 
+    color: #666; 
+    line-height: 1.6; 
+    font-style: italic; 
+  }

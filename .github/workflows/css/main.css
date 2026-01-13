@@ -1,0 +1,146 @@
+/* ============================================
+   MAIN.CSS - Modular CSS Structure
+   ============================================
+   
+   This file imports all CSS modules in the correct order.
+   All styles are organized in modules for better maintainability.
+   
+   Usage in HTML:
+   <link rel="stylesheet" href="../css/main.css">
+   
+   Order matters:
+   1. Base (reset, variables, utilities)
+   2. Components
+   3. Basic HTML/body styles
+   ============================================ */
+
+/* Base */
+@import url('modules/base/_variables.css');
+@import url('modules/base/_reset.css');
+@import url('modules/base/_utilities.css');
+
+/* Components */
+@import url('modules/components/_preloader.css');
+@import url('modules/components/_mobile-hint.css');
+@import url('modules/components/_header.css');
+@import url('modules/components/_services.css');
+@import url('modules/components/_menu.css');
+@import url('modules/components/_alr.css');
+@import url('modules/components/_footer.css');
+@import url('modules/components/_about.css');
+@import url('modules/components/_contacts.css');
+@import url('modules/components/_gallery.css');
+@import url('modules/components/_services-page.css');
+@import url('modules/components/_blog-page.css');
+
+/* ============================================
+   Basic HTML/body styles
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100%;
+      font-family: sans-serif;
+      transition: filter 0.3s ease;
+      overflow-x: hidden;
+    }
+
+body.lock-scroll {
+      overflow: hidden;
+    height: 100vh;
+  overscroll-behavior: none;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR - Global Styles (в конце для максимального приоритета)
+   ============================================ */
+
+/* Скрываем стандартный скроллбар полностью */
+:root,
+html,
+body {
+  /* Для Firefox - полностью скрываем */
+  scrollbar-width: none !important;
+  /* Для WebKit - скрываем через width: 0 */
+  /* Стили ниже */
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Edge, Vivaldi) */
+/* Полностью скрываем нативный скроллбар */
+:root::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  display: none !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Трек скроллбара - полностью скрыт (бара нет) */
+:root::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  /* Агрессивное скрытие трека - все возможные способы */
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+        border-radius: 0 !important;
+  -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  /* Скрываем через clip-path */
+  clip-path: inset(0 0 0 100%) !important;
+  -webkit-clip-path: inset(0 0 0 100%) !important;
+  /* Скрываем через transform */
+  transform: translateX(100%) !important;
+  -webkit-transform: translateX(100%) !important;
+  /* Убираем все размеры */
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  /* Убираем отступы */
+  margin: 0 !important;
+  padding: 0 !important;
+  /* Скрываем через opacity и visibility */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  /* Убираем pointer events */
+  pointer-events: none !important;
+}
+
+/* Дополнительно скрываем любые декоративные элементы трека */
+:root::-webkit-scrollbar-track-piece,
+html::-webkit-scrollbar-track-piece,
+body::-webkit-scrollbar-track-piece {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Скрываем кнопки прокрутки (стрелки) если они есть */
+:root::-webkit-scrollbar-button,
+html::-webkit-scrollbar-button,
+body::-webkit-scrollbar-button {
+        display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+:root::-webkit-scrollbar-corner,
+html::-webkit-scrollbar-corner,
+body::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+/* 
+   Стили для нативного скроллбара удалены - теперь используется 
+   кастомный overlay через JavaScript (custom-scrollbar-overlay.js)
+*/
