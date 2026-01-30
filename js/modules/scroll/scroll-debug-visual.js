@@ -21,9 +21,9 @@ export function initScrollDebugVisual() {
     top: 10px;
     left: 10px;
     right: 10px;
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     color: #0f0;
     font-family: monospace;
     font-size: 10px;
@@ -31,13 +31,41 @@ export function initScrollDebugVisual() {
     z-index: 99999;
     border: 2px solid #0f0;
     border-radius: 5px;
-    pointer-events: none;
+    pointer-events: auto;
     display: none;
   `;
+  
+  // Кнопка для копирования логов
+  const copyButton = document.createElement('button');
+  copyButton.textContent = '📋 Копировать логи';
+  copyButton.style.cssText = `
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background: #0f0;
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+  `;
+  
+  const logsContainer = document.createElement('div');
+  logsContainer.id = 'scroll-debug-logs';
+  logsContainer.style.cssText = `
+    max-height: 250px;
+    overflow-y: auto;
+  `;
+  
+  debugPanel.appendChild(copyButton);
+  debugPanel.appendChild(logsContainer);
   document.body.appendChild(debugPanel);
 
   const logs = [];
-  const maxLogs = 10;
+  const maxLogs = 250; // Увеличено для большего количества логов
 
   const addLog = (message, data = {}) => {
     const timestamp = new Date().toLocaleTimeString();
@@ -53,15 +81,83 @@ export function initScrollDebugVisual() {
       logs.pop();
     }
 
+    // Сохраняем в localStorage
+    try {
+      localStorage.setItem('scrollDebugLogs', JSON.stringify(logs));
+    } catch (e) {
+      // Игнорируем ошибки localStorage
+    }
+
     // Обновляем визуальный вывод
-    debugPanel.innerHTML = logs.map(log => {
+    updateLogsDisplay();
+  };
+
+  const updateLogsDisplay = () => {
+    logsContainer.innerHTML = logs.map(log => {
       const dataStr = Object.keys(log.data).length > 0 
-        ? ` | ${JSON.stringify(log.data).substring(0, 50)}` 
+        ? ` | ${JSON.stringify(log.data).substring(0, 80)}` 
         : '';
-      return `<div>${log.time} | ${log.message} | Y:${log.scrollY}${dataStr}</div>`;
+      return `<div style="margin-bottom: 2px; padding: 2px; border-bottom: 1px solid rgba(0,255,0,0.2);">${log.time} | ${log.message} | Y:${log.scrollY}${dataStr}</div>`;
     }).join('');
+  };
+
+  // Загружаем логи из localStorage при инициализации
+  try {
+    const savedLogs = localStorage.getItem('scrollDebugLogs');
+    if (savedLogs) {
+      const parsed = JSON.parse(savedLogs);
+      logs.push(...parsed.slice(0, maxLogs));
+      updateLogsDisplay();
+    }
+  } catch (e) {
+    // Игнорируем ошибки
+  }
+
+  // Кнопка для копирования логов
+  copyButton.addEventListener('click', () => {
+    const logText = logs.map(log => {
+      const dataStr = Object.keys(log.data).length > 0 
+        ? ` | ${JSON.stringify(log.data)}` 
+        : '';
+      return `${log.time} | ${log.message} | Y:${log.scrollY}${dataStr}`;
+    }).join('\n');
     
-    debugPanel.style.display = 'block';
+    // Копируем в буфер обмена
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(logText).then(() => {
+        copyButton.textContent = '✅ Скопировано!';
+        setTimeout(() => {
+          copyButton.textContent = '📋 Копировать логи';
+        }, 2000);
+      }).catch(() => {
+        // Fallback для старых браузеров
+        fallbackCopy(logText);
+      });
+    } else {
+      fallbackCopy(logText);
+    }
+  });
+
+  const fallbackCopy = (text) => {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      copyButton.textContent = '✅ Скопировано!';
+      setTimeout(() => {
+        copyButton.textContent = '📋 Копировать логи';
+      }, 2000);
+    } catch (e) {
+      copyButton.textContent = '❌ Ошибка копирования';
+      setTimeout(() => {
+        copyButton.textContent = '📋 Копировать логи';
+      }, 2000);
+    }
+    document.body.removeChild(textarea);
   };
 
   // Логируем все вызовы scrollTo
@@ -113,9 +209,32 @@ export function initScrollDebugVisual() {
     };
   }
 
-  // Кнопка для показа/скрытия панели (двойной тап)
-  let tapCount = 0;
-  let tapTimer = null;
+  // Кнопка для очистки логов
+  const clearButton = document.createElement('button');
+  clearButton.textContent = '🗑️ Очистить';
+  clearButton.style.cssText = `
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background: #f00;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+  `;
+  clearButton.addEventListener('click', () => {
+    logs.length = 0;
+    localStorage.removeItem('scrollDebugLogs');
+    updateLogsDisplay();
+  });
+  debugPanel.insertBefore(clearButton, logsContainer);
+
+  // Кнопка для показа/скрытия панели (тройной тап)
   document.addEventListener('touchstart', (e) => {
     if (e.touches.length === 3) { // Тройной тап для показа/скрытия
       e.preventDefault();
@@ -123,5 +242,23 @@ export function initScrollDebugVisual() {
     }
   }, { passive: false });
 
+  // Экспортируем функции для доступа из консоли
+  window.scrollDebugLogs = logs;
+  window.getScrollDebugLogs = () => {
+    return logs.map(log => {
+      const dataStr = Object.keys(log.data).length > 0 
+        ? ` | ${JSON.stringify(log.data)}` 
+        : '';
+      return `${log.time} | ${log.message} | Y:${log.scrollY}${dataStr}`;
+    }).join('\n');
+  };
+  window.clearScrollDebugLogs = () => {
+    logs.length = 0;
+    localStorage.removeItem('scrollDebugLogs');
+    updateLogsDisplay();
+  };
+
   console.log('🔍 Visual scroll debug initialized - triple tap to show/hide');
+  console.log('📋 Use window.getScrollDebugLogs() to get logs as text');
+  console.log('🗑️ Use window.clearScrollDebugLogs() to clear logs');
 }
