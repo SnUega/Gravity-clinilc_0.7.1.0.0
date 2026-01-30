@@ -81,23 +81,19 @@ export class ScrollController {
         
         window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
         
-        // Throttled resize handler для мобильных устройств
-        // Восстановление позиции после refresh обрабатывается в scroll-protection.js
-        let resizeTimeout = null;
-        const handleResize = () => {
-          if (resizeTimeout) {
-            clearTimeout(resizeTimeout);
-          }
-          resizeTimeout = setTimeout(() => {
-            ScrollTrigger.refresh();
-          }, 300); // Задержка 300ms для предотвращения множественных вызовов
-        };
+        // Для мобильных устройств НЕ вызываем ScrollTrigger.refresh() при resize
+        // потому что:
+        // 1. ScrollTrigger уже обновляется через ScrollTrigger.update() в scroll handler
+        // 2. На мобильных viewport изменяется при скролле (скрытие/появление адресной строки)
+        // 3. Это вызывает множественные refresh(), которые создают дергания и остановки скролла
+        // ScrollTrigger.refresh() будет вызываться только при реальных изменениях размера окна
+        // через другие модули (например, при смене ориентации в flow.js)
+        // 
+        // НЕ добавляем resize handler для мобильных устройств - это предотвращает
+        // множественные вызовы refresh() при изменении viewport во время скролла
         
-        window.addEventListener('resize', handleResize, { passive: true });
-        
-        // Сохраняем обработчики для возможного удаления в будущем
+        // Сохраняем обработчик для возможного удаления в будущем
         this._nativeScrollHandler = optimizedScrollHandler;
-        this._resizeHandler = handleResize;
       }
       
       return null;
