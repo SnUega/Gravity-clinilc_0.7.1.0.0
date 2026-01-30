@@ -77,10 +77,32 @@ export class Preloader {
     document.documentElement.style.overflow = '';
 
     // Удаляем обработчики блокировки
-    this.scrollBlockers.forEach(({ target, event, handler }) => {
-      target.removeEventListener(event, handler, { capture: true });
-    });
-    this.scrollBlockers = [];
+    // Важно: удаляем в обратном порядке и с небольшой задержкой для мобильных устройств
+    // чтобы гарантировать полную разблокировку
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+
+    if (isMobileDevice) {
+      // Для мобильных устройств удаляем обработчики с небольшой задержкой
+      // чтобы гарантировать, что все события разблокированы
+      setTimeout(() => {
+        this.scrollBlockers.forEach(({ target, event, handler }) => {
+          try {
+            target.removeEventListener(event, handler, { capture: true });
+          } catch (e) {
+            // Игнорируем ошибки при удалении обработчиков
+          }
+        });
+        this.scrollBlockers = [];
+      }, 50);
+    } else {
+      // Для десктопов удаляем сразу
+      this.scrollBlockers.forEach(({ target, event, handler }) => {
+        target.removeEventListener(event, handler, { capture: true });
+      });
+      this.scrollBlockers = [];
+    }
   }
 
   /**
@@ -215,9 +237,14 @@ export class Preloader {
       window.history.scrollRestoration = 'manual';
     } catch (e) {}
 
+    // Определяем, является ли устройство мобильным
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+
     // Сбрасываем скролл в начало при загрузке только если нет hash в URL
-    // Делаем это сразу, пока скролл заблокирован, чтобы избежать конфликтов
-    if (!window.location.hash) {
+    // НЕ делаем этого для мобильных устройств, чтобы избежать конфликтов с нативным скроллом
+    if (!window.location.hash && !isMobileDevice) {
       // Используем requestAnimationFrame для гарантии, что DOM готов
       requestAnimationFrame(() => {
         if (window.lenis && typeof window.lenis.scrollTo === 'function') {

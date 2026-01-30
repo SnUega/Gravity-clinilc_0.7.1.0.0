@@ -43,6 +43,46 @@ export class ScrollController {
       return this.lenis;
     }
 
+    // Определяем, является ли устройство мобильным (повторяем проверку для init)
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+
+    // Для мобильных устройств полностью отключаем Lenis, используем нативный скролл
+    if (isMobileDevice) {
+      console.log('Mobile device detected, using native scroll instead of Lenis');
+      this.isInitialized = true;
+      window.lenis = null; // Убеждаемся, что lenis не установлен
+      
+      // Для мобильных устройств синхронизируем ScrollTrigger с нативным скроллом
+      if (typeof ScrollTrigger !== 'undefined') {
+        // Обработчик нативного скролла для обновления ScrollTrigger
+        const nativeScrollHandler = () => {
+          ScrollTrigger.update();
+        };
+        
+        // Используем throttling для производительности
+        let ticking = false;
+        const optimizedScrollHandler = () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              nativeScrollHandler();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        };
+        
+        window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
+        window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+        
+        // Сохраняем обработчик для возможного удаления в будущем
+        this._nativeScrollHandler = optimizedScrollHandler;
+      }
+      
+      return null;
+    }
+
     try {
       // Ждем загрузки Lenis
       const Lenis = await waitForLibrary('Lenis', 10000);
