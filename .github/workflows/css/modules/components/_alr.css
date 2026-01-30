@@ -258,6 +258,19 @@
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* IE and Edge */
       overscroll-behavior-x: contain; /* avoid cascading overscroll */
+      touch-action: pan-x pan-y; /* Разрешаем горизонтальный и вертикальный скролл */
+    }
+    
+    /* Отключаем hover эффекты и transitions на мобильных для плавного скролла */
+    .alr-col {
+      will-change: auto !important;
+      transition: none !important;
+    }
+    
+    .alr-col:hover {
+      transform: none !important;
+      z-index: auto !important;
+      box-shadow: none !important;
     }
     
     .alr-wrap::-webkit-scrollbar {
@@ -308,6 +321,19 @@
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* IE and Edge */
       overscroll-behavior-x: contain; /* avoid cascading overscroll */
+      touch-action: pan-x pan-y; /* Разрешаем горизонтальный и вертикальный скролл */
+    }
+    
+    /* Отключаем hover эффекты и transitions на планшетах для плавного скролла */
+    .alr-col {
+      will-change: auto !important;
+      transition: none !important;
+    }
+    
+    .alr-col:hover {
+      transform: none !important;
+      z-index: auto !important;
+      box-shadow: none !important;
     }
     
     .alr-wrap::-webkit-scrollbar {
