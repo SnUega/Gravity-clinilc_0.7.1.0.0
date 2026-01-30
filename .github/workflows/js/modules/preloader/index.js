@@ -177,9 +177,16 @@ export class Preloader {
       // Разблокируем скролл
       this.unlockScroll();
 
-      // НЕ сбрасываем скролл - пусть остается на текущей позиции
-      // Сброс скролла вызывает соскакивание при скролле вверх
-      // Если нужен сброс в начало, это должно происходить только при первой загрузке без hash
+      // Сбрасываем скролл в начало (hero) только если нет hash в URL
+      // Если есть hash, переход на секцию произойдет после завершения прелоадера
+      if (!window.location.hash) {
+        // Используем Lenis если доступен, иначе нативный scrollTo
+        if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+          window.lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }
 
       // Эмитим событие завершения прелоадера
       window.dispatchEvent(new CustomEvent('preloaderComplete'));
@@ -205,10 +212,14 @@ export class Preloader {
       window.history.scrollRestoration = 'manual';
     } catch (e) {}
 
-    // НЕ сбрасываем скролл при инициализации - это вызывает соскакивание
-    // Браузер сам восстановит позицию скролла если нужно
-    // Сброс должен происходить только при первой загрузке страницы без hash,
-    // но это делается в hidePreloader() если необходимо
+    // Сбрасываем скролл в начало при загрузке только если нет hash в URL
+    if (!window.location.hash) {
+      if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+        window.lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+    }
 
     // Блокируем скролл сразу при загрузке скрипта
     this.blockScroll();

@@ -104,8 +104,7 @@
         top: 0 !important;
         left: 0 !important;
         width: 100vw !important;
-        height: 100dvh !important; /* Используем dvh для учета панели браузера */
-        max-height: 100dvh !important;
+        height: 100vh !important;
         border-radius: 0 !important;
         /* allow GSAP to control transform for smooth slide */
         clip-path: none !important;
@@ -127,8 +126,7 @@
         top: 0 !important;
         left: 0 !important;
         width: 100vw !important;
-        height: 100dvh !important; /* Используем dvh для учета панели браузера */
-        max-height: 100dvh !important;
+        height: 100vh !important;
         border-radius: 0 !important;
         background: #ffffff !important;
         overflow-y: auto !important;
@@ -160,11 +158,11 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
-        padding: 100px 24px calc(60px + env(safe-area-inset-bottom, 20px)); /* Увеличенный отступ снизу для соц. кнопок */
+        padding: 100px 24px 40px; /* leave space for the close (burger→X) button area */
         max-width: none; /* take full width */
         width: 100%;
         margin: 0;
-        min-height: calc(100dvh - 100px); /* Используем dvh минус верхний padding */
+        min-height: 100vh;
         box-sizing: border-box;
       }
 
@@ -371,12 +369,9 @@
       }
 
       .curtain-content .menu-contacts-section {
-        margin-top: auto; /* Прижимаем к низу */
-        margin-bottom: 0;
+        margin-top: 30px;
         padding-top: 20px;
-        padding-bottom: calc(20px + env(safe-area-inset-bottom, 20px)); /* Учитываем панель браузера */
         border-top: 1px solid #eee;
-        flex-shrink: 0; /* Не сжимается */
       }
       
       .curtain-content .menu-contacts { 
@@ -432,10 +427,7 @@
         .curtain-content .contact-buttons .contact-btn { width: 72px; height: 72px; }
         .curtain-content .menu-contacts .contact-btn svg,
         .curtain-content .contact-buttons .contact-btn svg { width: 26px; height: 26px; }
-        .curtain-content .menu-contacts-section { 
-          margin-bottom: 10px;
-          padding-bottom: env(safe-area-inset-bottom, 20px); /* Учитываем панель браузера */
-        }
+        .curtain-content .menu-contacts-section { margin-bottom: 10px;}
       }
       
       /* Специфичные цвета для кнопок в curtain режиме */

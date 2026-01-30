@@ -123,17 +123,16 @@ export class CardsManager {
     const deviceType = this.getDeviceType();
 
     // Создаем timeline для анимации появления карточек
-    // Увеличиваем scrub для более медленной прокрутки (2 = в 2 раза медленнее)
     this.timeline = gsap.timeline({
       scrollTrigger: {
         trigger: this.section,
         start: 'top top',
         end: () => `+=${this.options.buildDuration() + this.options.pauseAfter}`,
-        scrub: 2, // Замедляем прокрутку в 2 раза для плавного просмотра карточек
+        scrub: true,
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
-        fastScrollEnd: false // Отключаем быстрый скролл для более плавной прокрутки
+        fastScrollEnd: true
       }
     });
 
