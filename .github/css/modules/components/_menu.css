@@ -158,7 +158,7 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
-        padding: 100px 24px 40px; /* leave space for the close (burger→X) button area */
+        padding: 100px 24px calc(40px + env(safe-area-inset-bottom, 0px)); /* Учитываем панель браузера снизу */
         max-width: none; /* take full width */
         width: 100%;
         margin: 0;
@@ -371,6 +371,7 @@
       .curtain-content .menu-contacts-section {
         margin-top: 30px;
         padding-top: 20px;
+        padding-bottom: env(safe-area-inset-bottom, 20px); /* Учитываем панель браузера */
         border-top: 1px solid #eee;
       }
       
@@ -427,7 +428,10 @@
         .curtain-content .contact-buttons .contact-btn { width: 72px; height: 72px; }
         .curtain-content .menu-contacts .contact-btn svg,
         .curtain-content .contact-buttons .contact-btn svg { width: 26px; height: 26px; }
-        .curtain-content .menu-contacts-section { margin-bottom: 10px;}
+        .curtain-content .menu-contacts-section { 
+          margin-bottom: 10px;
+          padding-bottom: env(safe-area-inset-bottom, 20px); /* Учитываем панель браузера */
+        }
       }
       
       /* Специфичные цвета для кнопок в curtain режиме */
