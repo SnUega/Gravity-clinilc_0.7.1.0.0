@@ -157,10 +157,9 @@ export class ScrollFlow {
         },
         onRefresh: () => {
           // При обновлении пересчитываем размеры и обновляем кэш
+          // НЕ вызываем this.scrollTrigger.refresh() здесь, так как это создает рекурсию
+          // onRefresh вызывается ВО ВРЕМЯ ScrollTrigger.refresh(), и повторный вызов refresh() создает цикл
           this.footerHeight = this.footer.offsetHeight;
-          if (this.scrollTrigger) {
-            this.scrollTrigger.refresh();
-          }
         }
       });
     });
@@ -172,29 +171,13 @@ export class ScrollFlow {
   setupResizeHandler() {
     // Сохраняем debounced функцию для возможности очистки
     this.debouncedResize = debounce(() => {
-      // Определяем, является ли устройство мобильным
-      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                            (typeof window !== 'undefined' && 'ontouchstart' in window) ||
-                            (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
-      
-      // Сохраняем позицию скролла перед обновлением (для мобильных)
-      let savedScrollPosition = 0;
-      if (isMobileDevice) {
-        savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
-      }
-      
       // Пересоздаем ScrollTrigger при изменении размера
       // Высота футера будет пересчитана в initScrollTrigger
+      // Восстановление позиции скролла после refresh обрабатывается в scroll-protection.js
       this.initScrollTrigger();
       
-      // Для мобильных устройств восстанавливаем позицию после refresh
-      if (isMobileDevice && savedScrollPosition > 0) {
-        requestAnimationFrame(() => {
-          window.scrollTo(0, savedScrollPosition);
-        });
-      } else {
-        ScrollTrigger.refresh();
-      }
+      // ScrollTrigger.refresh() будет вызван автоматически через scroll-protection.js
+      // или через другие модули, не нужно вызывать его здесь вручную
     }, CONFIG.DELAYS.RESIZE);
 
     window.addEventListener('resize', this.debouncedResize);
