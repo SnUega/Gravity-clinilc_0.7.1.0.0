@@ -119,6 +119,14 @@ export class CurtainMode {
     });
 
     this.setupScrollHandlers();
+    
+    // При открытии меню, если страница в начале, скроллим немного вниз чтобы скрыть панель браузера
+    if (window.scrollY < 10) {
+      // Небольшая задержка чтобы меню успело открыться
+      setTimeout(() => {
+        window.scrollTo({ top: 5, behavior: 'auto' });
+      }, 100);
+    }
 
     this.curtainOpen = true;
   }
@@ -202,6 +210,8 @@ export class CurtainMode {
     const scrollHandler = () => {
       const current = this.elements.menuPanel.scrollTop;
       const delta = current - this.lastCurtainScrollTop;
+      
+      // Скрытие/показ хедера при скролле
       if (delta > 8 && !this.headerHiddenByScroll) {
         gsap.to(this.elements.header, { autoAlpha: 0, y: -20, duration: 0.18, overwrite: true });
         this.headerHiddenByScroll = true;
@@ -209,6 +219,16 @@ export class CurtainMode {
         gsap.to(this.elements.header, { autoAlpha: 1, y: 0, duration: 0.18, overwrite: true });
         this.headerHiddenByScroll = false;
       }
+      
+      // Синхронизация скролла меню со скроллом страницы для скрытия панели браузера
+      // При скролле вниз внутри меню поддерживаем небольшой скролл страницы
+      if (delta > 0) {
+        // Если страница в начале или близко к началу, скроллим немного вниз
+        if (window.scrollY < 10) {
+          window.scrollTo({ top: 5, behavior: 'auto' });
+        }
+      }
+      
       this.lastCurtainScrollTop = current;
     };
     
