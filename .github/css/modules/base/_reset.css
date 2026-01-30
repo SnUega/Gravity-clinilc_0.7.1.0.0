@@ -12,6 +12,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Отключаем smooth scroll для мобильных устройств, чтобы избежать конфликтов */
+@media (max-width: 1024px) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   min-height: 100%;
   font-family: sans-serif;
