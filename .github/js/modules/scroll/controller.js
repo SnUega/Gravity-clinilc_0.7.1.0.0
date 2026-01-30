@@ -12,6 +12,11 @@ import { getErrorHandler, ERROR_SEVERITY } from '../../core/errors.js';
  */
 export class ScrollController {
   constructor(options = {}) {
+    // Определяем, является ли устройство мобильным
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+    
     this.options = {
       duration: options.duration || 1.9,
       easing: options.easing || ((t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))),
@@ -19,8 +24,9 @@ export class ScrollController {
       gestureDirection: options.gestureDirection || 'vertical',
       smooth: options.smooth !== false,
       mouseMultiplier: options.mouseMultiplier || 0.75,
-      smoothTouch: options.smoothTouch !== false,
-      touchMultiplier: options.touchMultiplier || 1.6,
+      // Отключаем smoothTouch для мобильных устройств, чтобы избежать конфликтов с нативным скроллом
+      smoothTouch: isMobileDevice ? false : (options.smoothTouch !== false),
+      touchMultiplier: isMobileDevice ? 1.0 : (options.touchMultiplier || 1.6),
       infinite: options.infinite || false,
       ...options
     };
