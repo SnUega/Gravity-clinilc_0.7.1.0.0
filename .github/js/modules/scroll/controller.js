@@ -93,6 +93,16 @@ export class ScrollController {
         gsap.ticker.lagSmoothing(0);
       }
 
+      // Настройка обработки горизонтальных контейнеров
+      // Исключаем горизонтальные контейнеры из обработки Lenis
+      // Используем небольшую задержку для гарантии, что все элементы загружены
+      setTimeout(() => {
+        this.setupHorizontalScrollHandling();
+      }, 100);
+      
+      // Предотвращаем соскакивание в начало при touch событиях
+      this.setupScrollPositionLock();
+
       this.isInitialized = true;
       
       // ScrollController initialized
@@ -201,6 +211,213 @@ export class ScrollController {
   }
 
   /**
+   * Настройка обработки горизонтальных контейнеров
+   * Предотвращает конфликты между Lenis и нативным горизонтальным скроллом
+   */
+  setupHorizontalScrollHandling() {
+    if (!this.lenis) return;
+
+    // Селекторы горизонтальных контейнеров
+    const horizontalSelectors = [
+      '.services-container',
+      '.alr-wrap',
+      '.category-nav'
+    ];
+    
+    // Селектор секции about для специальной обработки
+    const aboutSection = document.querySelector('#about');
+
+    // Находим все горизонтальные контейнеры
+    const horizontalContainers = [];
+    horizontalSelectors.forEach(selector => {
+      const containers = document.querySelectorAll(selector);
+      containers.forEach(container => {
+        if (container.scrollWidth > container.clientWidth) {
+          horizontalContainers.push(container);
+        }
+      });
+    });
+
+    // Специальная обработка для секции about
+    if (aboutSection) {
+      let aboutTouchStartY = 0;
+      let aboutIsScrolling = false;
+
+      const handleAboutTouchStart = (e) => {
+        if (e.touches.length === 1) {
+          aboutTouchStartY = e.touches[0].clientY;
+          aboutIsScrolling = false;
+        }
+      };
+
+      const handleAboutTouchMove = (e) => {
+        if (e.touches.length === 1) {
+          const touchY = e.touches[0].clientY;
+          const deltaY = Math.abs(touchY - aboutTouchStartY);
+          
+          // Если вертикальный скролл в секции about
+          if (deltaY > 10) {
+            aboutIsScrolling = true;
+            // Не останавливаем Lenis, но обеспечиваем плавную прокрутку
+          }
+        }
+      };
+
+      const handleAboutTouchEnd = () => {
+        aboutIsScrolling = false;
+      };
+
+      aboutSection.addEventListener('touchstart', handleAboutTouchStart, { passive: true });
+      aboutSection.addEventListener('touchmove', handleAboutTouchMove, { passive: true });
+      aboutSection.addEventListener('touchend', handleAboutTouchEnd, { passive: true });
+      aboutSection.addEventListener('touchcancel', handleAboutTouchEnd, { passive: true });
+    }
+
+    // Обработчики для каждого контейнера
+    horizontalContainers.forEach(container => {
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let isHorizontalScroll = false;
+
+      const handleTouchStart = (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          isHorizontalScroll = false;
+        }
+      };
+
+      const handleTouchMove = (e) => {
+        if (e.touches.length === 1 && !isHorizontalScroll) {
+          const touchX = e.touches[0].clientX;
+          const touchY = e.touches[0].clientY;
+          const deltaX = Math.abs(touchX - touchStartX);
+          const deltaY = Math.abs(touchY - touchStartY);
+
+          // Определяем, горизонтальный ли это скролл
+          if (deltaX > deltaY && deltaX > 10) {
+            isHorizontalScroll = true;
+            // Временно останавливаем Lenis при горизонтальном скролле
+            if (this.lenis) {
+              this.lenis.stop();
+            }
+          }
+        }
+      };
+
+      const handleTouchEnd = () => {
+        if (isHorizontalScroll) {
+          // Возобновляем Lenis после завершения горизонтального скролла
+          setTimeout(() => {
+            if (this.lenis) {
+              this.lenis.start();
+            }
+          }, 100);
+        }
+        isHorizontalScroll = false;
+      };
+
+      // Добавляем обработчики
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      container.addEventListener('touchmove', handleTouchMove, { passive: true });
+      container.addEventListener('touchend', handleTouchEnd, { passive: true });
+      container.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+    });
+
+    // Также обрабатываем wheel события для мыши/трекпада
+    horizontalContainers.forEach(container => {
+      let isScrolling = false;
+
+      const handleWheel = (e) => {
+        // Проверяем, горизонтальный ли это скролл
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+          isScrolling = true;
+          if (this.lenis) {
+            this.lenis.stop();
+          }
+          
+          // Возобновляем Lenis после завершения скролла
+          clearTimeout(this._wheelTimeout);
+          this._wheelTimeout = setTimeout(() => {
+            if (this.lenis && isScrolling) {
+              this.lenis.start();
+              isScrolling = false;
+            }
+          }, 150);
+        }
+      };
+
+      container.addEventListener('wheel', handleWheel, { passive: true });
+    });
+  }
+
+  /**
+   * Блокировка позиции скролла при touch событиях
+   * Предотвращает случайные прыжки в начало страницы
+   */
+  setupScrollPositionLock() {
+    if (!this.lenis) return;
+
+    let touchStartScrollY = 0;
+    let touchStartY = 0;
+    let isTouchActive = false;
+
+    const handleDocumentTouchStart = (e) => {
+      // Проверяем, не находимся ли мы в горизонтальном контейнере
+      const target = e.target;
+      const isInHorizontalContainer = target.closest('.services-container, .alr-wrap, .category-nav');
+      
+      if (!isInHorizontalContainer && e.touches.length === 1) {
+        // Сохраняем текущую позицию скролла и начальную позицию touch
+        touchStartScrollY = window.scrollY || window.pageYOffset || 0;
+        touchStartY = e.touches[0].clientY;
+        isTouchActive = true;
+      }
+    };
+
+    const handleDocumentTouchMove = (e) => {
+      if (isTouchActive && e.touches.length === 1) {
+        // Проверяем, не пытается ли пользователь скроллить горизонтально
+        const target = e.target;
+        const isInHorizontalContainer = target.closest('.services-container, .alr-wrap, .category-nav');
+        
+        if (isInHorizontalContainer) {
+          // Если в горизонтальном контейнере, не блокируем
+          isTouchActive = false;
+          return;
+        }
+
+        const currentTouchY = e.touches[0].clientY;
+        const touchDeltaY = Math.abs(currentTouchY - touchStartY);
+        
+        // Предотвращаем резкие изменения позиции скролла
+        const currentScrollY = window.scrollY || window.pageYOffset || 0;
+        const scrollDelta = Math.abs(currentScrollY - touchStartScrollY);
+        
+        // Если произошел большой скачок (больше 100px) без соответствующего движения пальца
+        if (scrollDelta > 100 && touchDeltaY < 50) {
+          // Возвращаем позицию скролла
+          if (this.lenis) {
+            this.lenis.scrollTo(touchStartScrollY, { immediate: true });
+          } else {
+            window.scrollTo(0, touchStartScrollY);
+          }
+        }
+      }
+    };
+
+    const handleDocumentTouchEnd = () => {
+      isTouchActive = false;
+    };
+
+    // Добавляем обработчики на document для перехвата всех touch событий
+    document.addEventListener('touchstart', handleDocumentTouchStart, { passive: true });
+    document.addEventListener('touchmove', handleDocumentTouchMove, { passive: true });
+    document.addEventListener('touchend', handleDocumentTouchEnd, { passive: true });
+    document.addEventListener('touchcancel', handleDocumentTouchEnd, { passive: true });
+  }
+
+  /**
    * Уничтожение контроллера
    */
   destroy() {
@@ -217,6 +434,10 @@ export class ScrollController {
         });
       }
       this.lenis = null;
+    }
+    
+    if (this._wheelTimeout) {
+      clearTimeout(this._wheelTimeout);
     }
     
     window.lenis = null;

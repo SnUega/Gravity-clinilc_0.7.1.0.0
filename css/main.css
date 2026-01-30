@@ -47,6 +47,17 @@ html {
       transition: filter 0.3s ease;
       overflow-x: hidden;
     }
+    
+    /* Плавная прокрутка с snap для мобильных устройств */
+    @media (max-width: 1024px) {
+      html {
+        scroll-snap-type: y proximity;
+      }
+      
+      .page-wrapper {
+        scroll-snap-type: y proximity;
+      }
+    }
 
 body.lock-scroll {
       overflow: hidden;

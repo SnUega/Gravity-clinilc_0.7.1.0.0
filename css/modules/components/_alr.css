@@ -247,11 +247,12 @@
     .alr-wrap {
       display: flex;
       overflow-x: auto;
-      scroll-snap-type: x proximity; /* require closer approach to snap */
+      scroll-snap-type: x mandatory; /* changed from proximity to mandatory for better snap */
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* IE and Edge */
       overscroll-behavior-x: contain; /* avoid cascading overscroll */
+      touch-action: pan-x pan-y; /* allow horizontal and vertical panning */
     }
     
     .alr-wrap::-webkit-scrollbar {
@@ -291,11 +292,12 @@
     .alr-wrap {
       display: flex;
       overflow-x: auto;
-      scroll-snap-type: x proximity; /* require closer approach to snap */
+      scroll-snap-type: x mandatory; /* changed from proximity to mandatory for better snap */
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none; /* IE and Edge */
       overscroll-behavior-x: contain; /* avoid cascading overscroll */
+      touch-action: pan-x pan-y; /* allow horizontal and vertical panning */
     }
     
     .alr-wrap::-webkit-scrollbar {
