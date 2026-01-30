@@ -87,10 +87,10 @@ async function init() {
       initScrollFlow();
       
       // Импортируем модули услуг
-      const { initServicesParallax } = await import('./modules/services/index.js');
+      // const { initServicesParallax } = await import('./modules/services/index.js');
       
-      // Инициализируем параллакс эффект
-      initServicesParallax();
+      // Параллакс эффект отключен по запросу пользователя
+      // initServicesParallax();
       
       console.log('✅ Scroll and services modules loaded');
     } catch (error) {

@@ -243,9 +243,15 @@
   
   /* ALR mobile hint styles moved to modules/components/_mobile-hint.css */
   @media (max-width: 768px) {
+    #alr {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
     
     .alr-wrap {
       display: flex;
+      height: 100%;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -287,9 +293,15 @@
   /* ALR mobile hint tablet styles moved to modules/components/_mobile-hint.css */
   @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait),
          (min-width: 1024px) and (max-width: 1024px) and (orientation: portrait) {
+    #alr {
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
     
     .alr-wrap {
       display: flex;
+      height: 100%;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
