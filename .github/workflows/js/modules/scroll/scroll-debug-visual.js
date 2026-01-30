@@ -173,27 +173,39 @@ export function initScrollDebugVisual() {
     const currentPos = window.pageYOffset || document.documentElement.scrollTop || 0;
     const targetY = typeof args[0] === 'object' ? args[0].top : (args[1] !== undefined ? args[1] : args[0]);
     
-    // Получаем стек вызовов для определения источника
+    // Получаем полный стек вызовов для определения источника
     const stack = new Error().stack;
-    const stackLines = stack.split('\n').slice(2, 8); // Берем первые 6 строк стека
-    const caller = stackLines.find(line => 
-      !line.includes('scroll-debug') && 
-      !line.includes('scrollTo') &&
-      !line.includes('at Window')
-    ) || stackLines[0] || 'unknown';
+    const stackLines = stack.split('\n').slice(2, 15); // Берем больше строк стека
     
-    // Извлекаем имя файла и функции из стека
-    const callerInfo = caller.match(/at\s+(.+?)\s+\((.+?):(\d+):(\d+)\)/) || 
-                      caller.match(/at\s+(.+)/) || 
-                      ['', 'unknown'];
-    const callerName = callerInfo[1] || callerInfo[0] || 'unknown';
-    const callerFile = callerInfo[2] ? callerInfo[2].split('/').pop() : 'unknown';
+    // Находим первый вызов, который не из наших модулей отладки/защиты
+    const relevantCallers = stackLines
+      .filter(line => 
+        !line.includes('scroll-debug') && 
+        !line.includes('scroll-protection') &&
+        !line.includes('scrollTo') &&
+        !line.includes('at Window') &&
+        !line.includes('at Object')
+      )
+      .slice(0, 3); // Берем первые 3 релевантных вызова
+    
+    // Формируем информацию о вызовах
+    const callerInfo = relevantCallers.map(line => {
+      const match = line.match(/at\s+(.+?)\s+\((.+?):(\d+):(\d+)\)/) || 
+                   line.match(/at\s+(.+)/);
+      if (match) {
+        const funcName = match[1] || 'anonymous';
+        const filePath = match[2] || '';
+        const fileName = filePath ? filePath.split('/').pop() : 'unknown';
+        return `${funcName}@${fileName}`;
+      }
+      return line.trim();
+    }).join(' <- ');
     
     addLog('scrollTo', { 
       from: currentPos, 
       to: targetY,
-      caller: callerName.substring(0, 50),
-      file: callerFile
+      stack: callerInfo || 'unknown',
+      fullStack: stackLines.slice(0, 5).map(l => l.trim()).join(' | ')
     });
     
     return originalScrollTo.apply(window, args);

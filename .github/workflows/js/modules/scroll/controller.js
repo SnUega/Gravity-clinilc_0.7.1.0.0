@@ -82,21 +82,14 @@ export class ScrollController {
         window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
         
         // Throttled resize handler для мобильных устройств
+        // Восстановление позиции после refresh обрабатывается в scroll-protection.js
         let resizeTimeout = null;
         const handleResize = () => {
           if (resizeTimeout) {
             clearTimeout(resizeTimeout);
           }
           resizeTimeout = setTimeout(() => {
-            // Сохраняем позицию перед refresh
-            const savedPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
             ScrollTrigger.refresh();
-            // Восстанавливаем позицию после refresh
-            if (savedPosition > 0) {
-              requestAnimationFrame(() => {
-                window.scrollTo(0, savedPosition);
-              });
-            }
           }, 300); // Задержка 300ms для предотвращения множественных вызовов
         };
         

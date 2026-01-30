@@ -91,8 +91,14 @@ export function initScrollProtection() {
     
     // Если это попытка сбросить скролл в начало (0 или близко к 0)
     // и пользователь недавно скроллил, предотвращаем это
-    if (args.length > 0 && !isInitialLoad && !isRestoringPosition) {
+    if (args.length > 0 && !isInitialLoad) {
       if (targetY === 0 || (typeof targetY === 'number' && targetY < 50)) {
+        // Во время refresh блокируем сброс в 0, если позиция была больше 0
+        if (isRestoringPosition && currentPosition > 0) {
+          console.warn('Prevented scroll reset to 0 during refresh', { currentPosition, targetY });
+          return; // Не выполняем сброс во время refresh
+        }
+        
         // Если пользователь скроллит и позиция была больше 100px, не сбрасываем
         if (isUserScrolling && currentPosition > 100) {
           console.warn('Prevented scroll reset to top', { currentPosition, targetY });
@@ -110,25 +116,67 @@ export function initScrollProtection() {
     return originalScrollTo.apply(window, args);
   };
   
-  // Перехватываем ScrollTrigger.refresh() для сохранения позиции
+  // Перехватываем ScrollTrigger.refresh() для предотвращения сброса скролла
   if (typeof ScrollTrigger !== 'undefined') {
     const originalRefresh = ScrollTrigger.refresh;
+    let isRefreshing = false;
+    let refreshStartPosition = 0;
+    
     ScrollTrigger.refresh = function(...args) {
-      const savedPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
-      const result = originalRefresh.apply(ScrollTrigger, args);
-      
-      // Восстанавливаем позицию после refresh, если она была больше 0
-      if (savedPosition > 0 && !isInitialLoad) {
-        isRestoringPosition = true;
-        requestAnimationFrame(() => {
-          window.scrollTo(0, savedPosition);
-          setTimeout(() => {
-            isRestoringPosition = false;
-          }, 100);
-        });
+      if (isRefreshing) {
+        // Предотвращаем рекурсивные вызовы
+        console.warn('ScrollTrigger.refresh() called recursively, skipping');
+        return originalRefresh.apply(ScrollTrigger, args);
       }
       
-      return result;
+      refreshStartPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+      isRefreshing = true;
+      isRestoringPosition = true; // Блокируем перехват scrollTo(0) во время refresh
+      
+      console.log('ScrollTrigger.refresh() started', { savedPosition: refreshStartPosition });
+      
+      try {
+        const result = originalRefresh.apply(ScrollTrigger, args);
+        
+        // Проверяем, не был ли скролл сброшен внутри refresh
+        const positionAfterRefresh = window.pageYOffset || document.documentElement.scrollTop || 0;
+        console.log('ScrollTrigger.refresh() completed', { 
+          before: refreshStartPosition, 
+          after: positionAfterRefresh,
+          delta: positionAfterRefresh - refreshStartPosition
+        });
+        
+        // Восстанавливаем позицию после refresh, если она была больше 0 и изменилась
+        // Используем двойной requestAnimationFrame для гарантии, что все обновления завершены
+        if (refreshStartPosition > 0 && !isInitialLoad && Math.abs(positionAfterRefresh - refreshStartPosition) > 10) {
+          console.log('Restoring scroll position after refresh', { from: positionAfterRefresh, to: refreshStartPosition });
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const currentPos = window.pageYOffset || document.documentElement.scrollTop || 0;
+              // Восстанавливаем только если позиция действительно изменилась
+              if (Math.abs(currentPos - refreshStartPosition) > 10) {
+                window.scrollTo(0, refreshStartPosition);
+              }
+              setTimeout(() => {
+                isRestoringPosition = false;
+                isRefreshing = false;
+              }, 50);
+            });
+          });
+        } else {
+          setTimeout(() => {
+            isRestoringPosition = false;
+            isRefreshing = false;
+          }, 50);
+        }
+        
+        return result;
+      } catch (e) {
+        console.error('Error in ScrollTrigger.refresh()', e);
+        isRestoringPosition = false;
+        isRefreshing = false;
+        throw e;
+      }
     };
   }
 
