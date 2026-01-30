@@ -77,32 +77,37 @@ export class Preloader {
     document.documentElement.style.overflow = '';
 
     // Удаляем обработчики блокировки
-    // Важно: удаляем в обратном порядке и с небольшой задержкой для мобильных устройств
-    // чтобы гарантировать полную разблокировку
+    // Для мобильных устройств критически важно удалить все обработчики немедленно
+    // и дополнительно проверить через небольшой интервал
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
                           (typeof window !== 'undefined' && 'ontouchstart' in window) ||
                           (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
 
+    // Удаляем обработчики немедленно
+    this.scrollBlockers.forEach(({ target, event, handler }) => {
+      try {
+        target.removeEventListener(event, handler, { capture: true });
+      } catch (e) {
+        // Игнорируем ошибки при удалении обработчиков
+      }
+    });
+
+    // Для мобильных устройств дополнительно проверяем через небольшой интервал
+    // и принудительно очищаем, если что-то осталось
     if (isMobileDevice) {
-      // Для мобильных устройств удаляем обработчики с небольшой задержкой
-      // чтобы гарантировать, что все события разблокированы
+      const blockersCopy = [...this.scrollBlockers];
       setTimeout(() => {
-        this.scrollBlockers.forEach(({ target, event, handler }) => {
+        blockersCopy.forEach(({ target, event, handler }) => {
           try {
             target.removeEventListener(event, handler, { capture: true });
           } catch (e) {
-            // Игнорируем ошибки при удалении обработчиков
+            // Игнорируем ошибки
           }
         });
-        this.scrollBlockers = [];
-      }, 50);
-    } else {
-      // Для десктопов удаляем сразу
-      this.scrollBlockers.forEach(({ target, event, handler }) => {
-        target.removeEventListener(event, handler, { capture: true });
-      });
-      this.scrollBlockers = [];
+      }, 100);
     }
+
+    this.scrollBlockers = [];
   }
 
   /**
@@ -196,8 +201,27 @@ export class Preloader {
 
     // Инициализация страницы и разблокировка скролла
     setTimeout(() => {
+      // Определяем, является ли устройство мобильным
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                            (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                            (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+
+      // Сохраняем текущую позицию скролла перед разблокировкой (для мобильных)
+      let savedScrollPosition = 0;
+      if (isMobileDevice) {
+        savedScrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+      }
+
       // Разблокируем скролл
       this.unlockScroll();
+
+      // Для мобильных устройств восстанавливаем позицию скролла после разблокировки
+      // чтобы предотвратить соскакивание
+      if (isMobileDevice && savedScrollPosition > 0) {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, savedScrollPosition);
+        });
+      }
 
       // НЕ сбрасываем скролл в начало после скрытия прелоадера на реальных устройствах
       // Это предотвращает конфликты с нативным скроллом и соскакивание страницы
@@ -207,8 +231,13 @@ export class Preloader {
         // Если есть hash, даем время на разблокировку скролла перед переходом
         setTimeout(() => {
           const target = document.querySelector(window.location.hash);
-          if (target && window.lenis && typeof window.lenis.scrollTo === 'function') {
-            window.lenis.scrollTo(target, { offset: -80 });
+          if (target) {
+            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+              window.lenis.scrollTo(target, { offset: -80 });
+            } else {
+              // Для мобильных устройств используем нативный scrollIntoView
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }
         }, 200);
       }
@@ -232,15 +261,18 @@ export class Preloader {
    * Инициализация прелоадера
    */
   init() {
-    // Устанавливаем ручное управление восстановлением скролла
-    try {
-      window.history.scrollRestoration = 'manual';
-    } catch (e) {}
-
     // Определяем, является ли устройство мобильным
     const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
                           (typeof window !== 'undefined' && 'ontouchstart' in window) ||
                           (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+
+    // Устанавливаем ручное управление восстановлением скролла только для десктопов
+    // На мобильных устройствах это может вызывать проблемы
+    if (!isMobileDevice) {
+      try {
+        window.history.scrollRestoration = 'manual';
+      } catch (e) {}
+    }
 
     // Сбрасываем скролл в начало при загрузке только если нет hash в URL
     // НЕ делаем этого для мобильных устройств, чтобы избежать конфликтов с нативным скроллом

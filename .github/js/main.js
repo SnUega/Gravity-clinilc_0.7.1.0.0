@@ -75,7 +75,10 @@ async function init() {
     // Этап 2: Простые модули скролла и услуг
     try {
       // Импортируем модули скролла
-      const { initScrollController, initCustomScrollbar, initScrollFlow } = await import('./modules/scroll/index.js');
+      const { initScrollController, initCustomScrollbar, initScrollFlow, initScrollProtection } = await import('./modules/scroll/index.js');
+      
+      // Инициализируем защиту от сброса скролла (для мобильных устройств)
+      initScrollProtection();
       
       // Инициализируем контроллер скролла (Lenis)
       await initScrollController();
