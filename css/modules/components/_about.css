@@ -16,8 +16,6 @@
     flex-direction: column;
     padding: 2rem;
     overflow: hidden;
-    touch-action: pan-y pan-x;
-    overscroll-behavior-y: contain;
   }
 
   .about-title {
