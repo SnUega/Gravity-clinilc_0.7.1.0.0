@@ -163,7 +163,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     overscroll-behavior-x: contain;
-    touch-action: pan-x pan-y; /* allow horizontal and vertical panning */
+    touch-action: pan-x pan-y; /* allow both horizontal and vertical panning */
   }
 
   .services-container::-webkit-scrollbar {
@@ -219,7 +219,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     overscroll-behavior-x: contain;
-    touch-action: pan-x pan-y; /* allow horizontal and vertical panning */
+    touch-action: pan-x pan-y; /* allow both horizontal and vertical panning */
   }
 
   .services-container::-webkit-scrollbar {

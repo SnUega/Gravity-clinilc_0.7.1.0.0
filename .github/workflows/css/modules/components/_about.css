@@ -8,8 +8,7 @@
     section.about {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    height: auto;
+    height: 100vh;
     background: #f4f4f4;
     display: flex;
     align-items: center;
@@ -17,9 +16,6 @@
     flex-direction: column;
     padding: 2rem;
     overflow: hidden;
-    scroll-snap-type: y proximity;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     touch-action: pan-y pan-x;
     overscroll-behavior-y: contain;
   }
@@ -27,14 +23,7 @@
   .about-title {
     text-align: center;
     z-index: 1;
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    padding: 1rem 0;
-    margin-bottom: 0;
-    pointer-events: none;
+    position: relative;
   }
 
   .about-title h2 {
@@ -48,28 +37,22 @@
   }
 
   .cards-container {
-    position: relative;
-    top: 0;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     display: flex;
     flex-wrap: nowrap;
     z-index: 2;
     width: 100%;
-    max-width: 1400px;
     justify-content: center;
     pointer-events: none;
-    margin: 0 auto;
-    padding: 0;
-    min-height: 100vh;
-    align-items: center;
   }
 
   .card {
     position: relative;
     width: 33.333%;
     height: 60vh;
-    min-height: 500px;
     margin-left: -12.6%;
     background: #fff;
     border-radius: 12px;
@@ -85,31 +68,6 @@
     text-align: center;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Каждая карточка становится snap point при прокрутке страницы */
-  .card:nth-child(1) {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    scroll-margin-top: 20vh;
-  }
-  
-  .card:nth-child(2) {
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    scroll-margin-top: 20vh;
-  }
-  
-  .card:nth-child(3) {
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-    scroll-margin-top: 20vh;
-  }
-  
-  .card:nth-child(4) {
-    scroll-snap-align: end;
-    scroll-snap-stop: always;
-    scroll-margin-top: 20vh;
   }
 
   .card:hover {
@@ -196,55 +154,3 @@
     background: #dc3545;
   }
 
-  /* Мобильные и планшеты - вертикальное расположение карточек с snap */
-  @media (max-width: 1024px) {
-    section.about {
-      min-height: auto;
-      height: auto;
-      padding: 1rem;
-      scroll-snap-type: y mandatory;
-    }
-    
-    .cards-container {
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 15vh 0;
-      gap: 2rem;
-      min-height: auto;
-    }
-    
-    .card {
-      width: 90%;
-      max-width: 400px;
-      height: auto;
-      min-height: 60vh;
-      margin-left: 0;
-      margin-bottom: 2rem;
-      scroll-snap-align: center;
-      scroll-snap-stop: always;
-      scroll-margin: 10vh 0;
-    }
-    
-    .card:first-child {
-      margin-left: 0;
-    }
-    
-    .about-title {
-      position: relative;
-      top: auto;
-      left: auto;
-      transform: none;
-      padding: 1rem 0;
-      margin-bottom: 2rem;
-    }
-  }
-  
-  /* Планшеты в портретной ориентации */
-  @media (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
-    .card {
-      width: 80%;
-      max-width: 500px;
-      min-height: 70vh;
-    }
-  }
