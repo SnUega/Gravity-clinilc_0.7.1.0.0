@@ -56,6 +56,12 @@ export class ScrollController {
       
       // Для мобильных устройств синхронизируем ScrollTrigger с нативным скроллом
       if (typeof ScrollTrigger !== 'undefined') {
+        // Отключаем авто-рефреш ScrollTrigger на resize для мобильных устройств
+        // чтобы предотвратить множественные вызовы refresh() при изменении размера окна
+        ScrollTrigger.config({ 
+          autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load' 
+        });
+        
         // Обработчик нативного скролла для обновления ScrollTrigger
         const nativeScrollHandler = () => {
           ScrollTrigger.update();
@@ -74,10 +80,31 @@ export class ScrollController {
         };
         
         window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
-        window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
         
-        // Сохраняем обработчик для возможного удаления в будущем
+        // Throttled resize handler для мобильных устройств
+        let resizeTimeout = null;
+        const handleResize = () => {
+          if (resizeTimeout) {
+            clearTimeout(resizeTimeout);
+          }
+          resizeTimeout = setTimeout(() => {
+            // Сохраняем позицию перед refresh
+            const savedPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+            ScrollTrigger.refresh();
+            // Восстанавливаем позицию после refresh
+            if (savedPosition > 0) {
+              requestAnimationFrame(() => {
+                window.scrollTo(0, savedPosition);
+              });
+            }
+          }, 300); // Задержка 300ms для предотвращения множественных вызовов
+        };
+        
+        window.addEventListener('resize', handleResize, { passive: true });
+        
+        // Сохраняем обработчики для возможного удаления в будущем
         this._nativeScrollHandler = optimizedScrollHandler;
+        this._resizeHandler = handleResize;
       }
       
       return null;

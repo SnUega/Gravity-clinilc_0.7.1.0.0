@@ -167,13 +167,34 @@ export function initScrollDebugVisual() {
     document.body.removeChild(textarea);
   };
 
-  // Логируем все вызовы scrollTo
+  // Логируем все вызовы scrollTo с указанием источника
   const originalScrollTo = window.scrollTo;
   window.scrollTo = function(...args) {
     const currentPos = window.pageYOffset || document.documentElement.scrollTop || 0;
     const targetY = typeof args[0] === 'object' ? args[0].top : (args[1] !== undefined ? args[1] : args[0]);
     
-    addLog('scrollTo', { from: currentPos, to: targetY });
+    // Получаем стек вызовов для определения источника
+    const stack = new Error().stack;
+    const stackLines = stack.split('\n').slice(2, 8); // Берем первые 6 строк стека
+    const caller = stackLines.find(line => 
+      !line.includes('scroll-debug') && 
+      !line.includes('scrollTo') &&
+      !line.includes('at Window')
+    ) || stackLines[0] || 'unknown';
+    
+    // Извлекаем имя файла и функции из стека
+    const callerInfo = caller.match(/at\s+(.+?)\s+\((.+?):(\d+):(\d+)\)/) || 
+                      caller.match(/at\s+(.+)/) || 
+                      ['', 'unknown'];
+    const callerName = callerInfo[1] || callerInfo[0] || 'unknown';
+    const callerFile = callerInfo[2] ? callerInfo[2].split('/').pop() : 'unknown';
+    
+    addLog('scrollTo', { 
+      from: currentPos, 
+      to: targetY,
+      caller: callerName.substring(0, 50),
+      file: callerFile
+    });
     
     return originalScrollTo.apply(window, args);
   };
