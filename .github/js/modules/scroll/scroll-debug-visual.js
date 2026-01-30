@@ -66,6 +66,7 @@ export function initScrollDebugVisual() {
 
   const logs = [];
   const maxLogs = 250; // Увеличено для большего количества логов
+  let hasShownPanel = false;
 
   const addLog = (message, data = {}) => {
     const timestamp = new Date().toLocaleTimeString();
@@ -90,6 +91,12 @@ export function initScrollDebugVisual() {
 
     // Обновляем визуальный вывод
     updateLogsDisplay();
+    
+    // Автоматически показываем панель при первом важном событии
+    if (!hasShownPanel && (message === 'scrollTo' || message === 'JUMP!')) {
+      debugPanel.style.display = 'block';
+      hasShownPanel = true;
+    }
   };
 
   const updateLogsDisplay = () => {
@@ -234,13 +241,75 @@ export function initScrollDebugVisual() {
   });
   debugPanel.insertBefore(clearButton, logsContainer);
 
-  // Кнопка для показа/скрытия панели (тройной тап)
+  // Обработчик тройного тапа (последовательные тапы, а не одновременные)
+  let tapCount = 0;
+  let tapTimer = null;
+  const TAP_TIMEOUT = 500; // 500ms между тапами
+  
   document.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 3) { // Тройной тап для показа/скрытия
-      e.preventDefault();
-      debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+    tapCount++;
+    
+    if (tapTimer) {
+      clearTimeout(tapTimer);
     }
-  }, { passive: false });
+    
+    tapTimer = setTimeout(() => {
+      if (tapCount >= 3) {
+        // Тройной тап - показываем/скрываем панель
+        debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+        console.log('🔍 Debug panel toggled:', debugPanel.style.display);
+      }
+      tapCount = 0;
+    }, TAP_TIMEOUT);
+  }, { passive: true });
+
+  // Альтернатива: долгое нажатие (3 секунды) для показа панели
+  let longPressTimer = null;
+  document.addEventListener('touchstart', (e) => {
+    longPressTimer = setTimeout(() => {
+      debugPanel.style.display = 'block';
+      console.log('🔍 Debug panel opened via long press');
+    }, 3000);
+  }, { passive: true });
+
+  document.addEventListener('touchend', () => {
+    if (longPressTimer) {
+      clearTimeout(longPressTimer);
+      longPressTimer = null;
+    }
+  }, { passive: true });
+
+  // Кнопка для показа/скрытия (всегда видимая в углу)
+  const toggleButton = document.createElement('div');
+  toggleButton.textContent = '🔍';
+  toggleButton.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(0, 255, 0, 0.8);
+    color: #000;
+    border: 2px solid #0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    z-index: 99998;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  `;
+  toggleButton.addEventListener('click', () => {
+    debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+  });
+  toggleButton.addEventListener('touchstart', (e) => {
+    e.stopPropagation();
+    debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+  });
+  document.body.appendChild(toggleButton);
+
 
   // Экспортируем функции для доступа из консоли
   window.scrollDebugLogs = logs;
