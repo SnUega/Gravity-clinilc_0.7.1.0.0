@@ -22,9 +22,9 @@ export class ScrollController {
       gestureDirection: options.gestureDirection || 'vertical',
       smooth: options.smooth !== false,
       mouseMultiplier: options.mouseMultiplier || 0.75,
-      // На мобильных отключаем smoothTouch для предотвращения конфликтов
-      smoothTouch: isMobile ? false : (options.smoothTouch !== false),
-      touchMultiplier: isMobile ? 0.3 : (options.touchMultiplier || 1.6),
+      // На мобильных используем smoothTouch но с меньшим множителем для предотвращения конфликтов
+      smoothTouch: options.smoothTouch !== false,
+      touchMultiplier: isMobile ? 1.0 : (options.touchMultiplier || 1.6),
       infinite: options.infinite || false,
       ...options
     };
@@ -286,121 +286,45 @@ export class ScrollController {
       container.addEventListener('touchcancel', handleTouchEnd, { passive: true });
     });
 
-    // Защита от соскакивания в начало при изменении направления скролла
-    let lastScrollY = window.scrollY || window.pageYOffset || 0;
-    let touchStartY = 0;
+    // Минимальная защита от соскакивания - только финальная проверка после touchend
+    // Не блокируем нормальный скролл во время движения
     let touchStartScrollY = 0;
-    let isTracking = false;
-    let scrollDirection = 0; // 1 = down, -1 = up, 0 = unknown
-    let lastValidScrollY = 0; // Последняя валидная позиция скролла
-
-    // Инициализируем последнюю валидную позицию
-    lastValidScrollY = lastScrollY;
+    let lastValidScrollY = window.scrollY || window.pageYOffset || 0;
 
     const handleDocumentTouchStart = (e) => {
-      const target = e.target;
-      const isInHorizontal = target.closest('.services-container, .alr-wrap, .category-nav');
-      
-      if (!isInHorizontal && e.touches.length === 1) {
-        touchStartY = e.touches[0].clientY;
+      // Запоминаем начальную позицию скролла
+      if (e.touches.length === 1) {
         const currentScroll = window.scrollY || window.pageYOffset || 0;
         touchStartScrollY = currentScroll;
-        lastScrollY = currentScroll;
-        lastValidScrollY = currentScroll; // Обновляем валидную позицию
-        isTracking = true;
-        scrollDirection = 0;
-      }
-    };
-
-    const handleDocumentTouchMove = (e) => {
-      if (isTracking && e.touches.length === 1) {
-        const target = e.target;
-        const isInHorizontal = target.closest('.services-container, .alr-wrap, .category-nav');
-        
-        // Не применяем защиту от соскакивания для горизонтальных контейнеров
-        if (isInHorizontal) {
-          return;
+        if (currentScroll > lastValidScrollY) {
+          lastValidScrollY = currentScroll;
         }
-        
-        const currentY = e.touches[0].clientY;
-        const currentScrollY = window.scrollY || window.pageYOffset || 0;
-        const deltaY = currentY - touchStartY;
-        const scrollDelta = currentScrollY - lastScrollY;
-        
-        // Определяем направление скролла
-        if (Math.abs(deltaY) > 10) {
-          scrollDirection = deltaY > 0 ? 1 : -1;
-        }
-        
-        // Более агрессивная проверка на резкие скачки для touch устройств
-        // Проверяем на неожиданные скачки вверх (соскакивание)
-        const unexpectedJumpUp = scrollDelta < -150 && deltaY > -50; // Скролл прыгнул вверх, но палец не двигался так сильно
-        const jumpToTop = currentScrollY < 150 && touchStartScrollY > 200 && Math.abs(deltaY) < 80;
-        const jumpBack = currentScrollY < lastValidScrollY - 80 && Math.abs(deltaY) < 40;
-        
-        // Дополнительная проверка: если скролл ушел вверх, но палец двигался вниз или слабо
-        const scrollMovedUpButFingerDown = scrollDelta < -100 && deltaY > 0;
-        const scrollMovedUpButFingerWeak = scrollDelta < -100 && Math.abs(deltaY) < 30;
-        
-        if (unexpectedJumpUp || jumpToTop || jumpBack || scrollMovedUpButFingerDown || scrollMovedUpButFingerWeak) {
-          // Возвращаем позицию немедленно
-          const restoreY = Math.max(touchStartScrollY, lastValidScrollY);
-          if (this.lenis) {
-            this.lenis.scrollTo(restoreY, { immediate: true });
-          } else {
-            window.scrollTo({ top: restoreY, behavior: 'auto' });
-          }
-          lastScrollY = restoreY;
-          // Предотвращаем дальнейшую обработку этого события только при обнаружении соскакивания
-          e.preventDefault();
-          return false;
-        } else if (currentScrollY > lastValidScrollY) {
-          // Обновляем валидную позицию только при нормальном скролле вниз
-          lastValidScrollY = currentScrollY;
-        }
-        
-        lastScrollY = currentScrollY;
       }
     };
 
     const handleDocumentTouchEnd = () => {
-      // Финальная проверка на соскакивание после завершения touch
+      // Только финальная проверка на соскакивание после завершения touch
+      // Очень мягкая проверка - только явное соскакивание в самое начало
       setTimeout(() => {
         const finalScrollY = window.scrollY || window.pageYOffset || 0;
-        // Более строгая проверка - если соскочило более чем на 150px вверх
-        if (finalScrollY < touchStartScrollY - 150 && touchStartScrollY > 200) {
-          const restoreY = Math.max(touchStartScrollY, lastValidScrollY);
+        // Проверяем только на очень резкое соскакивание в самое начало (менее 50px)
+        // И только если пользователь был далеко от начала (более 600px)
+        if (finalScrollY < 50 && touchStartScrollY > 600) {
+          // Это явное соскакивание в начало - восстанавливаем позицию
           if (this.lenis) {
-            this.lenis.scrollTo(restoreY, { immediate: true });
+            this.lenis.scrollTo(Math.max(touchStartScrollY, lastValidScrollY), { immediate: true });
           } else {
-            window.scrollTo({ top: restoreY, behavior: 'auto' });
+            window.scrollTo({ top: Math.max(touchStartScrollY, lastValidScrollY), behavior: 'auto' });
           }
         } else if (finalScrollY > lastValidScrollY) {
           // Обновляем валидную позицию
           lastValidScrollY = finalScrollY;
         }
-      }, 150);
-      
-      // Дополнительная проверка через больший интервал на случай задержанного соскакивания
-      setTimeout(() => {
-        const finalScrollY = window.scrollY || window.pageYOffset || 0;
-        if (finalScrollY < lastValidScrollY - 100 && lastValidScrollY > 200) {
-          if (this.lenis) {
-            this.lenis.scrollTo(lastValidScrollY, { immediate: true });
-          } else {
-            window.scrollTo({ top: lastValidScrollY, behavior: 'auto' });
-          }
-        }
-      }, 500);
-      
-      isTracking = false;
-      scrollDirection = 0;
+      }, 300);
     };
 
-
-    // Используем passive: false для touchmove чтобы иметь возможность preventDefault
+    // Используем passive: true для всех событий - не блокируем нормальный скролл
     document.addEventListener('touchstart', handleDocumentTouchStart, { passive: true });
-    document.addEventListener('touchmove', handleDocumentTouchMove, { passive: false });
     document.addEventListener('touchend', handleDocumentTouchEnd, { passive: true });
     document.addEventListener('touchcancel', handleDocumentTouchEnd, { passive: true });
   }
