@@ -71,10 +71,19 @@ export function initScrollProtection() {
     isInitialLoad = false;
   }, 2000); // 2 секунды после загрузки
   
+  // Переменные для отслеживания вызовов scrollTo во время refresh
+  let scrollToCallCountDuringRefresh = 0;
+  let isRefreshing = false;
+  
   window.scrollTo = function(...args) {
     const now = Date.now();
     const targetY = typeof args[0] === 'object' ? args[0].top : (args[1] !== undefined ? args[1] : args[0]);
     const currentPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
+    
+    // Отслеживаем вызовы scrollTo во время refresh для статистики
+    if (isRefreshing) {
+      scrollToCallCountDuringRefresh++;
+    }
     
     // Защита от множественных быстрых вызовов scrollTo(0)
     if (targetY === 0 && currentPosition === 0) {
@@ -93,9 +102,11 @@ export function initScrollProtection() {
     // и пользователь недавно скроллил, предотвращаем это
     if (args.length > 0 && !isInitialLoad) {
       if (targetY === 0 || (typeof targetY === 'number' && targetY < 50)) {
-        // Во время refresh блокируем сброс в 0, если позиция была больше 0
-        if (isRestoringPosition && currentPosition > 0) {
-          console.warn('Prevented scroll reset to 0 during refresh', { currentPosition, targetY });
+        // Во время refresh блокируем ВСЕ попытки сбросить скролл в 0, если позиция была больше 0
+        // Это предотвращает дергания, которые создает ScrollTrigger при refresh
+        // ScrollTrigger сам правильно обрабатывает позицию скролла, не нужно вмешиваться
+        if (isRefreshing && currentPosition > 0) {
+          // Блокируем все scrollTo(0) во время refresh, чтобы предотвратить дергания
           return; // Не выполняем сброс во время refresh
         }
         
@@ -119,7 +130,6 @@ export function initScrollProtection() {
   // Перехватываем ScrollTrigger.refresh() для предотвращения сброса скролла
   if (typeof ScrollTrigger !== 'undefined') {
     const originalRefresh = ScrollTrigger.refresh;
-    let isRefreshing = false;
     let refreshStartPosition = 0;
     
     ScrollTrigger.refresh = function(...args) {
@@ -132,6 +142,7 @@ export function initScrollProtection() {
       refreshStartPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
       isRefreshing = true;
       isRestoringPosition = true; // Блокируем перехват scrollTo(0) во время refresh
+      scrollToCallCountDuringRefresh = 0; // Сбрасываем счетчик вызовов scrollTo во время refresh
       
       console.log('ScrollTrigger.refresh() started', { savedPosition: refreshStartPosition });
       
@@ -143,38 +154,28 @@ export function initScrollProtection() {
         console.log('ScrollTrigger.refresh() completed', { 
           before: refreshStartPosition, 
           after: positionAfterRefresh,
-          delta: positionAfterRefresh - refreshStartPosition
+          delta: positionAfterRefresh - refreshStartPosition,
+          scrollToCalls: scrollToCallCountDuringRefresh
         });
         
-        // Восстанавливаем позицию после refresh, если она была больше 0 и изменилась
-        // Используем двойной requestAnimationFrame для гарантии, что все обновления завершены
-        if (refreshStartPosition > 0 && !isInitialLoad && Math.abs(positionAfterRefresh - refreshStartPosition) > 10) {
-          console.log('Restoring scroll position after refresh', { from: positionAfterRefresh, to: refreshStartPosition });
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              const currentPos = window.pageYOffset || document.documentElement.scrollTop || 0;
-              // Восстанавливаем только если позиция действительно изменилась
-              if (Math.abs(currentPos - refreshStartPosition) > 10) {
-                window.scrollTo(0, refreshStartPosition);
-              }
-              setTimeout(() => {
-                isRestoringPosition = false;
-                isRefreshing = false;
-              }, 50);
-            });
-          });
-        } else {
-          setTimeout(() => {
-            isRestoringPosition = false;
-            isRefreshing = false;
-          }, 50);
-        }
+        // НЕ восстанавливаем позицию после refresh, так как:
+        // 1. ScrollTrigger сам управляет позицией скролла во время refresh
+        // 2. Попытка восстановления создает конфликт и множественные вызовы scrollTo
+        // 3. Это вызывает дергания и остановки скролла
+        // ScrollTrigger сам правильно обрабатывает позицию скролла при refresh
+        
+        setTimeout(() => {
+          isRestoringPosition = false;
+          isRefreshing = false;
+          scrollToCallCountDuringRefresh = 0;
+        }, 100); // Увеличена задержка для гарантии завершения всех операций
         
         return result;
       } catch (e) {
         console.error('Error in ScrollTrigger.refresh()', e);
         isRestoringPosition = false;
         isRefreshing = false;
+        scrollToCallCountDuringRefresh = 0;
         throw e;
       }
     };

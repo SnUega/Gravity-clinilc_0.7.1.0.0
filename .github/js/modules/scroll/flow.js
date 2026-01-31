@@ -52,20 +52,17 @@ export class ScrollFlow {
     this.wrap = $(this.options.wrapSelector);
 
     if (!this.contacts || !this.footer || !this.wrap) {
-      const errorHandler = getErrorHandler();
-      errorHandler.handle(new Error('Required elements not found for ScrollFlow'), {
-        module: 'scroll-flow',
-        severity: ERROR_SEVERITY.MEDIUM,
-        context: { 
-          action: 'init',
-          contacts: !!this.contacts,
-          footer: !!this.footer,
-          wrap: !!this.wrap
-        },
-        userMessage: null
-      });
+      // На некоторых страницах элементы могут отсутствовать - это нормально
+      // Не логируем ошибку, просто выходим
       return;
     }
+    
+    // ВАЖНО: Устанавливаем clipPath СРАЗУ при инициализации, до создания ScrollTrigger
+    // Это предотвращает появление белой полосы на всех страницах
+    gsap.set(this.footer, {
+      clipPath: 'inset(100% 0 0 0)', // Скрыт сверху (полностью) - СИНХРОННО!
+      visibility: 'visible'
+    });
 
     // Если есть прелоадер — ждём его завершения, чтобы создать ScrollTrigger уже на финальной позиции скролла
     // Кэшируем элемент прелоадера
@@ -127,6 +124,7 @@ export class ScrollFlow {
     // Сброс состояний перед инициализацией
     // ВАЖНО: устанавливаем clipPath СИНХРОННО, до requestAnimationFrame
     // чтобы избежать появления белой полосы (белый фон #contacts виден поверх черного фона #revealWrap)
+    // clipPath уже установлен в init(), но переустанавливаем для гарантии
     gsap.set(this.footer, {
       clipPath: 'inset(100% 0 0 0)', // Скрыт сверху (полностью) - СИНХРОННО!
       visibility: 'visible',
