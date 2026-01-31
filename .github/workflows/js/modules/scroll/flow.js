@@ -59,6 +59,7 @@ export class ScrollFlow {
     
     // ВАЖНО: Устанавливаем clipPath СРАЗУ при инициализации, до создания ScrollTrigger
     // Это предотвращает появление белой полосы на всех страницах
+    // Используем СИНХРОННЫЙ вызов для немедленного применения
     gsap.set(this.footer, {
       clipPath: 'inset(100% 0 0 0)', // Скрыт сверху (полностью) - СИНХРОННО!
       visibility: 'visible'
@@ -194,15 +195,25 @@ export class ScrollFlow {
    * Настройка обработчика изменения размера
    */
   setupResizeHandler() {
+    // Определяем, является ли устройство мобильным
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+    
+    // На мобильных устройствах НЕ добавляем resize handler, так как:
+    // 1. На мобильных viewport изменяется при скролле (скрытие/появление адресной строки)
+    // 2. Это вызывает множественные resize события, которые создают новые ScrollTrigger
+    // 3. Это вызывает множественные refresh(), которые создают дергания и остановки скролла
+    // 4. ScrollTrigger уже обновляется через ScrollTrigger.update() в scroll handler
+    if (isMobileDevice) {
+      return; // Не добавляем resize handler для мобильных устройств
+    }
+    
     // Сохраняем debounced функцию для возможности очистки
     this.debouncedResize = debounce(() => {
       // Пересоздаем ScrollTrigger при изменении размера
       // Высота футера будет пересчитана в initScrollTrigger
-      // Восстановление позиции скролла после refresh обрабатывается в scroll-protection.js
       this.initScrollTrigger();
-      
-      // ScrollTrigger.refresh() будет вызван автоматически через scroll-protection.js
-      // или через другие модули, не нужно вызывать его здесь вручную
     }, CONFIG.DELAYS.RESIZE);
 
     window.addEventListener('resize', this.debouncedResize);
