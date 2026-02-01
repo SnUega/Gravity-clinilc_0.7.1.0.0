@@ -77,12 +77,10 @@ async function init() {
       // Импортируем модули скролла
       const { initScrollController, initCustomScrollbar, initScrollFlow, initScrollProtection, initScrollDebug, initScrollDebugVisual } = await import('./modules/scroll/index.js');
       
-      // Инициализируем визуальную отладку скролла (для мобильных устройств)
-      // Показывает логи на экране - тройной тап для показа/скрытия
-      initScrollDebugVisual();
-      
-      // Инициализируем отладку скролла в консоль (для мобильных устройств)
-      initScrollDebug();
+      // Отладка скролла отключена для продакшена
+      // Раскомментируйте для отладки:
+      // initScrollDebugVisual();
+      // initScrollDebug();
       
       // Инициализируем защиту от сброса скролла (для мобильных устройств)
       initScrollProtection();

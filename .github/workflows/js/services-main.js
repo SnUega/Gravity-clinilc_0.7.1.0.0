@@ -476,6 +476,21 @@ async function handleFormSubmit(e) {
  * Оптимизировано для устранения глитчей
  */
 function initHeroScrollBehavior() {
+  // Определяем, является ли устройство мобильным или планшетом в вертикали
+  const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                        (typeof window !== 'undefined' && 'ontouchstart' in window) ||
+                        (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+  
+  // Проверяем ориентацию (для планшетов)
+  const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+  const isTabletPortrait = window.innerWidth <= 1024 && window.innerWidth >= 768 && isPortrait;
+  
+  // Отключаем анимацию на мобильных и планшетах в вертикали
+  // На этих устройствах flex перестроен, и анимация вызывает дергания
+  if (isMobileDevice || isTabletPortrait) {
+    return; // Не инициализируем анимацию на мобильных/планшетах в вертикали
+  }
+  
   const hero = document.querySelector('.services-hero');
   const contactsSection = document.querySelector('#contacts');
   const body = document.body;
