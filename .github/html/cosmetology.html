@@ -1349,13 +1349,7 @@
       gsap.registerPlugin(ScrollTrigger);
 
       const mapWrapper = document.querySelector('#map-wrapper');
-      const contactsSection = document.querySelector('#contacts');
       if (!mapWrapper) return;
-
-      // Скрываем контакты до начала анимации карты, чтобы избежать белой полосы
-      if (contactsSection) {
-        gsap.set(contactsSection, { opacity: 0, visibility: 'hidden' });
-      }
 
       gsap.set('#map-wrapper', { height: 0, overflow: 'hidden' });
 
@@ -1366,34 +1360,11 @@
         onEnter: () => {
           const width = mapWrapper.getBoundingClientRect().width;
           const targetHeight = window.innerWidth <= 768 ? Math.max(290, width) : width;
-          
-          // Показываем контакты когда карта достигнет хотя бы 50px высоты
-          const minHeightToShow = 50;
-          let hasShownContacts = false;
-          
           gsap.to('#map-wrapper', {
             height: targetHeight,
             duration: 2.48,
             ease: 'power2.out',
-            onUpdate: function() {
-              const currentHeight = mapWrapper.offsetHeight;
-              if (!hasShownContacts && currentHeight >= minHeightToShow && contactsSection) {
-                hasShownContacts = true;
-                gsap.to(contactsSection, {
-                  opacity: 1,
-                  visibility: 'visible',
-                  duration: 0.3,
-                  ease: 'power2.out'
-                });
-              }
-            },
-            onComplete: () => {
-              mapWrapper.style.overflow = '';
-              // Убеждаемся, что контакты видны после завершения анимации
-              if (contactsSection && !hasShownContacts) {
-                gsap.set(contactsSection, { opacity: 1, visibility: 'visible' });
-              }
-            }
+            onComplete: () => { mapWrapper.style.overflow = ''; }
           });
         }
       });

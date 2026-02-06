@@ -126,8 +126,18 @@ export class ScrollFlow {
     // ВАЖНО: устанавливаем clipPath СИНХРОННО, до requestAnimationFrame
     // чтобы избежать появления белой полосы (белый фон #contacts виден поверх черного фона #revealWrap)
     // clipPath уже установлен в init(), но переустанавливаем для гарантии
+    
+    // Сохраняем текущий прогресс перед сбросом (если ScrollTrigger уже был создан)
+    let savedProgress = 0;
+    if (this.scrollTrigger) {
+      savedProgress = this.scrollTrigger.progress || 0;
+    }
+    
+    // Устанавливаем clipPath на основе сохраненного прогресса (если есть)
+    // или полностью скрываем, если это первая инициализация
+    const clipValue = savedProgress > 0 ? 100 - savedProgress * 100 : 100;
     gsap.set(this.footer, {
-      clipPath: 'inset(100% 0 0 0)', // Скрыт сверху (полностью) - СИНХРОННО!
+      clipPath: `inset(${clipValue}% 0 0 0)`, // Синхронно устанавливаем clipPath
       visibility: 'visible',
       clearProps: 'transform' // Очищаем возможные трансформации, но НЕ clipPath!
     });
@@ -186,6 +196,18 @@ export class ScrollFlow {
           // НЕ вызываем this.scrollTrigger.refresh() здесь, так как это создает рекурсию
           // onRefresh вызывается ВО ВРЕМЯ ScrollTrigger.refresh(), и повторный вызов refresh() создает цикл
           this.footerHeight = this.footer.offsetHeight;
+          
+          // ВАЖНО: Сохраняем текущий clipPath при обновлении, чтобы избежать белой полосы
+          // При скролле вверх ScrollTrigger может обновляться и сбрасывать clipPath
+          const currentClipPath = gsap.getProperty(this.footer, 'clipPath');
+          if (!currentClipPath || currentClipPath === 'none' || currentClipPath === '') {
+            // Если clipPath был сброшен, восстанавливаем его на основе текущего прогресса
+            const currentProgress = this.scrollTrigger ? this.scrollTrigger.progress : 0;
+            const clipValue = 100 - currentProgress * 100;
+            gsap.set(this.footer, {
+              clipPath: `inset(${clipValue}% 0 0 0)`
+            });
+          }
         }
       });
     });

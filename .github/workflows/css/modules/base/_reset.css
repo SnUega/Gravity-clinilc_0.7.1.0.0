@@ -10,6 +10,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Предотвращаем горизонтальные и вертикальные свайпы за пределы экрана */
+  overscroll-behavior: none;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
 }
 
 /* Отключаем smooth scroll для мобильных устройств, чтобы избежать конфликтов */
@@ -24,6 +28,10 @@ body {
   font-family: sans-serif;
   transition: filter 0.3s ease;
   overflow-x: hidden;
+  /* Предотвращаем горизонтальные и вертикальные свайпы за пределы экрана */
+  overscroll-behavior: none;
+  overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
 }
 
 body.lock-scroll {
