@@ -8,10 +8,19 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  /* Для мобильных используем динамический viewport height */
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
+}
+
+/* Fallback для браузеров без поддержки dvh */
+@supports not (height: 100dvh) {
+  .preloader {
+    height: 100vh;
+  }
 }
 
 .preloader-content {

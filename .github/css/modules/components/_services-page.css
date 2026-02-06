@@ -1529,6 +1529,8 @@ body.services-page #revealWrap {
     height: auto;
     min-height: 50vh;
     padding: 6rem 2rem 3rem;
+    overflow: visible; /* Убираем отдельный скролл, включаем в общий поток */
+    overflow-y: visible; /* Убираем вертикальный скролл на мобильных */
   }
   
   .services-list-wrapper {
@@ -1552,6 +1554,8 @@ body.services-page #revealWrap {
   .services-hero {
     min-height: 45vh;
     padding: 5rem 1.5rem 2.5rem;
+    overflow: visible; /* Убираем отдельный скролл, включаем в общий поток */
+    overflow-y: visible; /* Убираем вертикальный скролл на мобильных */
   }
   
   .services-hero-title {
