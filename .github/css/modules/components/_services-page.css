@@ -145,6 +145,7 @@ body.services-page main.services-page-layout:has(~ #revealWrap) {
   align-self: flex-start;
   /* ВАЖНО: Hero должен оставаться sticky до конца скролла services-list-wrapper */
   /* Sticky работает внутри родительского контейнера (services-page-layout) */
+  /* Высота родительского контейнера определяется services-list-wrapper */
   /* Анимация "шторки" - hero уезжает влево при появлении контактов */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   /* GPU acceleration для плавных анимаций */
@@ -332,6 +333,9 @@ body.services-page main.services-page-layout:has(~ #revealWrap) {
   position: relative;
   z-index: 1; /* Below header */
   transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* ВАЖНО: Высота services-list-wrapper определяет высоту родительского контейнера */
+  /* Это позволяет sticky hero работать правильно - hero будет sticky внутри services-page-layout */
+  /* до конца скролла services-list-wrapper */
 }
 
 /* Когда hero скрывается, список расширяется на всю ширину */
@@ -1546,7 +1550,22 @@ body.services-page #revealWrap {
   }
 }
 
-/* Tablet Portrait & Landscape */
+/* Планшеты в горизонтали (1024px) - Hero должен быть sticky */
+@media (min-width: 1024px) and (max-width: 1024px) and (orientation: landscape) {
+  .services-hero {
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    max-height: 100vh;
+  }
+  
+  .services-page-layout {
+    align-items: flex-start;
+  }
+}
+
+/* Tablet Portrait & Mobile - Hero в общем потоке */
 @media (max-width: 1024px) {
   .breadcrumbs {
     position: relative;
@@ -1560,6 +1579,8 @@ body.services-page #revealWrap {
     flex-direction: column;
   }
   
+  /* ВАЖНО: На планшетах в горизонтали (1024px) hero должен быть sticky */
+  /* Это правило применяется только к планшетам в вертикали и мобильным */
   .services-hero {
     position: relative;
     width: 100%;
@@ -1568,6 +1589,27 @@ body.services-page #revealWrap {
     padding: 6rem 2rem 3rem;
     overflow: visible; /* Убираем отдельный скролл, включаем в общий поток */
     overflow-y: visible; /* Убираем вертикальный скролл на мобильных */
+  }
+  
+  /* Переопределяем для планшетов в горизонтали - hero должен быть sticky */
+  @media (orientation: landscape) and (min-width: 1024px) {
+    .services-hero {
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      height: 100vh;
+      max-height: 100vh;
+      width: 30%;
+      flex: 0 0 30%;
+      padding: clamp(1.5rem, 4vw, 5rem);
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    
+    .services-page-layout {
+      flex-direction: row;
+      align-items: flex-start;
+    }
   }
   
   .services-list-wrapper {

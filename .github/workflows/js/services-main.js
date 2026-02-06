@@ -552,7 +552,10 @@ function initHeroScrollBehavior() {
         
         setTimeout(() => {
           isTransitioning = false;
-          debouncedRefresh();
+          // ВАЖНО: НЕ вызываем debouncedRefresh() сразу после изменения layout
+          // Это может конфликтовать с flow.js и вызывать артефакты
+          // ScrollTrigger обновится автоматически через свой механизм обновления
+          // debouncedRefresh();
         }, 500);
       });
     } else if (shouldHide && isHeroHidden) {
@@ -565,7 +568,10 @@ function initHeroScrollBehavior() {
         
         setTimeout(() => {
           isTransitioning = false;
-          debouncedRefresh();
+          // ВАЖНО: НЕ вызываем debouncedRefresh() сразу после изменения layout
+          // Это может конфликтовать с flow.js и вызывать артефакты
+          // ScrollTrigger обновится автоматически через свой механизм обновления
+          // debouncedRefresh();
         }, 500);
       });
     }

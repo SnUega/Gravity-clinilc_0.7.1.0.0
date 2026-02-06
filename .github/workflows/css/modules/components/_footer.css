@@ -413,7 +413,7 @@
     text-align: center;
   }
 
-  /* Показываем "made by" в footer-bottom только на мобильных (скрыт на десктопе) */
+  /* Показываем "made by" в footer-bottom на всех устройствах */
   #page-footer .footer-bottom .made-by-mobile {
     display: flex;
     align-items: center;
