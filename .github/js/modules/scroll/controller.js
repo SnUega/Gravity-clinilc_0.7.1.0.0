@@ -145,6 +145,27 @@ export class ScrollController {
       // Синхронизация с GSAP ScrollTrigger
       if (typeof ScrollTrigger !== 'undefined') {
         this.lenis.on('scroll', ScrollTrigger.update);
+        
+        // ВАЖНО: Дополнительная синхронизация при остановке скролла
+        // Это предотвращает соскакивание секций и появление артефактов
+        // когда инерция плавной прокрутки Lenis останавливается
+        let scrollTimeout = null;
+        this.lenis.on('scroll', () => {
+          // Очищаем предыдущий таймер
+          if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+          }
+          
+          // Устанавливаем новый таймер для обновления после остановки скролла
+          scrollTimeout = setTimeout(() => {
+            // Финальное обновление ScrollTrigger после остановки скролла
+            ScrollTrigger.update();
+            // Дополнительное обновление для гарантии синхронизации
+            requestAnimationFrame(() => {
+              ScrollTrigger.update();
+            });
+          }, 100); // Небольшая задержка для определения остановки скролла
+        });
       }
 
       // Синхронизация с GSAP ticker

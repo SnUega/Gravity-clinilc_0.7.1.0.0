@@ -51,26 +51,15 @@ async function init() {
       console.error('Services page modules error:', error);
     }
 
-    // Этап 3: Инициализируем Lenis для плавного скролла
+    // Этап 3: Инициализируем Lenis для плавного скролла через контроллер (как на главной)
+    // ВАЖНО: Используем initScrollController вместо прямого создания Lenis
+    // Это обеспечивает правильную интеграцию с ScrollTrigger и предотвращает артефакты
     try {
-      await waitForLibrary('Lenis', 5000);
-      
-      lenisInstance = new window.Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        smoothWheel: true,
-      });
-
-      function raf(time) {
-        lenisInstance.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-      
+      const { initScrollController } = await import('./modules/scroll/index.js');
+      lenisInstance = await initScrollController();
       console.log('✅ Lenis smooth scroll initialized');
     } catch (error) {
-      console.warn('Lenis not available, using native scroll');
+      console.warn('Lenis not available, using native scroll:', error);
     }
 
     // Этап 4: Инициализируем меню header

@@ -102,6 +102,9 @@ body.services-page.contacts-visible .breadcrumbs {
 .services-page {
   min-height: 100vh;
   background: var(--color-bg-white);
+  /* Предотвращаем горизонтальные свайпы за пределы экрана */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 .services-page-layout {
@@ -109,6 +112,9 @@ body.services-page.contacts-visible .breadcrumbs {
   min-height: 100vh;
   position: relative;
   gap: 0; /* Убираем зазор между частями */
+  /* Предотвращаем горизонтальные свайпы за пределы экрана */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
 }
 
 /* Когда контакты появляются, layout меняется */

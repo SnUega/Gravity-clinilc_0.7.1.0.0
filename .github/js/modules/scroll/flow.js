@@ -204,17 +204,30 @@ export class ScrollFlow {
           // Это критично для предотвращения белого артефакта на страницах услуг
           // При скролле вверх или при изменении layout (hero, аккордеоны) ScrollTrigger пересчитывается
           // и может сбросить clipPath, что приводит к появлению белого фона #contacts поверх черного #revealWrap
-          // Используем setTimeout с 0 задержкой чтобы clipPath устанавливался после завершения refresh()
-          // но максимально быстро, чтобы избежать визуального артефакта
-          setTimeout(() => {
-            if (this.scrollTrigger) {
-              const currentProgress = this.scrollTrigger.progress || 0;
-              const clipValue = 100 - currentProgress * 100;
+          // Используем requestAnimationFrame для синхронной установки clipPath после завершения refresh()
+          if (this.scrollTrigger) {
+            const currentProgress = this.scrollTrigger.progress || 0;
+            const clipValue = 100 - currentProgress * 100;
+            
+            // Устанавливаем clipPath синхронно в следующем кадре анимации
+            requestAnimationFrame(() => {
               gsap.set(this.footer, {
                 clipPath: `inset(${clipValue}% 0 0 0)`
               });
-            }
-          }, 0);
+              
+              // Дополнительное обновление для гарантии синхронизации
+              // Особенно важно при остановке скролла Lenis
+              requestAnimationFrame(() => {
+                if (this.scrollTrigger) {
+                  const finalProgress = this.scrollTrigger.progress || 0;
+                  const finalClipValue = 100 - finalProgress * 100;
+                  gsap.set(this.footer, {
+                    clipPath: `inset(${finalClipValue}% 0 0 0)`
+                  });
+                }
+              });
+            });
+          }
         }
       });
     });
