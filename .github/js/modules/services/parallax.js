@@ -111,12 +111,9 @@ export class ServicesParallax {
       this.windowHeight = window.innerHeight;
     });
     
-    // Проверяем, нужно ли отключить параллакс
-    if (this.isParallaxDisabled) {
-      // Для мобильных/планшетов в портретной ориентации: отключаем параллакс
-      gsap.set(this.cards, { yPercent: 0 });
-      return;
-    }
+    // Отключаем параллакс полностью для всех устройств
+    gsap.set(this.cards, { yPercent: 0 });
+    return;
 
     // Добавляем дополнительное пространство снизу на величину pin (~12vh)
     // Это исключает «срез» карточек нижней границей следующей секции, не меняя их высоту

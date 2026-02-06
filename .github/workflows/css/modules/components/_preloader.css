@@ -105,6 +105,16 @@
   z-index: 2;
 }
 
+/* Фиксируем заглушку после перемещения прелоадера в hero, чтобы она не плавала при скролле */
+#hero .preloader .word-container,
+.hero .preloader .word-container,
+section:first-of-type .preloader .word-container {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .word-mask {
   position: relative;
   width: 100%;
