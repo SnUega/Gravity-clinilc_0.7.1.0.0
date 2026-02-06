@@ -115,6 +115,8 @@ body.services-page.contacts-visible .breadcrumbs {
   /* Предотвращаем горизонтальные свайпы за пределы экрана */
   overflow-x: hidden;
   overscroll-behavior-x: none;
+  /* ВАЖНО: Для sticky hero родительский контейнер должен иметь достаточную высоту */
+  /* Высота определяется содержимым (services-list-wrapper), hero будет sticky внутри */
 }
 
 /* Когда контакты появляются, layout меняется */
@@ -131,6 +133,7 @@ body.services-page main.services-page-layout:has(~ #revealWrap) {
   flex: 0 0 30%; /* Фиксированная ширина 30% */
   width: 30%;
   height: 100vh;
+  max-height: 100vh; /* Ограничиваем максимальную высоту */
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
   display: flex;
   flex-direction: column;
@@ -141,6 +144,8 @@ body.services-page main.services-page-layout:has(~ #revealWrap) {
   overflow-x: hidden;
   box-sizing: border-box;
   align-self: flex-start;
+  /* ВАЖНО: Hero должен оставаться sticky до конца скролла services-list-wrapper */
+  /* Sticky работает внутри родительского контейнера (services-page-layout) */
   /* Анимация "шторки" - hero уезжает влево при появлении контактов */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, flex 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   /* GPU acceleration для плавных анимаций */
@@ -1514,6 +1519,23 @@ body.services-page #revealWrap {
 /* ============================================
    Responsive Styles
    ============================================ */
+
+/* Desktop & Tablet Landscape - Hero должен оставаться sticky */
+@media (min-width: 1025px) {
+  .services-hero {
+    /* На десктопе и планшетах в горизонтали hero должен оставаться sticky */
+    /* до конца скролла services-list-wrapper */
+    position: sticky;
+    top: 0;
+    align-self: flex-start; /* Важно для sticky внутри flex контейнера */
+  }
+  
+  .services-page-layout {
+    /* Родительский контейнер должен иметь достаточную высоту для sticky */
+    /* Высота определяется содержимым (services-list-wrapper) */
+    align-items: flex-start; /* Выравниваем элементы по верху */
+  }
+}
 
 /* Tablet Portrait & Landscape */
 @media (max-width: 1024px) {

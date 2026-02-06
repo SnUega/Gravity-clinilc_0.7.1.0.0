@@ -23,26 +23,20 @@ async function init() {
     // Прелоадер
     initPagePreloader();
 
-    // Lenis smooth scroll
+    // Lenis smooth scroll через контроллер (как на главной)
+    // ВАЖНО: Используем initScrollController вместо прямого создания Lenis
+    // Это обеспечивает правильную интеграцию с ScrollTrigger и предотвращает артефакты
     try {
-      await waitForLibrary('Lenis', 5000);
+      const { initScrollController, initScrollProtection } = await import('./modules/scroll/index.js');
       
-      lenisInstance = new window.Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        smoothWheel: true,
-      });
-
-      function raf(time) {
-        lenisInstance.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
+      // Инициализируем защиту от сброса скролла (для мобильных устройств)
+      initScrollProtection();
       
+      // Инициализируем контроллер скролла (Lenis)
+      lenisInstance = await initScrollController();
       console.log('✅ Lenis initialized');
     } catch (error) {
-      console.warn('Lenis not available');
+      console.warn('Lenis not available:', error);
     }
 
     // GSAP
