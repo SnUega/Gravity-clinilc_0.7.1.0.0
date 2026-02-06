@@ -466,99 +466,63 @@ async function handleFormSubmit(e) {
  */
 function initHeroScrollBehavior() {
   // Определяем, является ли устройство мобильным или планшетом в вертикали
-  const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                        (typeof window !== 'undefined' && 'ontouchstart' in window) ||
-                        (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
-  
-  // Проверяем ориентацию (для планшетов)
-  const isPortrait = window.matchMedia('(orientation: portrait)').matches;
-  const isTabletPortrait = window.innerWidth <= 1024 && window.innerWidth >= 768 && isPortrait;
+  // ВАЖНО: На мобильных hero находится в начале страницы, поэтому триггер должен быть отключен
+  const isMobile = window.innerWidth < 768;
+  const isTabletPortrait = window.innerWidth <= 1024 && window.innerWidth >= 768 && 
+                           window.matchMedia('(orientation: portrait)').matches;
   
   // Отключаем анимацию на мобильных и планшетах в вертикали
-  // На этих устройствах flex перестроен, и анимация вызывает дергания
-  if (isMobileDevice || isTabletPortrait) {
+  // На этих устройствах flex перестроен, hero находится в начале страницы,
+  // и анимация вызывает дергания
+  if (isMobile || isTabletPortrait) {
     return; // Не инициализируем анимацию на мобильных/планшетах в вертикали
   }
   
   const hero = document.querySelector('.services-hero');
   const contactsSection = document.querySelector('#contacts');
+  const servicesListWrapper = document.querySelector('.services-list-wrapper');
   const body = document.body;
   
-  if (!hero || !contactsSection) return;
+  if (!hero || !contactsSection || !servicesListWrapper) return;
 
   let isHeroHidden = false;
   let isTransitioning = false;
-  let lastScrollY = window.scrollY;
-  let refreshTimeout = null;
 
-  // Дебаунс для ScrollTrigger.refresh()
-  // ВАЖНО: Не вызываем refresh во время активной анимации flow.js (раскрытие футера)
-  // чтобы избежать конфликтов и артефактов при быстром скролле
-  const debouncedRefresh = () => {
-    if (refreshTimeout) clearTimeout(refreshTimeout);
-    refreshTimeout = setTimeout(() => {
-      // Проверяем, не активна ли анимация flow.js (раскрытие футера)
-      // Если пользователь быстро скроллит и flow.js еще анимирует футер,
-      // не вызываем refresh, чтобы избежать конфликтов
-      if (window.ScrollTrigger) {
-        // Проверяем, есть ли активный ScrollTrigger для flow.js
-        // flow.js использует #contacts как trigger
-        const contactsSection = document.querySelector('#contacts');
-        if (contactsSection) {
-          const flowTrigger = ScrollTrigger.getAll().find(st => 
-            st.vars && st.vars.trigger && 
-            (st.vars.trigger.id === 'contacts' || st.vars.trigger === contactsSection)
-          );
-          
-          // Если flow.js активен (прогресс между 0 и 1), не вызываем refresh
-          // Это предотвращает конфликты при быстром скролле
-          if (flowTrigger && flowTrigger.progress > 0 && flowTrigger.progress < 1) {
-            // Анимация flow.js активна, пропускаем refresh
-            return;
-          }
-        }
-        
-        window.ScrollTrigger.refresh();
-      }
-    }, 600);
-  };
-
-  // Отслеживаем когда контакты появляются в viewport
-  const checkContactsVisibility = () => {
+  // Отслеживаем когда нижняя граница hero и секции услуг совпадает с нижней границей экрана
+  const checkHeroVisibility = () => {
     // Не обновляем во время перехода
     if (isTransitioning) return;
     
-    const contactsRect = contactsSection.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
-    const scrollDirection = window.scrollY > lastScrollY ? 'down' : 'up';
-    lastScrollY = window.scrollY;
+    const servicesListRect = servicesListWrapper.getBoundingClientRect();
     
-    // Порог срабатывания - когда контакты видны на 50% экрана снизу
-    const showThreshold = viewportHeight * 0.5;
-    // Порог скрытия - когда контакты уходят полностью вниз
-    const hideThreshold = viewportHeight * 0.8;
+    // Общий триггер для скрытия и возвращения - просто сдвигаем его позже
+    const triggerOffset = 70; // Отступ для более позднего срабатывания
+    const triggerThreshold = viewportHeight - triggerOffset;
     
-    const shouldShow = contactsRect.top < showThreshold && contactsRect.bottom > 100;
-    const shouldHide = contactsRect.top > hideThreshold || contactsRect.bottom < 0;
+    // Триггер срабатывания: когда нижняя граница services-list-wrapper (секция с аккордеонами)
+    // совпадает со сдвинутым порогом (т.е. верхняя граница контактов начинает появляться)
+    const shouldHide = servicesListRect.bottom <= triggerThreshold;
     
-    if (shouldShow && !isHeroHidden) {
+    // Триггер обратной анимации: когда нижняя граница services-list-wrapper
+    // снова выше сдвинутого порога (т.е. контакты еще не видны)
+    const shouldShow = servicesListRect.bottom > triggerThreshold;
+    
+    if (shouldHide && !isHeroHidden) {
+      // Запускаем анимацию скрытия hero
       isTransitioning = true;
       isHeroHidden = true;
       
-      // Применяем классы с небольшой задержкой для плавности
       requestAnimationFrame(() => {
         hero.classList.add('hero-hiding');
         body.classList.add('contacts-visible');
         
         setTimeout(() => {
           isTransitioning = false;
-          // ВАЖНО: НЕ вызываем debouncedRefresh() сразу после изменения layout
-          // Это может конфликтовать с flow.js и вызывать артефакты
-          // ScrollTrigger обновится автоматически через свой механизм обновления
-          // debouncedRefresh();
         }, 500);
       });
-    } else if (shouldHide && isHeroHidden) {
+    } else if (shouldShow && isHeroHidden) {
+      // Запускаем обратную анимацию (показ hero)
       isTransitioning = true;
       isHeroHidden = false;
       
@@ -568,33 +532,18 @@ function initHeroScrollBehavior() {
         
         setTimeout(() => {
           isTransitioning = false;
-          // ВАЖНО: НЕ вызываем debouncedRefresh() сразу после изменения layout
-          // Это может конфликтовать с flow.js и вызывать артефакты
-          // ScrollTrigger обновится автоматически через свой механизм обновления
-          // debouncedRefresh();
         }, 500);
       });
     }
   };
 
-  // Используем IntersectionObserver с более широким threshold
-  const observer = new IntersectionObserver((entries) => {
-    // Используем rAF для синхронизации с рендерингом
-    requestAnimationFrame(checkContactsVisibility);
-  }, {
-    threshold: [0, 0.25, 0.5, 0.75, 1],
-    rootMargin: '100px 0px'
-  });
-
-  observer.observe(contactsSection);
-  
-  // Throttled scroll handler
+  // Throttled scroll handler для отслеживания позиции services-list-wrapper
   let scrollTicking = false;
   const handleScroll = () => {
     if (!scrollTicking) {
       scrollTicking = true;
       requestAnimationFrame(() => {
-        checkContactsVisibility();
+        checkHeroVisibility();
         scrollTicking = false;
       });
     }
@@ -603,7 +552,7 @@ function initHeroScrollBehavior() {
   window.addEventListener('scroll', handleScroll, { passive: true });
   
   // Проверяем при загрузке после небольшой задержки
-  setTimeout(checkContactsVisibility, 300);
+  setTimeout(checkHeroVisibility, 300);
 }
 
 /**

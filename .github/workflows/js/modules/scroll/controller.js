@@ -13,9 +13,12 @@ import { getErrorHandler, ERROR_SEVERITY } from '../../core/errors.js';
 export class ScrollController {
   constructor(options = {}) {
     // Определяем, является ли устройство мобильным
-    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
-                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+    // ВАЖНО: Для планшетов (ширина >= 768px) НЕ отключаем Lenis, даже если есть touch
+    // Responsively App и другие эмуляторы могут определять iPad как мобильное, но это планшет
+    const isTablet = typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth <= 1024;
+    const isMobileDevice = (!isTablet && /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ||
+                          (!isTablet && typeof window !== 'undefined' && 'ontouchstart' in window && window.innerWidth < 768) ||
+                          (!isTablet && typeof window !== 'undefined' && navigator.maxTouchPoints > 0 && window.innerWidth < 768);
     
     this.options = {
       duration: options.duration || 1.9,
@@ -44,9 +47,12 @@ export class ScrollController {
     }
 
     // Определяем, является ли устройство мобильным (повторяем проверку для init)
-    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                          (typeof window !== 'undefined' && 'ontouchstart' in window) ||
-                          (typeof window !== 'undefined' && navigator.maxTouchPoints > 0);
+    // ВАЖНО: Для планшетов (ширина >= 768px) НЕ отключаем Lenis, даже если есть touch
+    // Responsively App и другие эмуляторы могут определять iPad как мобильное, но это планшет
+    const isTablet = typeof window !== 'undefined' && window.innerWidth >= 768 && window.innerWidth <= 1024;
+    const isMobileDevice = (!isTablet && /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) ||
+                          (!isTablet && typeof window !== 'undefined' && 'ontouchstart' in window && window.innerWidth < 768) ||
+                          (!isTablet && typeof window !== 'undefined' && navigator.maxTouchPoints > 0 && window.innerWidth < 768);
 
     // Для мобильных устройств полностью отключаем Lenis, используем нативный скролл
     if (isMobileDevice) {
