@@ -109,13 +109,12 @@ body.services-page.contacts-visible .breadcrumbs {
 
 .services-page-layout {
   display: flex;
-  min-height: 100vh;
   position: relative;
   gap: 0; /* Убираем зазор между частями */
   /* Предотвращаем горизонтальные свайпы за пределы экрана */
   overflow-x: hidden;
   overscroll-behavior-x: none;
-  /* ВАЖНО: Для sticky hero родительский контейнер должен иметь достаточную высоту */
+  /* ВАЖНО: Для sticky hero НЕ используем min-height, чтобы высота определялась содержимым */
   /* Высота определяется содержимым (services-list-wrapper), hero будет sticky внутри */
 }
 
@@ -1528,12 +1527,22 @@ body.services-page #revealWrap {
     position: sticky;
     top: 0;
     align-self: flex-start; /* Важно для sticky внутри flex контейнера */
+    /* Hero должен быть недвижим пока скролл не дойдет до триггера анимации скрытия */
+    height: 100vh;
+    max-height: 100vh;
   }
   
   .services-page-layout {
     /* Родительский контейнер должен иметь достаточную высоту для sticky */
     /* Высота определяется содержимым (services-list-wrapper) */
     align-items: flex-start; /* Выравниваем элементы по верху */
+    /* ВАЖНО: Убираем min-height, чтобы высота определялась содержимым */
+    /* Это позволяет sticky работать правильно - hero будет sticky внутри контейнера */
+  }
+  
+  .services-list-wrapper {
+    /* Список услуг определяет высоту родительского контейнера */
+    /* Hero будет sticky внутри services-page-layout до конца скролла списка */
   }
 }
 

@@ -109,9 +109,19 @@
   border-top: 1px solid rgba(255, 255, 255, 0.12); 
 }
 
-/* Скрываем "made by" в footer-bottom на десктопе (показываем только на мобильных) */
+/* Показываем "made by" в footer-bottom на всех устройствах */
 #page-footer .footer-bottom .made-by-mobile {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #cfcfcf;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+#page-footer .footer-bottom .made-by-mobile:hover {
+  opacity: 0.8;
 }
 
 /* Social buttons - только SVG без фона */

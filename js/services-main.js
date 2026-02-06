@@ -492,10 +492,32 @@ function initHeroScrollBehavior() {
   let refreshTimeout = null;
 
   // Дебаунс для ScrollTrigger.refresh()
+  // ВАЖНО: Не вызываем refresh во время активной анимации flow.js (раскрытие футера)
+  // чтобы избежать конфликтов и артефактов при быстром скролле
   const debouncedRefresh = () => {
     if (refreshTimeout) clearTimeout(refreshTimeout);
     refreshTimeout = setTimeout(() => {
+      // Проверяем, не активна ли анимация flow.js (раскрытие футера)
+      // Если пользователь быстро скроллит и flow.js еще анимирует футер,
+      // не вызываем refresh, чтобы избежать конфликтов
       if (window.ScrollTrigger) {
+        // Проверяем, есть ли активный ScrollTrigger для flow.js
+        // flow.js использует #contacts как trigger
+        const contactsSection = document.querySelector('#contacts');
+        if (contactsSection) {
+          const flowTrigger = ScrollTrigger.getAll().find(st => 
+            st.vars && st.vars.trigger && 
+            (st.vars.trigger.id === 'contacts' || st.vars.trigger === contactsSection)
+          );
+          
+          // Если flow.js активен (прогресс между 0 и 1), не вызываем refresh
+          // Это предотвращает конфликты при быстром скролле
+          if (flowTrigger && flowTrigger.progress > 0 && flowTrigger.progress < 1) {
+            // Анимация flow.js активна, пропускаем refresh
+            return;
+          }
+        }
+        
         window.ScrollTrigger.refresh();
       }
     }, 600);
