@@ -179,6 +179,9 @@ export class ScrollFlow {
 
           // Раскрытие футера снизу вверх
           const clipValue = 100 - progress * 100;
+          
+          // ВАЖНО: Всегда устанавливаем clipPath синхронно в onUpdate
+          // Это гарантирует, что белый фон #contacts не будет виден поверх черного #revealWrap
           gsap.set(this.footer, {
             clipPath: `inset(${clipValue}% 0 0 0)`
           });
@@ -197,17 +200,21 @@ export class ScrollFlow {
           // onRefresh вызывается ВО ВРЕМЯ ScrollTrigger.refresh(), и повторный вызов refresh() создает цикл
           this.footerHeight = this.footer.offsetHeight;
           
-          // ВАЖНО: Сохраняем текущий clipPath при обновлении, чтобы избежать белой полосы
-          // При скролле вверх ScrollTrigger может обновляться и сбрасывать clipPath
-          const currentClipPath = gsap.getProperty(this.footer, 'clipPath');
-          if (!currentClipPath || currentClipPath === 'none' || currentClipPath === '') {
-            // Если clipPath был сброшен, восстанавливаем его на основе текущего прогресса
-            const currentProgress = this.scrollTrigger ? this.scrollTrigger.progress : 0;
-            const clipValue = 100 - currentProgress * 100;
-            gsap.set(this.footer, {
-              clipPath: `inset(${clipValue}% 0 0 0)`
-            });
-          }
+          // ВАЖНО: ВСЕГДА сохраняем и восстанавливаем clipPath при обновлении
+          // Это критично для предотвращения белого артефакта на страницах услуг
+          // При скролле вверх или при изменении layout (hero, аккордеоны) ScrollTrigger пересчитывается
+          // и может сбросить clipPath, что приводит к появлению белого фона #contacts поверх черного #revealWrap
+          // Используем setTimeout с 0 задержкой чтобы clipPath устанавливался после завершения refresh()
+          // но максимально быстро, чтобы избежать визуального артефакта
+          setTimeout(() => {
+            if (this.scrollTrigger) {
+              const currentProgress = this.scrollTrigger.progress || 0;
+              const clipValue = 100 - currentProgress * 100;
+              gsap.set(this.footer, {
+                clipPath: `inset(${clipValue}% 0 0 0)`
+              });
+            }
+          }, 0);
         }
       });
     });
