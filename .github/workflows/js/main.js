@@ -143,6 +143,10 @@ async function init() {
       const { initALRInteractive } = await import('./modules/alr/index.js');
       initALRInteractive();
       
+      // Импортируем заглушки ориентации
+      const { initOrientationOverlay } = await import('./modules/orientation-overlay.js');
+      initOrientationOverlay();
+      
       console.log('✅ Medium modules loaded');
     } catch (error) {
       errorHandler.handle(error, {

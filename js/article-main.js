@@ -75,6 +75,15 @@ async function init() {
       console.warn('Contact form not available');
     }
 
+    // Инициализация заглушек ориентации
+    try {
+      const { initOrientationOverlay } = await import('./modules/orientation-overlay.js');
+      initOrientationOverlay();
+      console.log('✅ Orientation overlay initialized');
+    } catch (error) {
+      console.warn('Orientation overlay not available:', error);
+    }
+
     // Инициализация статьи
     initArticlePage();
     initBlogArticleClicks();

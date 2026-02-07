@@ -22,6 +22,7 @@
 /* Components */
 @import url('modules/components/_preloader.css');
 @import url('modules/components/_mobile-hint.css');
+@import url('modules/components/_orientation-overlay.css');
 @import url('modules/components/_header.css');
 @import url('modules/components/_services.css');
 @import url('modules/components/_menu.css');

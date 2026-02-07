@@ -102,6 +102,15 @@ async function init() {
       console.warn('Contact form not available:', error);
     }
 
+    // Этап 9: Инициализация заглушек ориентации
+    try {
+      const { initOrientationOverlay } = await import('./modules/orientation-overlay.js');
+      initOrientationOverlay();
+      console.log('✅ Orientation overlay initialized');
+    } catch (error) {
+      console.warn('Orientation overlay not available:', error);
+    }
+
     console.log('✅ All blog page modules loaded');
 
     // Обработка якорных ссылок при загрузке страницы (если переходим на главную с hash)

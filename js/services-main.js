@@ -104,6 +104,15 @@ async function init() {
       console.warn('Contact form not available:', error);
     }
 
+    // Этап 10: Инициализация заглушек ориентации
+    try {
+      const { initOrientationOverlay } = await import('./modules/orientation-overlay.js');
+      initOrientationOverlay();
+      console.log('✅ Orientation overlay initialized');
+    } catch (error) {
+      console.warn('Orientation overlay not available:', error);
+    }
+
     console.log('✅ All services page modules loaded');
 
   } catch (error) {
@@ -465,17 +474,16 @@ async function handleFormSubmit(e) {
  * Оптимизировано для устранения глитчей
  */
 function initHeroScrollBehavior() {
-  // Определяем, является ли устройство мобильным или планшетом в вертикали
+  // Определяем, является ли устройство мобильным
   // ВАЖНО: На мобильных hero находится в начале страницы, поэтому триггер должен быть отключен
   const isMobile = window.innerWidth < 768;
-  const isTabletPortrait = window.innerWidth <= 1024 && window.innerWidth >= 768 && 
-                           window.matchMedia('(orientation: portrait)').matches;
   
-  // Отключаем анимацию на мобильных и планшетах в вертикали
-  // На этих устройствах flex перестроен, hero находится в начале страницы,
+  // Отключаем анимацию на мобильных
+  // На мобильных устройствах flex перестроен, hero находится в начале страницы,
   // и анимация вызывает дергания
-  if (isMobile || isTabletPortrait) {
-    return; // Не инициализируем анимацию на мобильных/планшетах в вертикали
+  // Для планшетов в вертикальной ориентации показывается заглушка
+  if (isMobile) {
+    return; // Не инициализируем анимацию на мобильных
   }
   
   const hero = document.querySelector('.services-hero');

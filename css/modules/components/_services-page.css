@@ -189,11 +189,10 @@ body.services-page main.services-page-layout:has(~ #revealWrap) {
   }
 }
 
-@media (max-width: 1024px) {
-  @media (orientation: landscape) and (min-width: 1024px) {
-    body.services-page.contacts-visible .services-page-layout {
-      margin-left: 0;
-    }
+/* Планшеты в горизонтали - оставляем для корректной работы hero */
+@media (orientation: landscape) and (min-width: 1024px) and (max-width: 1024px) {
+  body.services-page.contacts-visible .services-page-layout {
+    margin-left: 0;
   }
 }
 
@@ -443,8 +442,8 @@ body.services-page #revealWrap {
   }
 }
 
-/* Show on mobile and tablet portrait */
-@media (max-width: 1024px) {
+/* Show on mobile */
+@media (max-width: 768px) {
   .services-page-mobile-hint {
     display: flex;
   }
@@ -1595,8 +1594,8 @@ body.services-page #revealWrap {
   }
 }
 
-/* Tablet Portrait & Mobile - Hero в общем потоке */
-@media (max-width: 1024px) {
+/* Mobile - Hero в общем потоке */
+@media (max-width: 768px) {
   .breadcrumbs {
     position: relative;
     left: 0;
@@ -1609,8 +1608,6 @@ body.services-page #revealWrap {
     flex-direction: column;
   }
   
-  /* ВАЖНО: На планшетах в горизонтали (1024px) hero должен быть sticky */
-  /* Это правило применяется только к планшетам в вертикали и мобильным */
   .services-hero {
     position: relative;
     width: 100%;
@@ -1619,35 +1616,6 @@ body.services-page #revealWrap {
     padding: 6rem 2rem 3rem;
     overflow: visible; /* Убираем отдельный скролл, включаем в общий поток */
     overflow-y: visible; /* Убираем вертикальный скролл на мобильных */
-  }
-  
-  /* Переопределяем для планшетов в горизонтали - hero должен быть fixed */
-  @media (orientation: landscape) and (min-width: 1024px) {
-    .services-hero {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      max-height: 100vh;
-      width: 30%;
-      flex: 0 0 30%;
-      padding: clamp(1.5rem, 4vw, 5rem);
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-    
-    /* Фиксируем ширину контента на планшетах в горизонтали */
-    .services-hero-content {
-      width: calc(30vw - clamp(1.5rem, 4vw, 5rem) * 2);
-      min-width: calc(30vw - clamp(1.5rem, 4vw, 5rem) * 2);
-      max-width: calc(30vw - clamp(1.5rem, 4vw, 5rem) * 2);
-    }
-    
-    .services-page-layout {
-      flex-direction: row;
-      align-items: flex-start;
-      margin-left: 30%;
-    }
   }
   
   .services-list-wrapper {
@@ -1659,7 +1627,6 @@ body.services-page #revealWrap {
   .services-hero-stats {
     flex-wrap: wrap;
   }
-
 }
 
 /* Mobile */

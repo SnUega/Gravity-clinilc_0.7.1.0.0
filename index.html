@@ -16,6 +16,32 @@
 
 </head>
 <body>
+
+  <!-- Orientation Overlay for Tablets (Portrait) -->
+  <div class="orientation-overlay orientation-overlay-tablet" id="orientation-overlay-tablet">
+    <canvas id="network-canvas-tablet"></canvas>
+    <div class="orientation-content">
+      <svg class="tablet-icon" viewBox="0 0 100 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="90" height="130" rx="8" stroke="currentColor" stroke-width="3" fill="none"/>
+        <circle cx="50" cy="120" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+        <rect x="35" y="12" width="30" height="4" rx="2" fill="currentColor" opacity="0.5"/>
+      </svg>
+      <p class="orientation-text">Пожалуйста, поверните устройство горизонтально для наилучшего пользовательского опыта</p>
+    </div>
+  </div>
+
+  <!-- Orientation Overlay for Phones (Landscape) -->
+  <div class="orientation-overlay orientation-overlay-phone" id="orientation-overlay-phone">
+    <canvas id="network-canvas-phone"></canvas>
+    <div class="orientation-content">
+      <svg class="phone-icon" viewBox="0 0 70 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="60" height="130" rx="8" stroke="currentColor" stroke-width="3" fill="none"/>
+        <circle cx="35" cy="120" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+        <rect x="20" y="12" width="30" height="4" rx="2" fill="currentColor" opacity="0.5"/>
+      </svg>
+      <p class="orientation-text">Пожалуйста, поверните устройство вертикально для наилучшего пользовательского опыта</p>
+    </div>
+  </div>
   <!-- Preloader -->
   <div id="preloader" class="preloader">
     <div class="preloader-content">

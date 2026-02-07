@@ -1,0 +1,117 @@
+/* ============================================
+   Orientation Overlay
+   ============================================ */
+
+.orientation-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #c0c0c0; /* Серебристый фон */
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.orientation-overlay canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  /* Canvas должен быть видимым даже когда overlay скрыт для работы анимации */
+  display: block;
+  pointer-events: none;
+}
+
+.orientation-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Tablet Icon Animation */
+.tablet-icon {
+  width: 80px;
+  height: auto;
+  color: #7a00c7; /* Фиолетовый цвет проекта */
+  margin-bottom: 2rem;
+  animation: rotate-tablet 2.5s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotate-tablet {
+  0%, 15% {
+    transform: rotate(0deg);
+  }
+  40%, 60% {
+    transform: rotate(-90deg);
+  }
+  85%, 100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Phone Icon Animation */
+.phone-icon {
+  width: 60px;
+  height: auto;
+  color: #7a00c7; /* Фиолетовый цвет проекта */
+  margin-bottom: 2rem;
+  animation: rotate-phone 2.5s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotate-phone {
+  0%, 15% {
+    transform: rotate(90deg);
+  }
+  40%, 60% {
+    transform: rotate(0deg);
+  }
+  85%, 100% {
+    transform: rotate(90deg);
+  }
+}
+
+.orientation-text {
+  font-family: var(--font-family-base, 'Manrope', sans-serif);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-weight: 400;
+  color: #1a1a2e; /* Темный цвет для контраста на серебристом фоне */
+  line-height: 1.6;
+  max-width: 90%;
+}
+
+/* Show overlay for tablets in portrait orientation */
+@media (min-width: 600px) and (max-width: 1024px) and (orientation: portrait) {
+  .orientation-overlay-tablet {
+    display: flex;
+  }
+  
+  body {
+    overflow: hidden;
+  }
+}
+
+/* Show overlay for phones in landscape orientation */
+@media (orientation: landscape) 
+       and (max-height: 500px) 
+       and (pointer: coarse) {
+  .orientation-overlay-phone {
+    display: flex;
+  }
+  
+  body {
+    overflow: hidden;
+  }
+}
